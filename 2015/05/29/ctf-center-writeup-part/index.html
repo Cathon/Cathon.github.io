@@ -1,0 +1,848 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Hackdig," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="东南大学的学生办了一场线上CTF，时间为2015年5月17日(周日)10:00至2015年5月24日(周日)10:00然后呢，当时花了两天答了一些题，趁者官方还没发出完整writeup, 总结下我 PASS 的题目。题型有五大类，如下：
+
+Misc
+签到题(PASS)
+大海捞针(PASS)
+娱乐~娱乐~(PASS)
+
+
+Crypto
+困在栅栏中的凯撒(PASS)
+神奇的数字13(PASS)
+盲人摸">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTF Center part writeup">
+<meta property="og:url" content="http://blog.hycwall.com/2015/05/29/ctf-center-writeup-part/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="东南大学的学生办了一场线上CTF，时间为2015年5月17日(周日)10:00至2015年5月24日(周日)10:00然后呢，当时花了两天答了一些题，趁者官方还没发出完整writeup, 总结下我 PASS 的题目。题型有五大类，如下：
+
+Misc
+签到题(PASS)
+大海捞针(PASS)
+娱乐~娱乐~(PASS)
+
+
+Crypto
+困在栅栏中的凯撒(PASS)
+神奇的数字13(PASS)
+盲人摸">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CTF Center part writeup">
+<meta name="twitter:description" content="东南大学的学生办了一场线上CTF，时间为2015年5月17日(周日)10:00至2015年5月24日(周日)10:00然后呢，当时花了两天答了一些题，趁者官方还没发出完整writeup, 总结下我 PASS 的题目。题型有五大类，如下：
+
+Misc
+签到题(PASS)
+大海捞针(PASS)
+娱乐~娱乐~(PASS)
+
+
+Crypto
+困在栅栏中的凯撒(PASS)
+神奇的数字13(PASS)
+盲人摸">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> CTF Center part writeup | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              CTF Center part writeup
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-05-29T20:49:11+02:00" content="2015-05-29">
+            2015-05-29
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/05/29/ctf-center-writeup-part/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/29/ctf-center-writeup-part/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>东南大学的学生办了一场线上CTF，时间为2015年5月17日(周日)10:00至2015年5月24日(周日)10:00<br>然后呢，当时花了两天答了一些题，趁者官方还没发出完整writeup, 总结下我 PASS 的题目。<br>题型有五大类，如下：</p>
+<ul>
+<li>Misc<ul>
+<li>签到题(PASS)</li>
+<li>大海捞针(PASS)</li>
+<li>娱乐~娱乐~(PASS)</li>
+</ul>
+</li>
+<li>Crypto<ul>
+<li>困在栅栏中的凯撒(PASS)</li>
+<li>神奇的数字13(PASS)</li>
+<li>盲人摸象(PASS)</li>
+<li>bright?</li>
+<li>加密系统</li>
+</ul>
+</li>
+<li>Forensics<ul>
+<li>纯色(PASS)</li>
+<li>Fate!!!(PASS)</li>
+<li>脑洞</li>
+</ul>
+</li>
+<li>Reverse<ul>
+<li>Hello World</li>
+<li>论数学的重要性</li>
+<li>Ingres</li>
+<li>十万火急(PASS)</li>
+</ul>
+</li>
+<li>Web<ul>
+<li>城市查询系统</li>
+<li>又一个任务</li>
+<li>小黑的烦恼</li>
+<li>Discuz?</li>
+<li>Flag你在哪里？(PASS)</li>
+<li>源码中的乾坤(PASS)</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><hr>
+<p><strong>签到题</strong></p>
+<p>来熟悉一下提交Flag的流程吧，flag隐藏在下面的字符串中：<br>ZmxhZ3tjaGVja18xbn0=</p>
+<p>Tips:据说黑阔们特别喜欢用 Base64 或者 Base32~</p>
+<p>答：python base64 decode</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;</span>&gt; import base64</span><br><span class="line"><span class="prompt">&gt;&gt;</span>&gt; base64.b64decode(<span class="string">"ZmxhZ3tjaGVja18xbn0="</span>)</span><br><span class="line"><span class="string">'flag&#123;check_1n&#125;'</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>大海捞针</strong></p>
+<p>小黑发现南京市雨花台区龙西路10号住着一位叫龚宇亿的妹子，你能帮小黑找到她的身份证号么？</p>
+<p>本题Flag为：flag{身份证号}</p>
+<p>答：社工题，随便找个<a href="http://www.shegongku.us/" target="_blank" rel="external">社工库</a>查询一下，我就知道了<br>flag{32068419861130366X}</p>
+<p>一开始以为和身份证的结构有关，特地了解了下 xxxxxx-xxxxxxxx-xxx-x 每段的含义<br>分别是：出生地区编号-出生日期-序号-校验码，其中序号为奇数为男，偶数为女</p>
+<hr>
+<p><strong>娱乐~娱乐~</strong></p>
+<p>做题那么累，不如咱们来玩会游戏吧！</p>
+<p>c7bfc1675666cffc4df9ef77ad57e7cb.susteam.org:25565</p>
+<p>据说在沙漠大山的后面，有一座神秘的钻石宫殿！</p>
+<p>注：本题Flag为 FLAG{可见字符} 的形式。</p>
+<p>答：由端口为25565猜得这是个minecraft服务器。<br>连接，找进入地图，找到一个迷宫，迷宫里看到FLAG</p>
+<p>FLAG{2348768761574}</p>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><hr>
+<p><strong>困在栅栏中的凯撒</strong></p>
+<p>小黑发现了一段神奇的字符：a\vEnZZpZ)ZgbZpo/ai++x</p>
+<p>答：题目提示，加密方式有栏栅加密和凯撒加密<br>观察字符串，字符不仅仅有字母，观察ASCII表，猜测字符串最后的’x’对应’{‘<br>位移为5,解出以下字符串</p>
+<pre><code>fa{Js__u_._lg_ut4fn00}
+</code></pre><p>字符串长度为22,尝试分为2组</p>
+<pre><code>fa{Js__u_._
+lg_ut4fn00}
+</code></pre><p>得到FLAG:</p>
+<pre><code>flag{_Just_4_fun_0.0_}
+</code></pre><hr>
+<p><strong>神奇的数字13</strong></p>
+<p>Attach:20150511213312.zip</p>
+<p>据说老外很喜欢13这个数字。<br>本题Flag形式为： flag:{可见字符} </p>
+<p>答：下载压缩包解压得到文件crackme<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">qngn:</span>vzntr/cat;onfr64,vIOBEj0XTtbNNNNAFHuRHtNNNJtNNNQjPNVNNNPvkJxLNNNDtHyRDIE4Nr3Os0mI97xU8CqGQOkdqKIY/oKOnvKc3OY7KFYqoHqJQRGE/eUCEYbE3StT6x6vxLNTwuAKg3FSNtWv67SYgqJBLeBMsIcYzN50aXvE7b99gjFx1vOMhheFnuTI4fQaWvpkJHCifhph1+<span class="number">2</span>n9+fyVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWXP73oMg22Xk2ThiiIMrKd6d3aiaUBlrsiecJPl2nqBzrQjBDSJ99845/<span class="constant">ZqDIr</span>+<span class="number">9</span>pj7/<span class="constant">IeAam25bnSv2oAyaC</span>/iM4rUuK/mvSm/<span class="number">96</span>H9i3odydit7LEtTDDONIpZjQVVNFnbnuzRDOCwadTbLuxhKYe1l5DehSNUq7HMTEg5/<span class="regexp">//</span><span class="number">2</span>vbdV/<span class="regexp">/ryCdhd9q87O7ie162+88pozmMisr+89NXediKsB4G/</span><span class="constant">T008</span>/ssof2L6BQikoUGylMZJXSp8/<span class="regexp">//mj</span>8UOODHS+si6zGMg27qdydcphKLeU40v6rCSvCO4UbXcuTNMOtPEIQpZjPNY8p7797J93qUE873isB3wjVB4HNq3IiiPSY/m5m3/+mJ9+<span class="constant">H1WF8hTUU6dd9379</span>+iHiiiwvR088VFVaG54fXlg7/<span class="regexp">/33H1WFTufol8eXExqUg23ogz/s</span>Ch+<span class="number">9</span>pj63dJb0Tb3U40uFIr+<span class="number">9</span>p2737g3EnUGIdyIqKI0gYF1SEHKKey2een09rCNttYF0gWnJydXvbziKegKJ1u48rOOWdgeo2mg9+iFZwVl6heez5zM8zcFHyZoTkeXlfgUE0J3ogh3og897K1uLhUam5iYl8eym5/o392/qheJ7hkhNdaeiaKBdrim48L8/<span class="regexp">/wt3A/sgg</span>99+<span class="number">6</span>dzaCiwtt8oTkeXlfgUE0J3ogh3og89775mQSPxcXMf3ol4iY587q25/s/<span class="regexp">/JeIh7h7fOdBek48p/</span><span class="regexp">/iww3Ampg99++6zaaec06EV+moIe186pBMBKyjptYF1g7qd1M8+r/r</span>1is6hdLEtTDLOCHgHjQVZtDWXduzRLORSnJycYF0gEHqT1n9qdn2fCUwlVWSKg7BjpUE1AGH1qgJbINSJAEdCkrOk3vbQhnddXWB+<span class="number">9</span>p05IisqKe179mar+<span class="constant">H1go</span>+<span class="number">7</span>aCsJ7Yyv27q+<span class="regexp">/rhUSwEHISp3Cm0nAUR4yRAOdqC3++9945q+YRvKsssor8iSkIb9SbCO5Uxdc673/</span><span class="number">1</span>d18qBUPtcdnzie5+k44q27qie6ddNgQD0WPGx3C69BxqB3Mf3769ddbXDRAQD05BmhaGcjTbXbP9r/p+<span class="number">8</span>ftw/<span class="number">5</span>I05fjMGSSEHqUp3Um06ASRVuTAEhsCa++<span class="number">9</span>GlDFwL2Ao775Maq394LATmVmZkpiKwj4BXvd3aiaaPn1gYD88ZNQn9nfdn+ii3wkLaAm89TwEkBWEQDnaG9/iisrBLpcddddTufo33mmmr7h7t0oAzEzMv5riUujpSPGJycnUawttGIe1gGK19sH1BQGaQ9/sf6pBGH1AI1qKrsCa1qIWXadcHhK4iR4xv5riOvCkjTbnuvTDENtFIKQZNlPLZrBUqh3o6+ddtYD0APDx5Am+iEcNXb6ZGSk9BwEj4pCi/<span class="constant">GFFjOHAEdAkhAk3PxPhghcdisrBDqNIo33</span>+<span class="regexp">/ogzmMg2fQNjOACCYSam55s/</span><span class="regexp">/eK3/e</span>Jg/e7+<span class="number">2</span>sZzYStjLXWvLzpaWkRVhT9q86cnuvTSEHIk48sYlxcnJ9iE5XdQtjZsCTYK0jxRtHSODQBaGg38+oA5phKNmul5RuKI1qAGp25p+qh3el5sCylNRrBUBad6ddcdDTtdtZQN1/+<span class="number">8</span>cpKYIeH39/s3AkpJIzWXse7+<span class="number">2</span>sZzYStjLXWvLzpaWkRVhT9K7EbHFDFrrvuulLaW7Bmf/i6+hed6zXkzXc6751mdaevkVzyF5qTVcTkfoUQuj8iJeEbkbjMPkLfzWvLlZaWFFDF3aiaUXLLUOlZEPVCCsGD5BExqaM2K19sKI1qYOMG1EZaGvkqhwDFvLlAwE0+sYvjfOPsMfJXSF+<span class="regexp">//</span><span class="constant">CYf2oZOKYyl5Mr</span>/<span class="regexp">/TIIIqKb6Xvd4h+RLEtRNDOIQpZjPNVxdJbLuxRDaQg37hoAz8hKYjqj5ZvEed6hzcbnNXbnuzRDOYwg6gJe+/si</span>37c16/<span class="constant">Ke13SUPBuhc6err</span>+ppNSK13er3g7/jjthcdny9sK15rKarr+spwEf3rag7PjbXNXFzcb6Cw3iiaKAVzcvLrBrqq77+<span class="number">9</span>n9shKVSFnbXDSH/<span class="regexp">/CQQuDfKKe16qJkfYOXW4YnBwb7v4hXkfoSVWVYoBwb6vbhYNnudM2sax08+zMdnBw4+3gUEHIkpwPyh3YwE29goHSNNVQH1qKk83Uh/o</span>Azl3g7rtbVPNWSVMTkfeY29inFxESJ99845IsKrB+pNdXe3sgzlMo29iDHSODOFH1CUk8r99845GUUwkb3r3g6PttVNxHuxoTlfio29cXERIo33mwxNdhd9q87usmOg2eDyFpKSkL8/<span class="regexp">/ivmmm67qrgJID3QZNtPsWXduzRLONTFICHCs/w</span>QI7/<span class="number">61</span>oTkfHtxtgf6BwdXv4fOdXe33wzU23of2SSoJ/hQU/mt5Mqsku0ubYhqdaeiaKZNIAI7/<span class="number">9</span>uww/<span class="number">31e39</span>qfzGWsssq98RUU3wiaKAQD0ZNfeXlWvpaf7Bm+<span class="regexp">/e6iCsBBFEyMzLBQj+KycLrBUNNFne6mwiiAQL2iiwvvm/</span><span class="number">72</span>p9+<span class="number">9</span>XZsQD8CQj0A5rozNyvlMRy6rabvxEtrUu4nTfeAmDJjMZzF9CG0EPVODSK7+<span class="regexp">/h/</span><span class="number">8</span>cJisByYKkbLTTuhod6feZDHD0AQNYXlfvLaW7Bmf/i6+em3vkLgFxgYJ7uj4rGx5XBCCaezmWa6+idnzucI9q4751GIr++pN6Pd3igUUaxRDSMJ1hGxMUM2qy9sa/srBLpcOtpU09YFSv5pBQx5+rvww545p6n+ie6zcxMIissBBDPd6e13mzTXTGAzyWnJQt4BUwg2QZOaCiBMwm766WIKKia+<span class="number">97</span>+idzRLOxTNG/eYK/<span class="number">4</span>loqd0m3/+<span class="number">83</span>/<span class="number">7298</span>rsCQObnTumf7BW598pau4rTubXQp3S8PFWHiF09ZGvDDNIsKrB+qj240oA1544LHgJ7nbXh4VNq3gIAI775jQbXer+<span class="number">8</span>prr+lrr+<span class="number">559</span>gya8/<span class="constant">CmI6kL8pLoo3mmz9</span>+fd6heed7h7Bj8qreH+iKeZmVliCsBhEZaGem77eiy5rJdTb1T4/<span class="constant">R4xyGIr79d1nb</span>/<span class="regexp">/iTCPkLflZeXddlfeXvbdXlfOYOm5879+/ri</span>J7rhbnTubdXvfeVFjZ6qB/si379h3GbNdtbtUb8iKem48pps/<span class="number">9</span>eKigoK14pc6hedddheBmf7G506gK79+blZQB/<span class="number">9</span>lMZaa3ihBr99G0/<span class="constant">Ckb0oZmZmtlNLTOuDIr</span>+<span class="number">9</span>p05IissBBDPd6e0/r/<span class="constant">MfqKI1M2sadIBa1d9sa5TE4o13mzTXYIh2CCspp977ac6rwEf3MzMzOxRjZQPtdg575kjNIsKrB</span>+pjkG333UC+<span class="regexp">/Cz5p+sh3og3rUt4Cm9/</span><span class="number">5</span>pdIkpKSUE0qdaec0dI4CV6xvkpikhAkNT1goEf2oQu16gGis/<span class="regexp">/75phKC/mjj</span>+<span class="constant">Ky5F</span>+<span class="number">99</span>SWQD0ASEHIyMFJNaGg37g+<span class="regexp">/s926qDOH1KiiaZAgdudAEhCkBB4HNq3gIAI775jQbXer+9qrr23Key23og3nh3siQ3/</span><span class="number">4</span>j1h3ow344VZcXFzgen2eI68rUE1goJ1gnzel3wiaIQHZjlNVIQHnwpowpFFcdisrBIqHICG666/<span class="regexp">//</span><span class="constant">Bp</span>/e6vbnTcdXvjfSWSQuj5IIIJAw4/sr++<span class="number">9</span>GH1AuLJSVaYb0XTdddek8KRNdid73/<span class="number">3</span>hiiihl8wVrBnMM3og2bICx56r3genhae16gUE0qoJ1dnzWh99LJSuqKI1JIaMaQym+ii7L7SLq3p3NSK13wiaIAI775jQbXer++<span class="constant">Yv4goJ1gJeI4</span>+<span class="constant">Bwen2gwL1AKaiaKBLVvHycod6hdlfoZ6pBs39</span>/oSLeYh7T4Pdrh+qpjOH1KiiaZBalpeXrhnMM77kwJ/<span class="constant">ZzwIerUu49</span>+<span class="number">7</span>qoJ1gNSDIslpZjlNVNXFac/<span class="regexp">/4km9rf2oA7Azmu4nTqvrc6e333giH1SELJPtvuj4qddddTu8sO6Pd3aiaUT5G1Jt0Tb/</span><span class="constant">UpnpVvWWzmMbyVcpiKjLjp</span>+oZxMTE9io2xcVF3Uo9+iKQuj/<span class="constant">K1AF89957</span>+<span class="constant">WrcdisrBLq</span>/nAnfJFWl+sWyNQAamujMTJyiol8cXLUEeSzmEBGl5pfNMf6pBGVl0g7rKyWFti/<span class="regexp">/FxcXKa311r9+97hiiibd7uDOHqWoo721phKX8iYlac6rJPl2qh3n0gYFNjpB4Yns/</span><span class="constant">BDa1qKIzmMgvfsw</span>+<span class="constant">WrcdisrBLrx</span>/<span class="constant">Cm8L8rB4MATExMBawl5phKX8iYlac6rJPl2qh3n0gYFNjpBjBvgg95nhKWyrKy5G09CYOMoh3MgnJacX6</span>+<span class="number">8</span>tx8nTEz5/<span class="regexp">/778H/</span><span class="constant">Vm88</span>/qhjLCzyxMBG+++<span class="regexp">/UanJdLEwz5hM+9ASUhSZRERam5f1eoz7Bl8hoCa36uDfK9hmM09oJui8mdhd9q87uU5b3o15mp3ArKg706qZiKYvjM8+rgeL22Z2oA6+5hGxiY2/</span><span class="number">69</span>BxKYymLf2qCJ1fo6U9YDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZOREREtVvVvZORMTEtVwVFRORMPDtVwVFRORMPLvVwNERERLPVvVwNETExLPVlRuNETDxVPVlRuNETDzVvVjRERETNvVvVjRExMTNvZuVDRExWPNvZuVDRExWvVvZ/ugtbCSYb5N2eDNNNNOWEH5RexWttt==</span><br></pre></td></tr></table></figure></p>
+<p>先用rot13解密<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>tr <span class="string">'a-zA-Z'</span> <span class="string">'n-za-mN-ZA-M'</span> &lt; crackme &gt; rot13crackme</span><br><span class="line"><span class="variable">$ </span>cat rot13crackme</span><br><span class="line"><span class="symbol">data:</span>image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAADwCAIAAACixWkYAAAQgUlEQVR4Ae3Bf0zV97kH8PdTDBxqdXVL/bXBaiXp3BL7XSLdbUdWDETR/rHPRLoR3FgG6k6ikYAGjhNXt3SFAgJi67FLtdWOYrOZfVpLmA50nKiR7o99twSk1iBZuurSahGV4sDnJicxWUPvsucu1+<span class="number">2</span>a9+slICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJKC73bZt22Kx2GuvvVZeXq6q3nvnHOyefvrpWCy2adOmeDwOQFW99845/<span class="constant">MdQVe</span>+<span class="number">9</span>cw7/<span class="constant">VrNnz25oaFi2bNlnP</span>/vZ4eHhX/ziFz/<span class="number">96</span>U9v3bqlqvg7YRgGQQBAVcMwDIIASaoahmEQBPjnqGoYhkuXLr1y5QruFAHd7UZGRt5/<span class="regexp">//</span><span class="number">2</span>ioqI/<span class="regexp">/elPquq9d87B7vr162+88cbmzZvfe+89AKrqvXfO4T/</span><span class="constant">G008</span>/ffbs2Y6ODvxbHTlyZMWKFc8/<span class="regexp">//zw</span>8HBBQUF+fv6mTZt27dqlqpcuXYrH40i6ePFiPB4HoKphGAZBgCRVDcMwCAL8c7797W93dHR873vfO3jwIO4UAd3VvvCFL/z5z3/+zW9+<span class="constant">U1JS8uGHH6qq9379</span>+vUvvvjiE088ISInT54sKyt7/<span class="regexp">/33U1JSGhsby8rKRkdHt23btm/f</span>Pu+<span class="number">9</span>cw63qWo0Go3H40hSVe+<span class="number">9</span>c2737t3RaHTVqlVdXV0tLS1FRUXXrl2rra09ePAggLS0tJaWlqKiomvXrtXW1h48eBBJqtrb2zt9+vSMjIy6urrm5mZ8mpSUlMbGxrKystHR0W3btu3bt897X1hYuHnz5vLy8rlz5/b392/durW7uxuAqnrvnXOqevz48Y8/<span class="regexp">/jg3N/ftt</span>99+<span class="number">6</span>qmnPvjgg8bGxrKystHR0W3btu3bt89775zDFCkpKZs3by4vL587d25/f/<span class="regexp">/WrVu7u7sBqOrx48c/</span><span class="regexp">/vjj3Nzct99++6mnnrp06RI+zbVr186cOZOXlwcgLS1t7dq1Z8+e/e</span>1vf6uqYRgGQYBPUtUwDIMgQJKqhmEYBEFaWlpLS0tRUdG1a9dqa2sPHjyIJFXt7OwcHR1NTU1dtWoVAFWNRqPxeBx3ioDuaqqKJO+<span class="number">9</span>c05VvfdXr179zne+<span class="constant">U1tb</span>+<span class="number">7</span>nPfW7Lli27d+<span class="regexp">/euHFjRUVFc3Pz0aNHE4lENBqdP3++9945d+LEiXfffbe8vFxVo9FoPB5Hkqp673/</span><span class="number">1</span>q18dOHCgpqamvr5+x44d27dvr6qqAtDQ0JCTk3P69OkdO3Zs3769qqoKQENDQ05OzunTpwGoKoC9e/c+<span class="number">8</span>sgj/<span class="number">5</span>V05swZTFFRUdHc3Hz06NFEIhGNRufPn++<span class="number">9</span>TyQSjY2Nb775Znd394YNGzIzMxcvXjw4OKiq3nvnnCa1tLQ88MADa9asqa+vv3jxYnNz89GjRxOJRDQanT9/vvfeOYcpqqqqGhsb33zzze7u7g0bNmRmZi5evHhwcFCTWlpaHnjggTVr1tTX19fU1ODTnD9/fs6cOTU1NV1dXefPn1dVJKnqpUuX4vE4ki5evBiPxwGoahiGQRAgSVXDMAyCYMeOHdu3b6+qqgLQ0NCQk5Nz+vRpAKo6MTFx9OjRw4cPv/<span class="constant">TSSwBUNRqNxuNx3CkCutupqvfeOQdAVb33</span>+<span class="regexp">/btmzZt2sDAwBNPPLFnz55f/</span><span class="regexp">/rX3/r</span>Wt/r7+<span class="number">2</span>fMmLFgwYKJiYmcnJxEIuG9d86pahiGFRUVx48fLykpaW9vR5KqDgwMfPGLX0wkEgUFBQDOnTt38+bN5cuXAzhy5EhXV1dNTc25c+du3ry5fPlyAEeOHOnq6qqpqQGgqgMDA1/+<span class="number">8</span>pcXLVrU39/f3NxcWVmJKfr7+<span class="number">2</span>fMmLFgwYKJiYmcnJxEIuG9X7RoUSQSeeihhyYnJ7Ozs/v6+urq6mKxmKp6751zqnrixImlS5dGIpGxsbHDhw8vWrRoxowZCxYsmJiYyMnJSSQS3nvnHKYYHByMRCIPPfTQ5ORkdnZ2X19fXV1dLBZT1RMnTixdujQSiYyNjR<span class="number">0</span>+fLiwsBCfZsWKFS+<span class="regexp">//</span><span class="constant">PLs2bMBXLly5Ze</span>/<span class="regexp">/GVVVdXo6Kiq4u+EYRgEAQBVDcMwCAIkqWoYhkEQnDt37ubNm8uXLwdw5MiRrq6umpoaAKoahmEQBLjt6tWr+/fv</span>37p16/<span class="constant">Xr13FHCOhup6ree</span>+ccAFX13re3t7/wwgupqal9fX15eXnee+fcjRs3ent7CwoKAKSmpo6Pj3vvnXNImpiYeOedd77+<span class="number">9</span>a9fuXIFSaoKQFU/<span class="regexp">/PDDhQsXXr16dWxsLBKJ4LaOjo7i4uKxsbFIJILbOjo6iouLAahqZ2fnk08+mZqaOj4+3tHRUVxcjClu3LjR29tbUFAAIDU1dXx83Hu/b</span>Nmy3t7egoICAJFIZGxsrL29vaSkRFW99845VfXeO+cAqKr3ftmyZb29vQUFBQBSU1PHx8e99845THHjxo3e3t6CggIAkUhkbGysvb29pKREVb33zjkAquq9d87hfzBt2rQlScXFxY8/<span class="regexp">/vizzz67detWVQ3DMAgCfJKqhmEYBAGSVPUPf/j</span>DV7/<span class="number">61</span>bGxsUgkgts6OjqKi4sBqKr33jmH23bs2FFbW/uDH/zg5Zdfxh0hoLudqnrvnXMAVNV7/<span class="number">9</span>hjj/<span class="number">31</span>r39dsmTJfffd98EHH3jvnXNDQ0MAsrKyJicns7Oz+<span class="regexp">/r6vPfOOSRlZmYODw+XlpYeOHAASar6zjvvNDY2vvjiiz/</span><span class="number">72</span>c9+<span class="number">9</span>KMfDQ8PDw0N5ebmAliyZEl6enoikRgeHh4aGsrNzQWwZMmS9PT0RCIBQFX7+<span class="regexp">/u/</span><span class="number">8</span>pWvfOlLXxoYGGhubq6srMQUQ0NDALKysiYnJ7Ozs/v6+rz3ixYtSktLW7hw4eTk5KOPPnrmzJn6+vqamhpV9d4751TVe++cA6Cq3vtHHnkEQFZW1uTkZHZ2dl9fn/feOYcpBgcH09LSFi5cODk5+eijj545c6a+vr6mpkZVvffOOQCq6r13zmGKGTNmlJaWDg4OHjt2DMBnPvOZjz766JVXXvn+<span class="number">97</span>+vqmEYBkGAT/rLX/<span class="number">4</span>ybdq0z3/+<span class="number">83</span>/<span class="number">7298</span>efPDBoaGhzs7OJ598cnh4eGhoKDc3F8CSJUvS09MTiQQAVfXeO+dw240bN1544YUtW7aoKu4IAd3tVNV775wDoKre+<span class="number">8</span>cee+yee+<span class="number">559</span>tln8/<span class="constant">PzV6xY8cYbb3zzm9</span>+sq6urrq7u7Ow8derU+vXrMzIyvPfOuRMnTrz77rvl5eWqGo1G4/<span class="constant">E4klTVe79q1ao</span>/<span class="regexp">/vGPCxYsyMrKqqysrKioqKysBLBz5879+/ev</span>W7euoaGhoqKisrISwM6dO/fv379u3ToAqgogHo8vXrz48ccf/<span class="number">9</span>rXvtbX14cp6urqqqurOzs7T506tX79+oyMDO/<span class="number">9</span>yZMnn3vuOe99T<span class="number">0</span>/<span class="constant">Pxo0bMzMzgyAYGBhQVe</span>+<span class="number">9</span>c05VvffOOQCq6r<span class="number">0</span>/e/<span class="constant">ZsdXV1Z2fnqVOn1q9fn5GR4b13zmGKLVu2PPfcc977np6ejRs3ZmZmBkEwMDCgqt575xwAVfXeO</span>+cwxT333HP+<span class="regexp">/Pm5c+fu3bt3eHg4Pz9/</span><span class="number">5</span>cqVxcXFHR0dqnrp0qV4PI6kixcvxuNxAG1tbRs2bDh16tTvf/<span class="regexp">/75cuXP/zww</span>+<span class="constant">Xl5S</span>+<span class="number">99</span>FJDQ0NFRUVlZSWAnTt37t+<span class="regexp">/f926dQBU1XvvnMNtqhqNRuPxOO4UAd3tVNV775wDoKre+9dee23Xrl23bt3au3fvD3/</span><span class="number">4</span>w1u3bj344IMpKSmtra2rV68eHR1tbW1tamry3jvnVDUMwyAIVDUajcbjcSSpqvfeOVdUVPT666/<span class="regexp">//</span><span class="constant">Oc</span>/r6ioaGpqKiwsFJFDhw5VVVWNj4/fe++<span class="number">9</span>TU1NhYWFInLo0KGqqqrx8XEAqvq73/<span class="number">3</span>uvvvuy8jIeOaZZ3bt2oVPk56e3traunr16tHR0dbW1qamJu99YWFhdXV1WVnZnDlz+vv7Y7FYd3c3AFX13jvnVNV775wDoKre++<span class="constant">Li4tbW1tWrV4</span>+<span class="constant">Ojra2tjY1NXnvnXOYIiUlpbq6uqysbM6cOf39</span>/bFYrLu7G4Cqeu+dcwBU1XvvnMOnycrKeuaZZ77xjW/<span class="constant">MmjVreHh49</span>+<span class="number">7</span>dbW1tAFQVfycMwyAIAKSnp/<span class="regexp">/4xz9es2bN7Nmzh4aGdiep6r333tvU1FRYWCgihw4dqqqqGh8fB6Cq3nvnHG5T1Wg0Go/</span><span class="constant">HcacIiJJmzZolIpcvXwYwc</span>+bMkZGR9vb2kpIS3Hb9+vXDhw/<span class="constant">X1NS89957</span>+<span class="constant">JepqvfeOYd</span>/aNasWSJy+fJlADNnzhwZGWlvby8pKYHRrFmzROTy5csAZs6cOTIy0t7eXlJSgv/<span class="regexp">/SkpKXn311e9+97uvvvoq7hQBUdJbb721cuXK8vLynp6eWCy2du3a0tLSAwcO4Laf/</span><span class="constant">OQn1dXVmzZtisfj</span>+<span class="constant">JepqvfeOYek</span>/<span class="constant">Pz8Y8eO4ZNGRkZOnjy5cuXK8vLynp6eWCy2du3a0tLSAwcOwOitt95auXJleXl5T09PLBZbu3ZtaWnpK6</span>+<span class="number">8</span>gk8aGRm5/<span class="regexp">/778U/</span><span class="constant">Iz88</span>/duwYPmlkZOT+++<span class="regexp">/HnaWqYRjm5uZ+9NFHuFMEREnz5s1rbm7Oy8ubPn36hQsX9uzZ09bWhv8zquq9d87hH5o3b15zc3NeXt706dMvXLiwZ8+etrY22M2bN6+5uTkvL2/</span><span class="number">69</span>OkXLlzYs2dPW1sb6H9LQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiMBERERgIiIiMBEZGRgIjISEBEZCQgIjISEBEZCYiIjAREREYCIiIjARGRkYCIyEhARGQkICIyEhARGQmIiIwERERGAiIiIwERkZGAiMhIQERkJCAiMhIQERkJiIiM/htgoPFLo5A2rQAAAABJRU5ErkJggg==</span><br></pre></td></tr></table></figure></p>
+<p>可以发现这是图片的base64编码，转成图片即可看到FLAG</p>
+<!--
+import os, base64
+f = open('rot13crackme')
+str = f.read()
+f.close()
+imgData = base64.b64decode(str)
+img = open('out.png','wb')
+img.write(imgData)
+img.close()
+
+f = open('target.jpg','rb')     #二进制方式打开图文件
+s = base64.b64encode(f.read()) #读取文件内容，转换为base64编码 
+f.close()
+-->
+<p>flag:{keep_going_on_SEUer}</p>
+<hr>
+<p><strong>盲人摸象</strong></p>
+<p>题目为一个二维码qrcode.png</p>
+<p>本题Flag为非标准形式<br>更正：Flag中字母全为小写字母</p>
+<p>答：<a href="http://tool.chinaz.com/qrcode/" target="_blank" rel="external">解码</a>得到一张<a href="http://4297f44b13955235245b2497399d7a93.susteam.org/1hqjERNe.jpg" target="_blank" rel="external">图片</a>,<br>下载图片，图片内容为百度云的标志，下方有一些奇怪的点，根据图片联想到百度云盘的URL：<a href="http://yun.baidu.com/s/1hqjERNe" target="_blank" rel="external">http://yun.baidu.com/s/1hqjERNe</a><br>，进入要求输入密码，联想题目盲人摸象可猜测图片下面的点为盲文，对比盲文表解密即可得到为密码。<br>进入云盘，得到一个mp3文件 mp-5551f98cf039e.mp3 <a href="http://makeownringtone.com/" target="_blank" rel="external">查看波形</a>为一段莫斯电码，解得FLAG</p>
+<p>flag is l0ve5u5</p>
+<h2 id="Forensics"><a href="#Forensics" class="headerlink" title="Forensics"></a>Forensics</h2><hr>
+<p><strong>纯色</strong></p>
+<p>Attach:20150511215741.zip</p>
+<p>猜猜里面有什么？</p>
+<p>答：解压得到stego100.png<br>使用Stegsolve.jar可以看到FLAG</p>
+<p>flag{e4sy_steg0_1n_red_p4ne1}</p>
+<hr>
+<p><strong>Fate!!!</strong></p>
+<p>Attach:20150511215941.zip</p>
+<p>这是一张图片吗？不！这不止是一张图片！里面隐藏了一句电影的经典台词，告诉我，它是什么（要英文原版哦~）<br>本题Flag格式为： flag{英文台词内容} </p>
+<p>答：解压得到stego200.jpg，该图片中隐藏一个zip压缩包<br>在linux下直接使用<code>unzip</code>可以得到6f0026e55b6f34cea97207a01c30c43e.jpeg<br>图片为黑客帝国一张剧照，使用百度识图找到图中被抹去的台词</p>
+<p>flag{DO YOU BELIEVE IN FATE, NEO?}</p>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><hr>
+<p><strong>十万火急</strong></p>
+<p>Attach:20150511215132.zip</p>
+<p>小黑拿到了一个神秘的文件，这其中究竟隐藏着什么呢？？？</p>
+<p>答：解压得到reverse100<br><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">file</span> reverse100</span><br><span class="line">reverse100: <span class="keyword">python</span> <span class="number">2.7</span> byte-compiled</span><br><span class="line">$ uncompyle2 reverse100 &gt; reverse100_test.py</span><br><span class="line">$ cat reverse100_test.py</span><br><span class="line"># reverse100_test.py</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    baseString = <span class="string">'1dnckajf'</span></span><br><span class="line">    baseLen = len(baseString)</span><br><span class="line">    flag = [<span class="number">87</span>,</span><br><span class="line">     <span class="number">8</span>,</span><br><span class="line">     <span class="number">15</span>,</span><br><span class="line">     <span class="number">4</span>,</span><br><span class="line">     <span class="number">16</span>,</span><br><span class="line">     <span class="number">4</span>,</span><br><span class="line">     <span class="number">94</span>,</span><br><span class="line">     <span class="number">21</span>,</span><br><span class="line">     <span class="number">72</span>,</span><br><span class="line">     <span class="number">59</span>,</span><br><span class="line">     <span class="number">60</span>,</span><br><span class="line">     <span class="number">6</span>,</span><br><span class="line">     <span class="number">29</span>,</span><br><span class="line">     <span class="number">4</span>,</span><br><span class="line">     <span class="number">24</span>,</span><br><span class="line">     <span class="number">21</span>,</span><br><span class="line">     <span class="number">84</span>,</span><br><span class="line">     <span class="number">59</span>,</span><br><span class="line">     <span class="number">95</span>,</span><br><span class="line">     <span class="number">13</span>,</span><br><span class="line">     <span class="number">52</span>,</span><br><span class="line">     <span class="number">17</span>,</span><br><span class="line">     <span class="number">19</span>,</span><br><span class="line">     <span class="number">5</span>,</span><br><span class="line">     <span class="number">76</span>]</span><br><span class="line">    <span class="keyword">pwd</span> = raw_input(<span class="string">'Password:'</span>)</span><br><span class="line">    wrongFlag = False</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(<span class="keyword">pwd</span>)):</span><br><span class="line">        <span class="keyword">if</span> flag[i] != ord(<span class="keyword">pwd</span>[i]) ^ ord(baseString[i % baseLen]):</span><br><span class="line">            wrongFlag = True</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> wrongFlag:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Wrong!'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Good, password is the flag.'</span></span><br></pre></td></tr></table></figure></p>
+<p>根据reverse100_test.py算法反推出reverse100_crack.py</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># reverse100_crack.py</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    baseString = <span class="string">'1dnckajf'</span></span><br><span class="line">    baseLen = <span class="built_in">len</span>(baseString)</span><br><span class="line">    flag = [<span class="number">87</span>, <span class="number">8</span>, <span class="number">15</span>, <span class="number">4</span>, <span class="number">16</span>, <span class="number">4</span>, <span class="number">94</span>, <span class="number">21</span>, <span class="number">72</span>, <span class="number">59</span>, <span class="number">60</span>, <span class="number">6</span>, <span class="number">29</span>, <span class="number">4</span>, <span class="number">24</span>, <span class="number">21</span>, <span class="number">84</span>, <span class="number">59</span>, <span class="number">95</span>, <span class="number">13</span>, <span class="number">52</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">5</span>, <span class="number">76</span>]</span><br><span class="line">    ans = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i in <span class="keyword">range</span>(<span class="built_in">len</span>(flag)):</span><br><span class="line">        ans += chr(flag[i] ^ ord(baseString[i % baseLen]))</span><br><span class="line">    <span class="built_in">print</span> ans</span><br></pre></td></tr></table></figure>
+<p>flag{e4sy_Reverse_1n_pyc}</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><hr>
+<p>Flag你在哪里？</p>
+<p>Flag被藏到哪里了呢？快点帮小黑找找吧<br>124a6e61a24d9c5baf027b35510106a9.susteam.org</p>
+<p>答：打开目标URL，依次查看源码，脚本，网络，响应，发现FLAG藏在响应头中</p>
+<pre><code>Connection    keep-alive
+Content-Encoding    gzip
+Content-Type    text/html
+Date    Thu, 21 May 2015 15:15:51 GMT
+FLAG    flag{V1m_15_4n_4dv4nc3d_73x7_3d17or}
+Server    nginx/1.4.6 (Ubuntu)
+Transfer-Encoding    chunked
+X-Powered-By    PHP/5.5.9-1ubuntu4.6
+</code></pre><p>flag{V1m_15_4n_4dv4nc3d_73x7_3d17or}</p>
+<hr>
+<p><strong>源码中的乾坤</strong></p>
+<p>小黑发现了一个神奇页面，以他多年的经验来看，其中必有乾坤。<br>7a252ca47a8e691880dee2fd99092e53.susteam.org<br>Tip: 本题Flag为非标准形式</p>
+<p>答：源码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">flag is here</span><br><span class="line"><span class="comment">&lt;!--f6Yo34gH--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>flag: here<!--f6Yo34gH--><br>果然脑洞！</p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>总共做了一半左右，感觉比前几次CTF好多了，不仅仅能签到了：）<br>Web方面只能简单的;<br>涉及到图片的题只要没有需要写程序解密的问题就不大;<br>加密方面，古典加密和基本的现代编码方式了解的差不多，当然原理不熟，AES，DES等也不熟;<br>逆向基本做不来;<br>总之还是菜，就这样吧。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hackdig/" rel="tag">#Hackdig</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/31/bandit-writeup/" rel="prev">bandit writeup</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/27/interesting-captcha/" rel="next">一个有趣的验证码生成方式</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/29/ctf-center-writeup-part/"
+                   data-title="CTF Center part writeup" data-url="http://blog.hycwall.com/2015/05/29/ctf-center-writeup-part/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc"><span class="nav-number">1.</span> <span class="nav-text">Misc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-number">2.</span> <span class="nav-text">Crypto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forensics"><span class="nav-number">3.</span> <span class="nav-text">Forensics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-number">4.</span> <span class="nav-text">Reverse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">5.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">6.</span> <span class="nav-text">END</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

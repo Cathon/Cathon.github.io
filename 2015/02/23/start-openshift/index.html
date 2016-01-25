@@ -1,0 +1,714 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Openshift," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="##前言在找免费/低价的vps之类的产品，找了半天发现Openshift里有提供试用的。挂上代理，尝试了一下，使用过程记录如下。
+##Openshift介绍
+OpenShift是红帽公司推出的一个云计算服务平台，开发人员可以用它来构建和发布web应用。Openshift广泛支持多种编程语言和框架，如Java，Ruby和PHP等。另外它还提供了多种集成开发工具如Eclipse integration">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Openshift初探">
+<meta property="og:url" content="http://blog.hycwall.com/2015/02/23/start-openshift/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="##前言在找免费/低价的vps之类的产品，找了半天发现Openshift里有提供试用的。挂上代理，尝试了一下，使用过程记录如下。
+##Openshift介绍
+OpenShift是红帽公司推出的一个云计算服务平台，开发人员可以用它来构建和发布web应用。Openshift广泛支持多种编程语言和框架，如Java，Ruby和PHP等。另外它还提供了多种集成开发工具如Eclipse integration">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Openshift初探">
+<meta name="twitter:description" content="##前言在找免费/低价的vps之类的产品，找了半天发现Openshift里有提供试用的。挂上代理，尝试了一下，使用过程记录如下。
+##Openshift介绍
+OpenShift是红帽公司推出的一个云计算服务平台，开发人员可以用它来构建和发布web应用。Openshift广泛支持多种编程语言和框架，如Java，Ruby和PHP等。另外它还提供了多种集成开发工具如Eclipse integration">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Openshift初探 | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Openshift初探
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-02-23T16:12:10+01:00" content="2015-02-23">
+            2015-02-23
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/02/23/start-openshift/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/23/start-openshift/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##前言<br>在找免费/低价的vps之类的产品，找了半天发现Openshift里有提供试用的。<br>挂上代理，尝试了一下，使用过程记录如下。</p>
+<p>##Openshift介绍</p>
+<p>OpenShift是红帽公司推出的一个云计算服务平台，开发人员可以用它来构建和发布web应用。Openshift广泛支持多种编程语言和框架，如Java，Ruby和PHP等。另外它还提供了多种集成开发工具如Eclipse integration，JBoss Developer Studio和 Jenkins等。OpenShift 基于一个开源生态系统为移动应用，数据库服务等，提供支持。</p>
+<p><a href="https://www.openshift.com/products" target="_blank" rel="external">Openshift online</a> 是一个面向开源开发人员开放的平台即服务(<a href="http://baike.baidu.com/view/1413359.htm" target="_blank" rel="external">Pass</a>).<br>Openshift 提供一年的免费服务，这也是本文的前提之一，创建应用后，我们可以通过多种途径（其实只有三种）方便地管理应用。</p>
+<a id="more"></a>
+<p>##搭建简单php应用<br>Tip: 本机环境：Linux (openSuSE 13.1), 目标：搭建并管理dokuwiki(php)应用</p>
+<p><strong>首先，你得能够科学上网。</strong></p>
+<ol>
+<li>申请帐号，验证邮箱。（下面使用web方式创建应用）</li>
+<li>第一步，添加应用，选择平台，这里在<code>Instant App</code> —— <code>see all</code>中选择<code>DokuWiki</code>.</li>
+<li>第二步，配置，其中填上<code>rhcloud.com</code>的二级域名(如 php-test.rhcloud.com)。</li>
+<li>第三步，填写密钥，暂不填写，继续下一步。</li>
+<li>创建完成，键入域名 php-test.rhcloud.com 即可访问。</li>
+</ol>
+<p>如果接下来需要做修改文件等操作的话，就需要对源码管理(git)。<br>下面将使用Openshift的客户端工具进行本地管理。</p>
+<p>##本地管理</p>
+<p>安装 Ruby 并检测<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo zypper <span class="operator"><span class="keyword">install</span> ruby</span><br><span class="line">$ ruby -<span class="keyword">e</span> <span class="string">'puts "Welcome to Ruby"'</span></span><br><span class="line">Welcome <span class="keyword">to</span> Ruby</span></span><br></pre></td></tr></table></figure></p>
+<p>安装 RubyGem<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo zypper <span class="keyword">install</span> rubygem</span><br></pre></td></tr></table></figure></p>
+<p>安装 git 并检测<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo zypper install git</span><br><span class="line"><span class="variable">$ </span>git --version</span><br></pre></td></tr></table></figure></p>
+<p>安装客户端工具<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem <span class="keyword">install</span> rhc</span><br></pre></td></tr></table></figure></p>
+<p>接下来进行安装后的第一次设定<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ rhc setup</span><br><span class="line">Login to openshift<span class="class">.redhat</span><span class="class">.com</span>: user@example<span class="class">.com</span></span><br><span class="line">Password: password</span><br></pre></td></tr></table></figure></p>
+<p>然后提示生成授权token。回答yes. token用于后续的请求。到期时，系统提示您再次输入密码。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OpenShift can <span class="operator"><span class="keyword">create</span> <span class="keyword">and</span> <span class="keyword">store</span> a token <span class="keyword">on</span> disk which allows <span class="keyword">to</span> you <span class="keyword">to</span> <span class="keyword">access</span> the <span class="keyword">server</span> <span class="keyword">without</span> <span class="keyword">using</span> your <span class="keyword">password</span>. The <span class="keyword">key</span> <span class="keyword">is</span> <span class="keyword">stored</span> <span class="keyword">in</span> your home <span class="keyword">directory</span> <span class="keyword">and</span> should be kept secret. You can <span class="keyword">delete</span> the <span class="keyword">key</span> <span class="keyword">at</span> <span class="keyword">any</span> <span class="keyword">time</span> <span class="keyword">by</span> running <span class="string">'rhc logout'</span>.</span><br><span class="line">Generate a token <span class="keyword">now</span>? (yes|<span class="keyword">no</span>) yes</span><br><span class="line">Generating an authorization token <span class="keyword">for</span> this <span class="keyword">client</span> ... lasts about <span class="number">1</span> <span class="keyword">day</span></span></span><br></pre></td></tr></table></figure></p>
+<p>如果本机没有过sshkey，程序会自动生成<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">No SSH keys were found. We will generate a pair of keys for you.</span><br><span class="line">    Created: /home/cathon/.ssh/id_rsa.pub</span><br><span class="line">Your public SSH key must be uploaded to the OpenShift server to access code.  Upload now? (yes|no) yes</span><br><span class="line">  default (type: ssh-rsa)</span><br><span class="line">  <span class="comment">-----------------------</span></span><br><span class="line">    Fingerprint: 18:e0:61:e2:32:d4:bd:d4:7f:be:d9:ca:df:be:1e:2d</span><br><span class="line">You can enter a name for your key, or leave it blank to <span class="operator"><span class="keyword">use</span> the <span class="keyword">default</span> <span class="keyword">name</span>. <span class="keyword">Using</span> the same <span class="keyword">name</span></span><br><span class="line"><span class="keyword">as</span> an existing <span class="keyword">key</span> will overwrite the <span class="keyword">old</span> <span class="keyword">key</span>.</span><br><span class="line">Provide a <span class="keyword">name</span> <span class="keyword">for</span> this <span class="keyword">key</span>: xxx    //给<span class="keyword">key</span>起个名字</span><br><span class="line">Uploading <span class="keyword">key</span> <span class="string">'xxx'</span> ... done</span><br><span class="line">Checking <span class="keyword">for</span> git ... <span class="keyword">found</span> git <span class="keyword">version</span> <span class="number">1.8</span><span class="number">.4</span><span class="number">.5</span></span><br><span class="line">Checking common problems .. done</span><br><span class="line">Checking <span class="keyword">for</span> a <span class="keyword">domain</span> ... xxx</span><br><span class="line">Checking <span class="keyword">for</span> applications ... <span class="keyword">found</span> <span class="number">1</span></span><br><span class="line">  php <span class="keyword">http</span>://<span class="keyword">test</span>.rhcloud.com/</span><br><span class="line">  You <span class="keyword">are</span> <span class="keyword">using</span> <span class="number">1</span> <span class="keyword">of</span> <span class="number">3</span> total gears</span><br><span class="line">  The <span class="keyword">following</span> gear <span class="keyword">sizes</span> <span class="keyword">are</span> available <span class="keyword">to</span> you: small</span><br><span class="line">Your <span class="keyword">client</span> tools <span class="keyword">are</span> <span class="keyword">now</span> configured.</span></span><br></pre></td></tr></table></figure></p>
+<p>如果本机之前有其他的sshkey，就需要自己生成一个新的，避免冲突，涉及到ssh多密钥管理。可以参考<br>现在客户端程序安装完毕，并且生成了私钥，上传了公钥。</p>
+<p>下载应用到本地，使用 git 管理<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="keyword">clone</span> <span class="title">ssh</span>://......./~/git/xxx.git     //此 git 链接可以在OPENSHIFT ONLINE中应用管理中找到)</span><br></pre></td></tr></table></figure></p>
+<p>用 ssh 登录远程服务器管理<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$ rhc ssh xxx    //xxx为应用的名称</span><br><span class="line">Connecting to 54ead6dc5973ca85eb0001a1<span class="comment">@xxx.rhcloud.com ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">    You are accessing a service that is for use only by authorized users.</span><br><span class="line">    If you do not have authorization, discontinue use at once.</span><br><span class="line">    Any use of the services is subject to the applicable terms of the</span><br><span class="line">    agreement which can be found at:</span><br><span class="line">    https://www.openshift.com/legal</span><br><span class="line"></span><br><span class="line">    <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line">    Welcome to OpenShift shell</span><br><span class="line"></span><br><span class="line">    This shell will assist you in managing OpenShift applications.</span><br><span class="line"></span><br><span class="line">    !!! IMPORTANT !!! IMPORTANT !!! IMPORTANT !!!</span><br><span class="line">    Shell access is quite powerful and it is possible for you to</span><br><span class="line">    accidentally damage your application.  Proceed with care!</span><br><span class="line">    If worse comes to worst, destroy your application with <span class="string">"rhc app delete"</span></span><br><span class="line">    and recreate it</span><br><span class="line">    !!! IMPORTANT !!! IMPORTANT !!! IMPORTANT !!!</span><br><span class="line"></span><br><span class="line">    Type <span class="string">"help"</span> for more info.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[xxx.rhcloud.com 54ead6dc5973ca85eb0001a1]\&gt;    //exit退出</span><br></pre></td></tr></table></figure></p>
+<p>##其他</p>
+<p><strong>备份</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rhc snapshot save -<span class="tag">a</span> xxx  <span class="comment">//<span class="label">xxx为应用名称</span></span></span><br></pre></td></tr></table></figure></p>
+<p>##后记</p>
+<p>Openshift提供的平台除了php还有别的各种，其他应用管理也可以使用eclipse插件等等。<br>未完待续。。。</p>
+<p>参考链接：<br><a href="http://www.longgaming.com/archives/110" target="_blank" rel="external">手把手教你在openshift上搭建wordpress博客（一）</a><br><a href="http://blog.csdn.net/herbert5069/article/details/24495485" target="_blank" rel="external">升级、备份红帽PaaS openshift 上的 wordpress </a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Openshift/" rel="tag">#Openshift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/23/muti-ssh-key/" rel="prev">本地管理多个sshkey的问题</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/15/summary-of-stego/" rel="next">隐写术小结</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/02/23/start-openshift/"
+                   data-title="Openshift初探" data-url="http://blog.hycwall.com/2015/02/23/start-openshift/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

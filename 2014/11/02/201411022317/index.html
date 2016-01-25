@@ -1,0 +1,714 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Life," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="###报名一周前，记不清通过什么渠道知道了这么一场黑客马拉松的活动，当然也叫创客马拉松。活动大概是这么宣传的：两天时间内，报名参加的选手想一些 idea ，然后可以获得现场导师的帮助，再经过好多轮迭代最后完成项目，做出产品，或者是 demo 。主办方在 SJTU 承包了个食堂做场地，然后我和一个小伙伴就乐呵乐呵凑热闹去了。
+###Day one第一天中午开始，到了之后进一步了解到，直白的说，就是那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记第一次 hackathon 与反思">
+<meta property="og:url" content="http://blog.hycwall.com/2014/11/02/201411022317/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="###报名一周前，记不清通过什么渠道知道了这么一场黑客马拉松的活动，当然也叫创客马拉松。活动大概是这么宣传的：两天时间内，报名参加的选手想一些 idea ，然后可以获得现场导师的帮助，再经过好多轮迭代最后完成项目，做出产品，或者是 demo 。主办方在 SJTU 承包了个食堂做场地，然后我和一个小伙伴就乐呵乐呵凑热闹去了。
+###Day one第一天中午开始，到了之后进一步了解到，直白的说，就是那">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记第一次 hackathon 与反思">
+<meta name="twitter:description" content="###报名一周前，记不清通过什么渠道知道了这么一场黑客马拉松的活动，当然也叫创客马拉松。活动大概是这么宣传的：两天时间内，报名参加的选手想一些 idea ，然后可以获得现场导师的帮助，再经过好多轮迭代最后完成项目，做出产品，或者是 demo 。主办方在 SJTU 承包了个食堂做场地，然后我和一个小伙伴就乐呵乐呵凑热闹去了。
+###Day one第一天中午开始，到了之后进一步了解到，直白的说，就是那">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 记第一次 hackathon 与反思 | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              记第一次 hackathon 与反思
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-11-02T23:17:54+01:00" content="2014-11-02">
+            2014-11-02
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/11/02/201411022317/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/02/201411022317/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>###报名<br>一周前，记不清通过什么渠道知道了这么一场黑客马拉松的活动，当然也叫创客马拉松。活动大概是这么宣传的：两天时间内，报名参加的选手想一些 idea ，然后可以获得现场导师的帮助，再经过好多轮迭代最后完成项目，做出产品，或者是 demo 。主办方在 SJTU 承包了个食堂做场地，然后我和一个小伙伴就乐呵乐呵凑热闹去了。</p>
+<p>###Day one<br>第一天中午开始，到了之后进一步了解到，直白的说，就是那么多人产生一些创意，然后自由组队，然后做项目。但是作为一个没有开发经验的小白，实在不知道怎么办了，于是就思考一下别人提供的点子，感觉没有十分合适的，就准备随意聊聊天回去了。开始之前，有几位嘉宾导师发言，讲了些设计模式之类的内容，要我们着眼于‘大局’，而不是某种语言某种技术。这点还是值得思考的。</p>
+<p>了解了<a href="http://codekata.com/" target="_blank" rel="external"><code>Codingkata</code></a>的概念, <a href="/codingdojo.org"><code>Codingdojo</code></a>(结对编程)，等等</p>
+<p>下午，我和小伙伴先是和另一个人A讨论了一个题目。A想要用gcc来编译一种gcc本身不能编译的语言，甚至是自创的语言。于是引出了很多问题，产生了争论，对，就是争论。</p>
+<p>在我看来这就是写一个编译器呗，当然，我还不会写。我的小伙伴的想法是:把这个语言（比如D语言）的关键字使用 C 的宏替换成 C 的关键字，这样转换成的 C 程序，在调用gcc编译。我觉得这个想法不是很可行。需要考虑的东西比较多，或许学完编译原理好后直接就写个简单编译器即可。A 自己也没什么思路，最后不了了之。</p>
+<p>一位导师倒是提供了一个信息：<code>Ragel State Machine Compiler</code>. 这个开源软件好像可以实现一些上述功能。这个也留着以后研究。</p>
+<p>傍晚时分， 准备离开的时候，遇到了两个创客，交谈甚欢，产生了一些基于硬件的想法，最后决定做一个简单demo，并且取名 Health Cloud,然后可以衍生这个‘健康云’的应用场景，等等。交谈的过程中，知道了<a href="http://www.csdn.net/article/2013-11-06/2817411-LiveCode-RunRev-IDE" target="_blank" rel="external"><code>LiveCode</code></a>这种用于快速开发的编程语言，并且能转化为任何平台的原生程序。不过确实小众。</p>
+<p>###Dat two<br>经过合计约十五小时的现学现卖，查找资料以及努力调试，终于做成一个简单的 demo ，现记录下来，以便日后还原以及改进。</p>
+<p>###Demo所用到的硬件和技术</p>
+<ul>
+<li>PcDuino开发板</li>
+<li>温度传感器，光传感器，信号的采集</li>
+<li>接入互联网的wifi信号</li>
+<li>七牛云存储空间，API调用</li>
+<li>基于python的实现，使用matplotlib库绘图展示。</li>
+</ul>
+<p>其中温度传感器得到的数据模拟体温，光传感器得到的数据模拟脉搏，每隔40ms采集数据各一个，每20s采集的500×2个数据作为一组，并打包成一个文本文件。</p>
+<p>文本通过PcDuino上面编写的上传API程序（七牛云）上传到云端。然后，PC端使用API下载云端的文本文件，绘制心率折线图，计算平均温度，并且每个反复请求云端，当新的数据产生时，更新折线图。end</p>
+<p>###需要注意的几点</p>
+<ul>
+<li>七牛云API规则的学习，可以直接使用官方的SDK(python)</li>
+<li>每隔一定的间隔时间，循环上传和下载信息，并更新曲线图。</li>
+</ul>
+<p>###可以改进的方面</p>
+<ul>
+<li>采集更加准确精确的数据</li>
+<li>如果可行，直接将电压值处理后生成相应的脉搏次数</li>
+<li>信息在云端的存储规则，考虑断点上传等;</li>
+<li>数据是否可以实时传输，实时的绘制曲线，而非存在时间间隔</li>
+<li>如果不使用现有云平台，而是搭建服务器，该如何实现</li>
+</ul>
+<p>###体会&amp;其他<br>这次知道了原来有那么多的hackathon活动，认识了一些创客，创客团队，以及一些有想法的人。一位创客对我说，这次的比赛流程一点也不好，不是24小时，不能通宵，每个2小时介绍项目进度这样不好，宾馆偏僻等等问题。我们增长了见识，知识，宝贵经历经验。我们还知道了国内纽约大学的hackthon比赛，可惜无缘参加。</p>
+<p>最后，值得一说的是，晚上在宾馆通宵的产出比白天还要高，可能是白天在研究各种技术细节把。本来想顺便玩一玩宾馆的无线网络的，最后也只是进入了电信的猫，仅仅知道了可能的路由拓扑结构，没什么意思。看来网络知识还欠缺，不能像乌云前辈那般潇洒了。</p>
+<p>顺便记录一个<a href="http://otaku.im/f420" target="_blank" rel="external">网址</a>，可以解出猫的登录密码,留存。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Life/" rel="tag">#Life</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/11/04/201411041619/" rel="prev">Segment Tree</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/26/copy-how-to-get-a-job/" rel="next">求职季的一点经验之谈(转载)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2014/11/02/201411022317/"
+                   data-title="记第一次 hackathon 与反思" data-url="http://blog.hycwall.com/2014/11/02/201411022317/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

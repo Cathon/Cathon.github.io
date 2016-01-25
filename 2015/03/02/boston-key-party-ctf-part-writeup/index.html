@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Hackdig," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="##0x00
+周末的 boston key party ctf 比赛，第二天注册了帐号玩了一下，也仅仅能够做一些简单题。题目类型有二进制，逆向，加密，”School bus”所谓的学校汽车应该就是指学生能做的题吧，我也只能做这些了。
+“School bus” 分类下的题目有这些：
+
+Park Street : 10 (pass)
+BU Central : 10 
+Brigham Circle :">
+<meta property="og:type" content="article">
+<meta property="og:title" content="boston-key-party-ctf-part-writeup">
+<meta property="og:url" content="http://blog.hycwall.com/2015/03/02/boston-key-party-ctf-part-writeup/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="##0x00
+周末的 boston key party ctf 比赛，第二天注册了帐号玩了一下，也仅仅能够做一些简单题。题目类型有二进制，逆向，加密，”School bus”所谓的学校汽车应该就是指学生能做的题吧，我也只能做这些了。
+“School bus” 分类下的题目有这些：
+
+Park Street : 10 (pass)
+BU Central : 10 
+Brigham Circle :">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="boston-key-party-ctf-part-writeup">
+<meta name="twitter:description" content="##0x00
+周末的 boston key party ctf 比赛，第二天注册了帐号玩了一下，也仅仅能够做一些简单题。题目类型有二进制，逆向，加密，”School bus”所谓的学校汽车应该就是指学生能做的题吧，我也只能做这些了。
+“School bus” 分类下的题目有这些：
+
+Park Street : 10 (pass)
+BU Central : 10 
+Brigham Circle :">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> boston-key-party-ctf-part-writeup | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              boston-key-party-ctf-part-writeup
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-03-02T22:26:35+01:00" content="2015-03-02">
+            2015-03-02
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/03/02/boston-key-party-ctf-part-writeup/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/02/boston-key-party-ctf-part-writeup/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##0x00</p>
+<p>周末的 boston key party ctf 比赛，第二天注册了帐号玩了一下，也仅仅能够做一些简单题。<br>题目类型有二进制，逆向，加密，”School bus”<br>所谓的<em>学校汽车</em>应该就是指学生能做的题吧，我也只能做这些了。</p>
+<p>“School bus” 分类下的题目有这些：</p>
+<ul>
+<li>Park Street : 10 (pass)</li>
+<li>BU Central : 10 </li>
+<li>Brigham Circle : 25 (pass)</li>
+<li>Longwood Medical : 25 (pass)</li>
+<li>Museum of Fine Arts : 25 (pass)</li>
+<li>Northeastern Univ. : 25 (pass)</li>
+<li>Symphony : 25 (pass)</li>
+<li>Prudential : 25 (pass)</li>
+<li>Heath Street : 100 </li>
+<li>Riverside : 200 </li>
+</ul>
+<p>接下来一个一个分析吧。</p>
+<a id="more"></a>
+<p>##0x01</p>
+<p>BU Central：the flag is party : 10</p>
+<p>题目中直接提示<code>the flag is party</code><br>所以 flag 就是 <code>party</code></p>
+<p>##0x02</p>
+<p>Longwood Medical：Because we dont trust mysqli_real_escape_string, we wrote our own military-grade sanitization method. : 25</p>
+<p>代码审计<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;level5&lt;/title&gt;</span><br><span class="line">    &lt;link rel=<span class="string">'stylesheet'</span> href=<span class="string">'style.css'</span> type=<span class="string">'text/css'</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">require <span class="string">'flag.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isset ($_GET[<span class="string">'name'</span>]) and isset ($_GET[<span class="string">'password'</span>])) &#123;</span><br><span class="line">    <span class="variable">$name</span> = $_GET[<span class="string">'name'</span>];</span><br><span class="line">    <span class="variable">$password</span> = $_GET[<span class="string">'password'</span>];</span><br><span class="line"></span><br><span class="line">    if (ctype_alnum (<span class="variable">$name</span>) and ctype_alnum (<span class="variable">$password</span>)) &#123;</span><br><span class="line">        <span class="variable">$request</span> = <span class="string">'SELECT login FROM user where login = '</span> . <span class="variable">$name</span> . <span class="string">' AND password = '</span> . <span class="variable">$password</span> . <span class="string">';'</span>;</span><br><span class="line">        <span class="variable">$db</span> = new SQLite3 (sha1(<span class="variable">$flag</span>).<span class="string">'.db'</span>, SQLITE3_OPEN_READONLY); // Ghetto anti-database-download</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$db-</span>&gt;querySingle (<span class="variable">$request</span>);</span><br><span class="line">        <span class="variable">$db-</span>&gt;close ();</span><br><span class="line"></span><br><span class="line">        if (<span class="variable">$result</span> === FALSE)</span><br><span class="line">            echo <span class="string">'&lt;p class="alert"&gt;"Invalid login or password&lt;/p&gt;'</span>;</span><br><span class="line">        else</span><br><span class="line">            die(<span class="string">'Flag: '</span> . <span class="variable">$flag</span>);</span><br><span class="line">    &#125; else</span><br><span class="line">        echo <span class="string">'&lt;p class="alert"&gt;Invalid chars detected&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;section class=<span class="string">"login"</span>&gt;</span><br><span class="line">        &lt;div class=<span class="string">"title"</span>&gt;</span><br><span class="line">                &lt;a href=<span class="string">"./index.txt"</span>&gt;Level <span class="number">5</span>&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;form method=<span class="string">"get"</span>&gt;</span><br><span class="line">                &lt;input type=<span class="string">"text"</span> required name=<span class="string">"name"</span> placeholder=<span class="string">"Name"</span>/&gt;&lt;br/&gt;</span><br><span class="line">                &lt;input type=<span class="string">"text"</span> required name=<span class="string">"password"</span> placeholder=<span class="string">"Password"</span> /&gt;&lt;br/&gt;</span><br><span class="line">                &lt;input type=<span class="string">"submit"</span>/&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">&lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这道题不知道是什么类型的。要求输入两个参数，要求是数字，然后有查询数据库什么的。<br>直接尝试提交 12345，12345 就得到 flag，莫名奇妙pass～<br>Flag: Did_you_know_that_in_french_a_chiken_makes_the_sound_quotquotquotquot?</p>
+<p>##0x03</p>
+<p>Museum of Fine Arts: Because cryptography is hard, we only implemented a hand-made PRNG. What could possibly go wrong? : 25</p>
+<p>代码审计<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>level4<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'style.css'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">session_start(); </span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'flag.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span> (<span class="variable">$_GET</span>[<span class="string">'password'</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">'password'</span>] == <span class="variable">$_SESSION</span>[<span class="string">'password'</span>])</span><br><span class="line">        <span class="keyword">die</span> (<span class="string">'Flag: '</span>.<span class="variable">$flag</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Wrong guess.&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Unpredictable seed</span></span><br><span class="line">mt_srand((microtime() ^ rand(<span class="number">1</span>, <span class="number">10000</span>)) % rand(<span class="number">1</span>, <span class="number">10000</span>) + rand(<span class="number">1</span>, <span class="number">10000</span>));</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"login"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"./index.txt"</span>&gt;</span>Level 4<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"list"</span>&gt;</span></span><br><span class="line">		<span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;<span class="number">3</span>; <span class="variable">$i</span>++)</span><br><span class="line">			<span class="keyword">print</span> <span class="string">'&lt;li&gt;'</span> . mt_rand (<span class="number">0</span>, <span class="number">0xffffff</span>) . <span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">		<span class="variable">$_SESSION</span>[<span class="string">'password'</span>] = mt_rand (<span class="number">0</span>, <span class="number">0xffffff</span>);</span><br><span class="line">		<span class="preprocessor">?&gt;</span></span></span><br><span class="line">		<span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">form</span> <span class="attribute">method</span>=<span class="value">"get"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">required</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">placeholder</span>=<span class="value">"Next number"</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>本题考察PHP中伪随机数的生成。我们都知道，我们常用的随机数其实都是伪随机，指定种子(seed)，得到的随机数是相同的。<br>源码中seed的范围不大，我们可以写个脚本遍历该范围内的种子，其随机序列中的前四个。<br>然后即可得知本次使用的种子，也就得到了第四次随机数。<br>提交得到 Flag: It_s33ms_that_PRNG_are_hard_too_after_all</p>
+<p>程序如下：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span>&lt;=<span class="number">20000</span>; <span class="variable">$i</span>++)&#123;</span><br><span class="line">	mt_srand(<span class="variable">$i</span>);</span><br><span class="line">	echo <span class="variable">$i</span>, <span class="string">": "</span>;</span><br><span class="line">	for (<span class="variable">$j</span>=<span class="number">0</span>; <span class="variable">$j</span>&lt;<span class="number">4</span>; <span class="variable">$j</span>++)&#123;</span><br><span class="line">		 echo mt_rand(<span class="number">0</span>, <span class="number">0xffffff</span>),<span class="string">","</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	echo <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>##0x04</p>
+<p>Northeastern Univ.：Of course, a timing attack might be the answer, but Im quite sure that you can do better than that. : 25</p>
+<p>代码审计<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>level3<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'style.css'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'flag.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">'password'</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strcmp(<span class="variable">$_GET</span>[<span class="string">'password'</span>], <span class="variable">$flag</span>) == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">'Flag: '</span>.<span class="variable">$flag</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Invalid password.&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"login"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"./index.txt"</span>&gt;</span>Level 3<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">form</span> <span class="attribute">method</span>=<span class="value">"get"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">required</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">placeholder</span>=<span class="value">"Password"</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>需要输入一个密码，程序得到这个密码用 strcmp 和 flag 比较，如果 strcmp 返回值为0, 则输出 flag<br>这里需要利用PHP语言的弱类型这个特性（漏洞）<br>若 strcmp 中的参数有一个为数组，则返回0</p>
+<p>所以我们构造<code>?password[]=a</code>，提交即可得到答案<br>Flag: Still_better_than_the_d0uble_equals</p>
+<p>##0x05</p>
+<p>Symphony: A less than four characters number, bigger than 999?Maybe the bug is elsewhere. : 25</p>
+<p>代码审计<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>level2<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'style.css'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'flag.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">'password'</span>])) &#123;</span><br><span class="line">	<span class="keyword">if</span> (is_numeric(<span class="variable">$_GET</span>[<span class="string">'password'</span>]))&#123;</span><br><span class="line">		<span class="keyword">if</span> (strlen(<span class="variable">$_GET</span>[<span class="string">'password'</span>]) &lt; <span class="number">4</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">'password'</span>] &gt; <span class="number">999</span>)</span><br><span class="line">				<span class="keyword">die</span>(<span class="string">'Flag: '</span>.<span class="variable">$flag</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Too little&lt;/p&gt;'</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">				<span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Too long&lt;/p&gt;'</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Password is not numeric&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"login"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"./index.txt"</span>&gt;</span>Level 2<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">form</span> <span class="attribute">method</span>=<span class="value">"get"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">required</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">placeholder</span>=<span class="value">"Password"</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>提交一个值 ——&gt; 判断是不是数字 ——&gt; 判断是不是小于四位数 ——&gt; 判断是不是大于999<br>如果以上条件均符合，那么就可以得到 flag 了。</p>
+<p>也就是说，我们要提交一个值，既要是数字，不能大于四位数，还得大于999<br>那么常规的数字是不行的。但是！PHP是如何判断你输入的是不是数字呢？</p>
+<p>我们来看一下官方文档中对 is_numeric 函数的说明。</p>
+<pre><code>Finds whether the given variable is numeric. Numeric strings consist of optional sign, 
+any number of digits, optional decimal part and optional exponential part. Thus 
++0123.45e6 is a valid numeric value. Hexadecimal (e.g. 0xf4c3b00c), Binary (e.g. 0b10100111001), 
+Octal (e.g. 0777) notation is allowed too but only without sign, decimal and exponential part. 
+
+Returns TRUE if var is a number or a numeric string, FALSE otherwise. 
+</code></pre><p>所以我们输入9e9（远远大于999）提交即可得到flag</p>
+<p>##0x06</p>
+<p>Prudential: I dont think that sha1 is broken. Prove me wrong. : 25</p>
+<p>代码审计<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">title</span>&gt;</span>level1<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'style.css'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="php"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'flag.php'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">'name'</span>]) <span class="keyword">and</span> <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">'password'</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">'name'</span>] == <span class="variable">$_GET</span>[<span class="string">'password'</span>])</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Your password can not be your name.'</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sha1(<span class="variable">$_GET</span>[<span class="string">'name'</span>]) === sha1(<span class="variable">$_GET</span>[<span class="string">'password'</span>]))</span><br><span class="line">      <span class="keyword">die</span>(<span class="string">'Flag: '</span>.<span class="variable">$flag</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'&lt;p class="alert"&gt;Invalid password.&lt;/p&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">?&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"login"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"title"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"./index.txt"</span>&gt;</span>Level 1<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="title">form</span> <span class="attribute">method</span>=<span class="value">"get"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">required</span> <span class="attribute">name</span>=<span class="value">"name"</span> <span class="attribute">placeholder</span>=<span class="value">"Name"</span>/&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">required</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">placeholder</span>=<span class="value">"Password"</span> /&gt;</span><span class="tag">&lt;<span class="title">br</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"submit"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>原理如上，构造<code>?name[]=a&amp;password[]=b</code>，提交<br>Flag: I_think_that_I_just_broke_sha1<br>（本地测试sha1()函数中参数不能为数组，不明觉力。另外这道题如果去考虑sha1碰撞的话，那就跑偏了）</p>
+<p>#0x07<br>小结一下吧，做出来的题目基本上是代码审计，找到了些小技巧，抖了抖机灵。<br>还有三个没做出来。更别说加密，逆向，二进制这些了，我只是看了看题。</p>
+<p>今天下午老师讲了些东西，我感觉是时候去认真的学好一个东西了，在哪一方面研究到一定的程度。<br>这个学期希望我能作出选择。</p>
+<p>晚安</p>
+<p>一些参考：</p>
+<ul>
+<li><a href="http://lcx.cc/?i=4244" target="_blank" rel="external">PHP的strcmp函数引发的安全问题</a></li>
+<li><a href="http://drops.wooyun.org/tips/4483" target="_blank" rel="external">浅谈PHP弱类型安全</a></li>
+<li><a href="http://dook.biz/2015/03/boston-key-party-ctf-symphony-writeup/" target="_blank" rel="external">一道题的writeup</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hackdig/" rel="tag">#Hackdig</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/09/how-to-uncompress-file-exclude-utf-8/" rel="prev">linux下压缩包乱码问题</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/01/after-winter-holiday-2015/" rel="next">小结与展望</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/03/02/boston-key-party-ctf-part-writeup/"
+                   data-title="boston-key-party-ctf-part-writeup" data-url="http://blog.hycwall.com/2015/03/02/boston-key-party-ctf-part-writeup/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

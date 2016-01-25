@@ -1,0 +1,698 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="前言为了某个比赛写了个Java的C/S架构的类早期QQ的聊天软件。两个Jar包，为了在线上运行，买了一个月的aliyun(linux)然后学习了一下如何在两台linux之间传文件，主要有sftp和scp两个命令。
+&amp;lt;!--2015.4.11 补充--&amp;gt;补充：需要在云服务器上后台运行程序 涉及到的命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux 文件传输 以及 服务器后台运行任务">
+<meta property="og:url" content="http://blog.hycwall.com/2015/04/06/sftp-demo/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="前言为了某个比赛写了个Java的C/S架构的类早期QQ的聊天软件。两个Jar包，为了在线上运行，买了一个月的aliyun(linux)然后学习了一下如何在两台linux之间传文件，主要有sftp和scp两个命令。
+&amp;lt;!--2015.4.11 补充--&amp;gt;补充：需要在云服务器上后台运行程序 涉及到的命令">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux 文件传输 以及 服务器后台运行任务">
+<meta name="twitter:description" content="前言为了某个比赛写了个Java的C/S架构的类早期QQ的聊天软件。两个Jar包，为了在线上运行，买了一个月的aliyun(linux)然后学习了一下如何在两台linux之间传文件，主要有sftp和scp两个命令。
+&amp;lt;!--2015.4.11 补充--&amp;gt;补充：需要在云服务器上后台运行程序 涉及到的命令">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> linux 文件传输 以及 服务器后台运行任务 | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              linux 文件传输 以及 服务器后台运行任务
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-06T14:05:54+02:00" content="2015-04-06">
+            2015-04-06
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/06/sftp-demo/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/06/sftp-demo/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h2><p>为了某个比赛写了个Java的C/S架构的类早期QQ的聊天软件。<br>两个Jar包，为了在线上运行，买了一个月的aliyun(linux)<br>然后学习了一下如何在两台linux之间传文件，主要有sftp和scp两个命令。</p>
+<!--2015.4.11 补充-->补充：需要在云服务器上后台运行程序 涉及到的命令<br><a id="more"></a>
+<p>##sftp<br>sftp 是一个基于ssh的交互式文件传输程式。它类似于 ftp, 但它进行加密传输，比FTP有更高的安全性。<br>sftp 使用方法：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sftp <span class="comment">[remote_username@]</span>remote_ip<span class="comment">[:file ...]</span></span><br><span class="line">sftp <span class="comment">[remote_username@]</span>remote_ip<span class="comment">[:dir<span class="comment">[/]</span>]</span></span><br><span class="line">sftp -b batchfile <span class="comment">[remote_username@]</span>remote_ip</span><br></pre></td></tr></table></figure></p>
+<p>举例说明:<br><figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ sftp root@xxx.xxx.xxx.xxx</span><br><span class="line">The authenticity <span class="keyword">of</span> host <span class="attribute">'xxx</span>.xxx.xxx.xxx (xxx.xxx.xxx.xxx)' can<span class="attribute">'t</span> be established.</span><br><span class="line">ECDSA key fingerprint <span class="keyword">is</span> xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added <span class="attribute">'xxx</span>.xxx.xxx.xxx' (ECDSA) <span class="keyword">to</span> the list <span class="keyword">of</span> known hosts.</span><br><span class="line">Password: [enter your password]</span><br><span class="line">Connected <span class="keyword">to</span> xxx.xxx.xxx.xxx.</span><br><span class="line"></span><br><span class="line">sftp&gt; get /x/xx/xxx  /xxxx/</span><br><span class="line">//这条语句将从远程主机的 /x/xx/ 目录下将 xxx 下载到本地 /xxxx/ 目录下</span><br><span class="line"></span><br><span class="line">sftp&gt; put /z/zz /zzz/</span><br><span class="line">//这条语句将把本地 /z/ 目录下的 zz 文件上传至远程主机 /zzz/ 目录下。</span><br><span class="line"></span><br><span class="line"><span class="comment">/*如果不知道远程主机的当前目录，可以用pwd命令</span><br><span class="line"> *改变路径可以用cd命令</span><br><span class="line"> *以及ls,rm,rmdir,mkdir等常用命令</span><br><span class="line"> *对应的</span><br><span class="line"> *在本地主机执行命令，在命令前加 l</span><br><span class="line"> *如lpwd,lcd,lls,lrm等</span><br><span class="line"> *离开sftp，用 exit，quit，bye 均可。</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure></p>
+<p>当然也有GUI的工具 gftp 可以使用</p>
+<p>##scp<br>scp也是基于ssh登录的文件copy命令，操作方便，可用于将本地文件copy到远程主机上。</p>
+<p>从本地复制到远程主机<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复制文件</span></span><br><span class="line">$ scp local_file remote_username<span class="annotation">@remote</span><span class="string">_ip:</span>remote_folder</span><br><span class="line">$ scp local_file remote_username<span class="annotation">@remote</span><span class="string">_ip:</span>remote_file</span><br><span class="line">$ scp local_file <span class="string">remote_ip:</span>remote_folder</span><br><span class="line">$ scp local_file <span class="string">remote_ip:</span>remote_file </span><br><span class="line"></span><br><span class="line"><span class="comment">//复制目录</span></span><br><span class="line">$ scp -r local_folder remote_username<span class="annotation">@remote</span><span class="string">_ip:</span>remote_folder</span><br><span class="line">$ scp -r local_folder <span class="string">remote_ip:</span>remote_folder</span><br></pre></td></tr></table></figure></p>
+<p>从远程主机复制到本地，只要将 从本地复制到远程主机的命令 的后2个参数 调换顺序 即可。</p>
+<p>注意两点：<br>1.如果远程服务器防火墙有特殊限制，scp便要走特殊端口，具体用什么端口视情况而定，命令格式如下：<br><code>scp -p 4588 remote@www.abc.com:/usr/local/sin.sh /home/administrator</code><br>2.使用scp要注意所使用的用户是否具有可读取远程服务器相应文件的权限。 </p>
+<p>##nohup ‘&amp;’ etc.<br>通常我们在终端执行脚本时，进程运行在前台，（若运行时间长）运行时是不能执行其他任务的。<br>若想将当前正在前台执行的进程转到后台，我们可以使用一下命令：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctrl + z     <span class="comment">//将任务放到后台去，并暂停；</span></span><br><span class="line">bg &lt;%<span class="keyword">int</span>&gt;   <span class="comment">//将后台任务唤醒,在后台运行；</span></span><br></pre></td></tr></table></figure></p>
+<p>还有相关命令：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fg &lt;%<span class="keyword">int</span>&gt;   <span class="comment">//将后台任务的程序放到前台；</span></span><br><span class="line">jobs         <span class="comment">//列举出后台作业信息。（[作业号] 运行状态 作业名称）</span></span><br></pre></td></tr></table></figure></p>
+<p>不过若我们连接远程服务器后，想要长期运行一个脚本，仅仅如此是不够的<br>使用常规方法后，当我们退出脱离终端后，进程随之终止。<br>而‘nohup’命令可以解决这个问题。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//have loged in a remote linux server</span></span><br><span class="line">$ nohup &lt;run a shell <span class="keyword">or</span> sth.&gt; &amp;</span><br><span class="line">[~]$ appending output <span class="keyword">to</span> nohup.<span class="keyword">out</span></span><br><span class="line">$ <span class="keyword">exit</span></span><br><span class="line"><span class="comment">//loged out from remote server</span></span><br></pre></td></tr></table></figure></p>
+<p>nohup 命令的作用就是可以让 shell 命令忽略 SIGHUP 信号，即可以使之脱离终端运行<br>此命令长用于：</p>
+<ol>
+<li>执行程序耗时长（如unzip sth），而网络不稳定</li>
+<li>执行完需要关闭终端</li>
+</ol>
+<p>##References<br><a href="http://www.cnblogs.com/hitwtx/archive/2011/11/16/2251254.html" target="_blank" rel="external">SCP 命令</a><br><a href="http://blog.chinaunix.net/uid-384966-id-2411235.html" target="_blank" rel="external">简单而有用的 nohup 命令</a><br><a href="http://www.dedecms.com/knowledge/servers/linux-bsd/2012/0822/12830.html" target="_blank" rel="external">nohup 命令用法释疑</a><br><a href="http://www.th7.cn/system/lin/201405/54812.shtml" target="_blank" rel="external">修复“正确操作nohup让程序始终在后台运行”中已发现的问题</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/17/dp-begin/" rel="prev">动态规划问题基本框架</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/01/maximum-sum/" rel="next">最大子串和(Maximun-sum)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/06/sftp-demo/"
+                   data-title="linux 文件传输 以及 服务器后台运行任务" data-url="http://blog.hycwall.com/2015/04/06/sftp-demo/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u524D_u8A00"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

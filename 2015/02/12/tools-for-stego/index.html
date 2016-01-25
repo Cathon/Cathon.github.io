@@ -1,0 +1,742 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="Every mountain top is within reach if you just keep climbing." />
+
+
+
+  <meta name="keywords" content="Hackdig," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="##概述
+隐写术是关于信息隐藏，即不让计划的接收者之外的任何人知道信息的传递事件（而不只是信息的内容）的一门技巧与科学。通常我们隐写的对象是图片，音频，视频，文档等，为了方便，我们常常使用一些工具。本文记录这些工具的安装过程以及简单用途。 本文实验环境为 linux(openSUSE 13.1), 而 windows 以及 os x 环境下类似。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="隐写术的相关工具">
+<meta property="og:url" content="http://blog.hycwall.com/2015/02/12/tools-for-stego/index.html">
+<meta property="og:site_name" content="Hycwall's Note">
+<meta property="og:description" content="##概述
+隐写术是关于信息隐藏，即不让计划的接收者之外的任何人知道信息的传递事件（而不只是信息的内容）的一门技巧与科学。通常我们隐写的对象是图片，音频，视频，文档等，为了方便，我们常常使用一些工具。本文记录这些工具的安装过程以及简单用途。 本文实验环境为 linux(openSUSE 13.1), 而 windows 以及 os x 环境下类似。">
+<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="隐写术的相关工具">
+<meta name="twitter:description" content="##概述
+隐写术是关于信息隐藏，即不让计划的接收者之外的任何人知道信息的传递事件（而不只是信息的内容）的一门技巧与科学。通常我们隐写的对象是图片，音频，视频，文档等，为了方便，我们常常使用一些工具。本文记录这些工具的安装过程以及简单用途。 本文实验环境为 linux(openSUSE 13.1), 而 windows 以及 os x 环境下类似。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 隐写术的相关工具 | Hycwall's Note </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4a1a76249178783ced8578d15aeaa0f4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">Hycwall's Note</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'fJrXj99D7Rnw28FiG6vc','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              隐写术的相关工具
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-02-12T23:23:50+01:00" content="2015-02-12">
+            2015-02-12
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/02/12/tools-for-stego/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/12/tools-for-stego/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>##概述</p>
+<p>隐写术是关于信息隐藏，即不让计划的接收者之外的任何人知道信息的传递事件（而不只是信息的内容）的一门技巧与科学。<br>通常我们隐写的对象是图片，音频，视频，文档等，为了方便，我们常常使用一些工具。<br>本文记录这些工具的安装过程以及简单用途。 本文实验环境为 linux(openSUSE 13.1), 而 windows 以及 os x 环境下类似。</p>
+<a id="more"></a>
+<p>##TrID</p>
+<p><a href="http://mark0.net/onlinetrid.aspx" target="_blank" rel="external">TrID File Identifier</a></p>
+<p>TrID是一款根据文件二进制数据特征进行判断的文件类型识别工具。虽然也有类似的文件类型识别工具，但是大多数都是使用硬编码的识别规则，而TrID则没有固定的匹配规则，TrID具有灵活的可扩展性，可以通过训练来进行文件类型的快速识别。<br>TrID通过附加的文件类型指纹数据库来进行匹配，可用于取证分析、未知文件识别等用途。</p>
+<p>linux 平台下载解压缩<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd trid_linux</span><br><span class="line"><span class="variable">$ </span>chmod +x trid</span><br><span class="line"><span class="variable">$ </span>./trid binary_file</span><br></pre></td></tr></table></figure></p>
+<p>若检测失败，缺失 triddefs.trd ，从windows版的软件中将其复制过来即可。<br>windows 平台可以直接<a href="http://heetian.qiniudn.com/tools/TrID.zip" target="_blank" rel="external">下载</a>使用</p>
+<p>P.S. linux 下的 file 命令与这个工具作用相似</p>
+<p>##binwalk</p>
+<p>BinWalk是一个固件的分析工具，旨在协助研究人员对固件进行分析，提取及逆向工程用处。简单易用，完全自动化脚本，并通过自定义签名，提取规则和插件模块，还重要一点的是可以轻松地扩展。在这里，binwalk 做内嵌文件数据分析。</p>
+<p>在CTF竞赛中，很多情况下会把一个文件的二进制数据嵌入到另一个文件之中，对于嵌入ZIP之类的数据，我们可以尝试直接将文件名的后缀改为zip，然后使用WinRAR之类的解压缩工具打开即可，但是对于未知的文件类型，这样可能就显得力不从心了，这里介绍一种通用的内嵌文件识别方法，就是使用BinWalk工具。</p>
+<p>下载地址：<a href="http://binwalk.org/" target="_blank" rel="external">binwalk官网</a><br>下载后解压缩，进入该目录配置安装<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>./configure</span><br><span class="line"><span class="variable">$ </span>make</span><br><span class="line"><span class="variable">$ </span>sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>使用方法也很直接(如下图片是一个图种)：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ binwalk 9b48d91f3a292df51ad5ffbdbc315c6035a873ae.jpg </span><br><span class="line"></span><br><span class="line"><span class="header">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span></span><br><span class="line">0             0x0             JPEG image data, JFIF standard  1.01</span><br><span class="line">151706        0x2509A         End of Zip archive</span><br></pre></td></tr></table></figure></p>
+<p>更详细的安装文档参见 INSTALL.md<br>较清晰的使用指南参见 <a href="http://www.freebuf.com/tools/15266.html" target="_blank" rel="external">freebuf 的介绍</a><br>更详细的使用说明参见 <a href="https://github.com/devttys0/binwalk/wiki/Quick-Start-Guide" target="_blank" rel="external">官方文档</a></p>
+<p>##JPocketKnife</p>
+<p>这时一个编码转换神器，由 JAVA 编写，2008 年开发。<br>以下是程序内部的<code>help</code>说明：</p>
+<pre><code>JPK is mainly a conversion tool
+When you hover the mouse over a function, you get some help what it does.
+When your input is binary or number, make sure you have 1 number per line, and select the correct InRadix or BitsPerBlock.
+It is a good idea to press Binary-&gt;Format, or Number-&gt;Format, before doing Number or Binary functions.
+</code></pre><p>下载地址<a href="http://heetian.qiniudn.com/tools/JPK_406.jar" target="_blank" rel="external">JPK_406.jar</a> ( <a href="http://erange.heetian.com" target="_blank" rel="external">感谢合天网安实验室</a> )<br>运行 <code>java -jar JPK_406.jar</code><br>而在wechall上有一个<a href="http://www.wechall.net/tools/JPK" target="_blank" rel="external">在线使用方式</a></p>
+<p>##Audacity</p>
+<p>Audacity是一款免费的音频处理软件。它是在linux下发展起来的，一款遵循GNU协议的免费软件。<br>Audacity是一个跨平台的声音编辑软件，用于录音和编辑音频，是自由、开放源代码的软件。<br>通过此工具可以进行音频文件隐写取证分析（包括波形图分析、频谱图分析、音频反向等）。</p>
+<p><strong>从源代码安装 Audacity</strong></p>
+<p>要下载 Audacity 的源代码，使用 <a href="http://audacity.sourceforge.net/" target="_blank" rel="external">SourceForge 中的链接</a>，并选择那里介绍的压缩存档文件。将有一个类似于 audacity-minsrc-2.0.xx.tar.xz 的名称，应该将它下载到您的 Download 目录。接下来，打开 terminal，将文件解压缩，并从源代码构建 Audacity：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd src</span><br><span class="line">$ tar -zxvpf ~/Download/audacity-minsrc-<span class="number">2.0</span><span class="class">.xx</span><span class="class">.tar</span><span class="class">.gz</span></span><br></pre></td></tr></table></figure></p>
+<p>创建源目录并将所有源模块放在该目录下。之后，按照下列内容配置、编译并安装 Audacity：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cd audacity-src-<span class="number">2.0</span>.xx</span><br><span class="line"><span class="variable">$ </span>./configure</span><br></pre></td></tr></table></figure></p>
+<p>这时，提示缺少 wxWidgets 和 libsndfile 开发库。<br>打开YaST软件包管理器安装 wxWidgets-devel 和 libsndfile-devel ，重试。<br>假设配置阶段已经完成并且没有发现任何错误，则现在就可以运行 make 来编译和链接 Audacity：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>make</span><br><span class="line"><span class="variable">$ </span>sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>启动程序<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>audacity</span><br></pre></td></tr></table></figure></p>
+<p>BTW:安装完才想起来可以在yast安装包管理器中安装的 ( Fedora,Gentoo,SuSE,Ubuntu这些发行版都可以在各自软件库中安装 )</p>
+<p><strong>参考资料</strong><br><a href="http://teliute.org/linux/Teauda/index.html" target="_blank" rel="external">Audacity 音频编辑器教程</a><br><a href="http://www.ibm.com/developerworks/cn/opensource/os-audacity/" target="_blank" rel="external">功能强大的 Audacity ( from IBM )</a></p>
+<p>##StegHide</p>
+<p>Steghide是一个隐秘的程序，它能够隐藏在图像和音频文件的各种数据。用颜色respectivly采样频率没有改变从而使对一阶统计测试嵌入性。</p>
+<p>主要特点:</p>
+<pre><code>压缩嵌入数据
+加密嵌入数据
+嵌入数据的检查(checksum)
+支持 JPEG, BMP, WAV and AU 文件
+</code></pre><p><a href="http://steghide.sourceforge.net/download.php" target="_blank" rel="external">sourceforge 官网下载</a></p>
+<p>需要的库有：</p>
+<ol>
+<li>libmhash  Available at: <a href="http://mhash.sourceforge.net/" target="_blank" rel="external">http://mhash.sourceforge.net/</a></li>
+<li>libmcrypt  Available at: <a href="http://mcrypt.sourceforge.net/" target="_blank" rel="external">http://mcrypt.sourceforge.net/</a></li>
+<li>libjpeg  Available at: <a href="http://www.ijg.org/" target="_blank" rel="external">http://www.ijg.org/</a></li>
+<li>zlib  Available at: <a href="http://www.gzip.org/zlib/" target="_blank" rel="external">http://www.gzip.org/zlib/</a></li>
+</ol>
+<p>安装：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure </span><br><span class="line">$ make</span><br><span class="line">$ make<span class="instruction"> check</span><br><span class="line"></span>$ sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>使用方法：<br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$ steghide embed <span class="attribute">-cf</span> picture<span class="built_in">.</span>jpg <span class="attribute">-ef</span> secret<span class="built_in">.</span>txt</span><br><span class="line">Enter passphrase:</span><br><span class="line">Re<span class="attribute">-Enter</span> passphrase:</span><br><span class="line">embedding <span class="string">"secret.txt"</span> <span class="keyword">in</span> <span class="string">"picture.jpg"</span><span class="attribute">...</span> done</span><br><span class="line"></span><br><span class="line">$ steghide extract <span class="attribute">-sf</span> picture<span class="built_in">.</span>jpg</span><br><span class="line">Enter passphrase:</span><br><span class="line">wrote extracted <span class="built_in">data</span> <span class="keyword">to</span> <span class="string">"secret.txt"</span><span class="built_in">.</span><br><span class="line"></span><br><span class="line"></span>$ steghide info received_file<span class="built_in">.</span>wav</span><br><span class="line">  <span class="string">"received_file.wav"</span>:</span><br><span class="line">    format: wave audio, PCM encoding</span><br><span class="line">    capacity: <span class="number">3.5</span> KB</span><br><span class="line">  Try <span class="keyword">to</span> get information about embedded <span class="built_in">data</span> ? (y/n) y</span><br><span class="line">  Enter passphrase:</span><br><span class="line">    embedded file <span class="string">"secret.txt"</span>:</span><br><span class="line">      size: <span class="number">1.6</span> KB</span><br><span class="line">      encrypted: rijndael-<span class="number">128</span>, cbc</span><br><span class="line">      compressed: yes</span><br><span class="line">      </span><br><span class="line">$ steghide extract <span class="attribute">-sf</span> received_file<span class="built_in">.</span>wav</span><br><span class="line">Enter passphrase:</span><br><span class="line">wrote extracted <span class="built_in">data</span> <span class="keyword">to</span> <span class="string">"secret.txt"</span><span class="built_in">.</span></span><br></pre></td></tr></table></figure></p>
+<p>P.S. 首次源码安装失败，缺少库，安装库后还是失败。后来尝试去openSUSE官方中找，使用 1 click install 成功。<br><a href="http://software.opensuse.org/package/steghide" target="_blank" rel="external">openSUSE 官方下载</a> ， 其他发行版可以在各自的软件库寻找。</p>
+<p>##StegSolve</p>
+<p>StegSolve是一款基于Java开发的流行图片隐写分析软件，其支持常见的图片文件格式，可以对不同的文件进行结合（包括XOR、ADD、SUB等操作），可以对图片文件格式进行分析，可以提取GIF文件中的帧等，覆盖了基本的图片隐写分析需求。</p>
+<p>如果需要对不同的文件进行结合（包括XOR、ADD、SUB等操作），即通过对两张图片的像素点进行运算时。自己编写的脚本更加适合定制和扩展，下面是用 Python 实现的对两张图片进行像素点运算的 demo:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># this code is from heetian lab</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xorFun</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x^y   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">orFun</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x|y   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">andFun</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x&amp;y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadImage</span><span class="params">(filename)</span>:</span></span><br><span class="line">    img = Image.open(filename)</span><br><span class="line">    width, height = img.size</span><br><span class="line">    img = img.convert(<span class="string">"RGB"</span>)</span><br><span class="line">    pixel = img.load()</span><br><span class="line">    <span class="keyword">return</span> width, height, pixel   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combineImage</span><span class="params">(file1, file2, file3, func)</span>:</span></span><br><span class="line">    w1, h1, p1 = loadImage(file1)</span><br><span class="line">    w2, h2, p2 = loadImage(file2)   </span><br><span class="line">    width = min(w1, w2)</span><br><span class="line">    height = min(h1, h2)</span><br><span class="line">    img = Image.new(<span class="string">"RGB"</span>, (width, height))</span><br><span class="line">    pix = img.load()</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> xrange(<span class="number">0</span>, height):</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">0</span>, width):</span><br><span class="line">            r1, g1, b1 = p1[x, y]</span><br><span class="line">            r2, g2, b2 = p2[x, y]</span><br><span class="line">            pix[x, y] = func(r1,r2), func(g1,g2), func(b1,b2)</span><br><span class="line">    img.save(file3)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    combineImage(<span class="string">"pic1.jpg"</span>, <span class="string">"pic2.jpg"</span>, <span class="string">"xor.jpg"</span>, xorFun)</span><br><span class="line">    combineImage(<span class="string">"pic1.jpg"</span>, <span class="string">"pic2.jpg"</span>, <span class="string">"or.jpg"</span>, orFun)</span><br><span class="line">    combineImage(<span class="string">"pic1.jpg"</span>, <span class="string">"pic2.jpg"</span>, <span class="string">"and.jpg"</span>, andFun)</span><br></pre></td></tr></table></figure>
+<p>##StegDetect</p>
+<p>Stegdetect是一个自动化的工具，用于检测图像中的隐写内容。它能够检测几种不同的隐写方法在JPEG图像中嵌入隐藏信息。</p>
+<p>linux 版本的一个下载地址：<a href="http://www.codeforge.cn/article/149993" target="_blank" rel="external">http://www.codeforge.cn/article/149993</a></p>
+<p>##其他windows平台工具</p>
+<ul>
+<li>C32Asm (16进制编辑器)</li>
+<li>MP3Stego (<a href="http://www.petitcolas.net/steganography/mp3stego/" target="_blank" rel="external">官网下载</a>)</li>
+<li>Invisible Secrets ( 可以在 JPG 文件里面附带加密文本信息，只有win版，<a href="http://www.invisiblesecrets.com/" target="_blank" rel="external">官网下载</a>)</li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hackdig/" rel="tag">#Hackdig</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/02/15/summary-of-stego/" rel="prev">隐写术小结</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/02/09/ninepatch-beginning/" rel="next">NinePatch 图片入门</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/02/12/tools-for-stego/"
+                   data-title="隐写术的相关工具" data-url="http://blog.hycwall.com/2015/02/12/tools-for-stego/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460" alt="Cathon ZHD" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Cathon ZHD</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">Every mountain top is within reach if you just keep climbing.</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/v_july_v" target="_blank">July</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://kawabangga.com" target="_blank">LaiXinTao</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.weijinliang.cn" target="_blank">Wii</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/a1061747415" target="_blank">TOYKING</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.csdn.net/wondezy" target="_blank">猪哥</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.evil0x.com" target="_blank">邪恶十六进制</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.wechall.net" target="_blank">wechall</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cathon ZHD</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hycwall"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+  	<script src="/js/ua-parser.min.js"></script>
+  	<script src="/js/hook-duoshuo.js"></script>
+  
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
