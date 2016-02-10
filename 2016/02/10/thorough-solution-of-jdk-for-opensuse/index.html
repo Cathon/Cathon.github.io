@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Data_struct," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -37,22 +37,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Depth-First-Search即深度优先搜索
-##0X00 算法介绍
-深度优先搜索所遵循的搜索策略是尽可能“深”地搜索图。在深度优先搜索中，对于最新发现的顶点，如果它还有以此为起点而未探测到的边，就沿此边继续下去。当结点v的所有边都己被探寻过，搜索将回溯到发现结点v有那条边的始结点。这一过程一直进行到已发现从源结点可达的所有结点为止。如果还存在未被发现的结点，则选择其中一个作为源结点并重复以">
+<meta name="description" content="背景使用了 openSUSE 13.1, 13.2, 42.1 三个版本，每次都要折腾一遍 JAVA 环境。这次把过程记录下来，以免下次再耗费时间。
+发行版信息：123456&amp;gt; lsb_release -aLSB Version:    n/aDistributor ID: SUSE LINUXDescription:    openSUSE Leap 42.1 (x86_64)Releas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构考试复习（4）">
-<meta property="og:url" content="http://blog.hycwall.com/2014/12/03/dscr-dfs/index.html">
+<meta property="og:title" content="彻底解决 openSUSE 下的 java 开发环境">
+<meta property="og:url" content="http://blog.hycwall.com/2016/02/10/thorough-solution-of-jdk-for-opensuse/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
-<meta property="og:description" content="Depth-First-Search即深度优先搜索
-##0X00 算法介绍
-深度优先搜索所遵循的搜索策略是尽可能“深”地搜索图。在深度优先搜索中，对于最新发现的顶点，如果它还有以此为起点而未探测到的边，就沿此边继续下去。当结点v的所有边都己被探寻过，搜索将回溯到发现结点v有那条边的始结点。这一过程一直进行到已发现从源结点可达的所有结点为止。如果还存在未被发现的结点，则选择其中一个作为源结点并重复以">
-<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta property="og:description" content="背景使用了 openSUSE 13.1, 13.2, 42.1 三个版本，每次都要折腾一遍 JAVA 环境。这次把过程记录下来，以免下次再耗费时间。
+发行版信息：123456&amp;gt; lsb_release -aLSB Version:    n/aDistributor ID: SUSE LINUXDescription:    openSUSE Leap 42.1 (x86_64)Releas">
+<meta property="og:updated_time" content="2016-02-10T23:26:04.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构考试复习（4）">
-<meta name="twitter:description" content="Depth-First-Search即深度优先搜索
-##0X00 算法介绍
-深度优先搜索所遵循的搜索策略是尽可能“深”地搜索图。在深度优先搜索中，对于最新发现的顶点，如果它还有以此为起点而未探测到的边，就沿此边继续下去。当结点v的所有边都己被探寻过，搜索将回溯到发现结点v有那条边的始结点。这一过程一直进行到已发现从源结点可达的所有结点为止。如果还存在未被发现的结点，则选择其中一个作为源结点并重复以">
+<meta name="twitter:title" content="彻底解决 openSUSE 下的 java 开发环境">
+<meta name="twitter:description" content="背景使用了 openSUSE 13.1, 13.2, 42.1 三个版本，每次都要折腾一遍 JAVA 环境。这次把过程记录下来，以免下次再耗费时间。
+发行版信息：123456&amp;gt; lsb_release -aLSB Version:    n/aDistributor ID: SUSE LINUXDescription:    openSUSE Leap 42.1 (x86_64)Releas">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -62,7 +59,7 @@
   };
 </script>
 
-  <title> 数据结构考试复习（4） | Hycwall's Note </title>
+  <title> 彻底解决 openSUSE 下的 java 开发环境 | Hycwall's Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -192,7 +189,7 @@
           
           
             
-              数据结构考试复习（4）
+              彻底解决 openSUSE 下的 java 开发环境
             
           
         </h1>
@@ -201,8 +198,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-03T22:06:16+01:00" content="2014-12-03">
-            2014-12-03
+          <time itemprop="dateCreated" datetime="2016-02-10T16:28:29+01:00" content="2016-02-10">
+            2016-02-10
           </time>
         </span>
 
@@ -212,8 +209,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/03/dscr-dfs/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/03/dscr-dfs/" itemprop="commentsCount"></span>
+              <a href="/2016/02/10/thorough-solution-of-jdk-for-opensuse/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/thorough-solution-of-jdk-for-opensuse/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -227,34 +224,30 @@
       
 
       
-        <span itemprop="articleBody"><p><code>Depth-First-Search</code>即深度优先搜索</p>
-<p>##0X00 算法介绍</p>
-<p>深度优先搜索所遵循的搜索策略是尽可能“深”地搜索图。在深度优先搜索中，对于最新发现的顶点，如果它还有以此为起点而未探测到的边，就沿此边继续下去。当结点v的所有边都己被探寻过，搜索将回溯到发现结点v有那条边的始结点。这一过程一直进行到已发现从源结点可达的所有结点为止。如果还存在未被发现的结点，则选择其中一个作为源结点并重复以上过程，整个进程反复进行直到所有结点都被发现为止。</p>
-<p>##0X01 算法过程</p>
-<p>先选定图的类别（有向图、无向图），再选定图的存储结构，根据输入的顶点或者边建立图；</p>
-<p>并把相应的邻接表或者邻接矩阵 <strong>测试输出</strong>；</p>
-<p>根据已有的邻接矩阵或邻接表用递归方法编写深度优先搜索遍历算法，并输出遍历结果；</p>
-<p>假定给定图G的初态是所有顶点均未被访问过，在G中任选一个顶点i作为遍历的初始点，则DFS递归调用包含以下操作：</p>
-<p>（1）访问搜索到的未被访问的邻接点；</p>
-<p>（2）将此顶点的visited数组元素值置1；</p>
-<p>（3）搜索该顶点的未被访问的邻接点，若该邻接点存在，则从此邻接点开始进行同样的访问和搜索。</p>
-<p>深度优先搜索DFS可描述为：</p>
-<p>（1）访问v0顶点；</p>
-<p>（2）置 <code>visited[v0]=1</code>；</p>
-<p>（3）搜索v0未被访问的邻接点w，若存在邻接点w，则DFS(w)。</p>
-<p>##0X02 算法应用</p>
-<p>深度优先搜索适用范围：在树深度已知情况下，并且树体系相当庞大时，深度优先搜索往往会比广度优先搜索优秀。</p>
-<p>###剪枝策略：</p>
-<p>1）最优化剪枝</p>
-<p>记录下当前得到的最优值，如果当前所在的节点已经没有可能得到比当前最优值更好的结果，提起回溯。在使用最优化剪枝的过程中，关键是在第一次得到结果或到达叶子节点后记录下得到值作为当前最优值。当后续遍历树的过程中，通过比较如果得到比当前最优值更好的值则更新当前最优值，如果在某个节点中通过比较发现当前所在节点在继续扩展已经无法得到最优解，则剪枝。</p>
-<p>2）可行性剪枝</p>
-<p>可行性剪枝一般需要根据问题的理解来进行，需要对问题有深刻的理解同时需要敏锐的观察和思考。对于某个具体问题，当运行到某个节点后根据问题信息可以判断是不可行则不需要继续扩展。比较典型的可行性剪枝是奇偶剪枝。</p>
-<p>###通常可以解决的问题有：</p>
-<p>八皇后问题，<a href="http://www.bnuoj.com/v3/problem_show.php?pid=18870" target="_blank" rel="external">迷宫问题</a>，寻找强连通分量个数，<a href="http://www.bnuoj.com/v3/problem_show.php?pid=17608" target="_blank" rel="external">最大连通分量的结点数</a>，拓扑排序，<a href="http://zh.wikipedia.org/wiki/Flood_fill" target="_blank" rel="external">Flood fill算法</a>，穷举</p>
-<p>用例子说明穷举问题：列出 A ~ F 这六个字母所能列出的所有组合（必须6位，不允许重复）。当然你可以用6重循环给出答案，但是随着字母数量增多，深度优先会是你的不二选择。</p>
-<p>##0X03 算法模板<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DFS递归实现</span></span><br><span class="line"><span class="comment">//邻接矩阵存图</span></span><br><span class="line">gh[][]</span><br><span class="line">vis[][]</span><br><span class="line">dx[], dy[] <span class="comment">//可用于DFS时的代码优化</span></span><br><span class="line"><span class="comment">//初始化图</span></span><br><span class="line">Initial(gh,vis)</span><br><span class="line"><span class="comment">//主程序</span></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">u</span></span><br><span class="line">    <span class="keyword">if</span> not vis[<span class="keyword">u</span>] DFS(<span class="keyword">u</span>)</span><br><span class="line"><span class="comment">//深度有限搜索</span></span><br><span class="line">DFS(node <span class="keyword">u</span>)&#123;</span><br><span class="line">    judge <span class="keyword">if</span> <span class="keyword">u</span> reachable, <span class="keyword">if</span> not, <span class="literal">return</span></span><br><span class="line">    vis[<span class="keyword">u</span>] = true</span><br><span class="line">    ...</span><br><span class="line">    node v</span><br><span class="line">    <span class="keyword">for</span> v (linked <span class="keyword">by</span> <span class="keyword">u</span>)</span><br><span class="line">        <span class="keyword">if</span> not vis[v] DFS(v)</span><br><span class="line">        <span class="comment">//backtrack</span></span><br><span class="line">    <span class="literal">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注意图的连通性，考虑非连通图的情况</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DFS非递归实现</span></span><br><span class="line"><span class="comment">//如果栈顶节点的所有直接邻接点都已访问过，则弹出栈顶节点</span></span><br><span class="line"><span class="comment">//否则，将该栈顶节点的未访问的其中一个邻接点压入栈，同时，标记该邻接点为已访问</span></span><br><span class="line"><span class="keyword">for</span> <span class="keyword">u</span></span><br><span class="line">    <span class="keyword">if</span> not vis[<span class="keyword">u</span>] DFS(<span class="keyword">u</span>)</span><br><span class="line">    </span><br><span class="line">DFS(node <span class="keyword">u</span>)&#123;</span><br><span class="line">    <span class="keyword">stack</span>&lt;node&gt; <span class="literal">s</span></span><br><span class="line">    s.push(<span class="keyword">u</span>)</span><br><span class="line"></span><br><span class="line">    node v,k</span><br><span class="line">    <span class="keyword">while</span>(!s.empty())&#123;</span><br><span class="line">        v = s.top()</span><br><span class="line">        vis[v] = true  </span><br><span class="line">        ...</span><br><span class="line">        flag = true</span><br><span class="line">        <span class="keyword">for</span> k(linked <span class="keyword">by</span> v) <span class="keyword">in</span> nodes&#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[k])&#123;</span><br><span class="line">                s.push(k)</span><br><span class="line">                flag = false</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag) s.pop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>loading any more</p>
+        <span itemprop="articleBody"><h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>使用了 openSUSE 13.1, 13.2, 42.1 三个版本，每次都要折腾一遍 JAVA 环境。<br>这次把过程记录下来，以免下次再耗费时间。</p>
+<p>发行版信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; lsb_release -a</span><br><span class="line">LSB <span class="string">Version:</span>    n/a</span><br><span class="line">Distributor <span class="string">ID:</span> SUSE LINUX</span><br><span class="line"><span class="string">Description:</span>    openSUSE Leap <span class="number">42.1</span> (x86_64)</span><br><span class="line"><span class="string">Release:</span>        <span class="number">42.1</span></span><br><span class="line"><span class="string">Codename:</span>       n/a</span><br></pre></td></tr></table></figure></p>
+<h2 id="OpenJDK"><a href="#OpenJDK" class="headerlink" title="OpenJDK"></a>OpenJDK</h2><p>由于 Oracle 的授权许可，openSUSE 官方软件源不再提供 Oracle Java.<br>所以自从 openSUSE 12.1 开始，系统预装的是 OpenJDK.<br>而 openSUSE 42.1 中 openJDK 1.7 和 1.8 都有，其中 1.8 为默认版本。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -<span class="property">version</span></span><br><span class="line">openjdk <span class="property">version</span> <span class="string">"1.8.0_72"</span></span><br><span class="line">OpenJDK Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_72-b15)</span><br><span class="line">OpenJDK <span class="number">64</span>-Bit Server VM (build <span class="number">25.72</span>-b15, mixed mode)</span><br><span class="line">&gt; javac</span><br><span class="line">If 'javac' <span class="keyword">is</span> <span class="keyword">not</span> a typo you can use command-<span class="keyword">not</span>-found <span class="keyword">to</span> lookup <span class="keyword">the</span> package <span class="keyword">that</span> <span class="keyword">contains</span> <span class="keyword">it</span>, like this:</span><br><span class="line">    cnf javac</span><br></pre></td></tr></table></figure>
+<p>如果基本不开发 JAVA 程序或者只需要编译运行几个小程序的话，凑合着用用也行。<br>然而 <code>javac</code> 找不到是什么情况，不急，安装两个包就好了。<br>在 software management 中安装 java-1_7_0-openjdk-devel 以及 java-1_8_0-openjdk-devel 两个包即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -version</span><br><span class="line">javac <span class="number">1.8</span><span class="number">.0</span>_72</span><br></pre></td></tr></table></figure>
+<h2 id="Oracle_JDK"><a href="#Oracle_JDK" class="headerlink" title="Oracle JDK"></a>Oracle JDK</h2><p>当然，有的时候还不得不需要 Oracle JDK 来开发一些项目，步骤如下：</p>
+<p><strong>下载安装 Oracle JDK</strong></p>
+<p>点击 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">Oracle Java 下载页面</a>，根据自己操作系统的位数选择对应的RPM包。我下载的是 jdk-8u73-linux-x64.rpm<br>下载完成后安装该RPM软件包：<code>sudo rpm -ivh jdk-8u73-linux-x64.rpm</code><br>安装目录这里是：<code>/usr/java/jdk1.8.0_73</code></p>
+<p>如果你安装的jdk版本和我的不同(一般是小版本号不同)，请酌情替换上述以及之后的命令中的相应参数。</p>
+<p><strong>修改环境变量 JAVA_HOME</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; vim ~/.bashrc     <span class="comment">// 添加下面一行</span></span><br><span class="line"><span class="keyword">export</span> JAVA_HOME=/usr/java/jdk1<span class="number">.8</span><span class="number">.0</span>_73</span><br><span class="line">                    <span class="comment">// 保存退出</span></span><br><span class="line">&gt; source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><strong>安装 alternatives</strong></p>
+<p>安装了java alternative 和 javac alternative 后，可以很方便的在不同 Java 版本之间切换。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo /usr/sbin/update-alternatives --<span class="keyword">install</span> <span class="string">"/usr/bin/java"</span> <span class="string">"java"</span> <span class="string">"/usr/java/jdk1.8.0_73/bin/java"</span> <span class="number">40</span></span><br><span class="line">&gt; sudo /usr/sbin/update-alternatives --<span class="keyword">install</span> <span class="string">"/usr/bin/javac"</span> <span class="string">"javac"</span> <span class="string">"/usr/java/jdk1.8.0_73/bin/javac"</span> <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<p><strong>配置 alternatives</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo <span class="regexp">/usr/</span>sbin<span class="regexp">/update-alternatives --config java      /</span>/ 选择相应版本</span><br><span class="line">&gt; sudo <span class="regexp">/usr/</span>sbin<span class="regexp">/update-alternatives --config javac     /</span>/ 选择相应版本</span><br></pre></td></tr></table></figure>
+<p><strong>验证</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">java</span> <span class="tag">-version</span></span><br><span class="line"><span class="tag">java</span> <span class="tag">version</span> "1<span class="class">.8</span><span class="class">.0_73</span>"</span><br><span class="line"><span class="tag">Java</span>(<span class="tag">TM</span>) <span class="tag">SE</span> <span class="tag">Runtime</span> <span class="tag">Environment</span> (<span class="tag">build</span> 1<span class="class">.8</span><span class="class">.0_73-b02</span>)</span><br><span class="line"><span class="tag">Java</span> <span class="tag">HotSpot</span>(<span class="tag">TM</span>) 64<span class="tag">-Bit</span> <span class="tag">Server</span> <span class="tag">VM</span> (<span class="tag">build</span> 25<span class="class">.73-b02</span>, <span class="tag">mixed</span> <span class="tag">mode</span>)</span><br><span class="line">&gt; <span class="tag">javac</span> <span class="tag">-version</span></span><br><span class="line"><span class="tag">javac</span> 1<span class="class">.8</span><span class="class">.0_73</span></span><br></pre></td></tr></table></figure>
+<h2 id="u6D4F_u89C8_u5668_Java_plugin"><a href="#u6D4F_u89C8_u5668_Java_plugin" class="headerlink" title="浏览器 Java plugin"></a>浏览器 Java plugin</h2><p>不推荐将浏览器的 Java 插件换成 Oracle 的，因为在 Java8u20 以及更新版本中，只允许有证书的Java程序运行。<br>这就意味着一些浏览器上的 Java 程序无法运行。</p>
+<p>当然如果坚持将浏览器的 Java 插件换成 Oracle 的，步骤如下：</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo /usr/sbin/<span class="keyword">update</span>-alternatives --install <span class="string">"/usr/lib64/browser-plugins/javaplugin.so"</span> <span class="string">"javaplugin"</span> <span class="string">"/usr/java/jdk1.8.0_73/jre/lib/amd64/libnpjp2.so"</span> <span class="number">40</span></span><br><span class="line">&gt; sudo /usr/sbin/<span class="keyword">update</span>-alternatives --config javaplugin    <span class="comment">//选择相应版本</span></span><br></pre></td></tr></table></figure>
+<h2 id="u540E_u8BB0"><a href="#u540E_u8BB0" class="headerlink" title="后记"></a>后记</h2><p>虽然能用了，但还是觉得没有弄透彻，openSUSE 和其他的发行版还真不一样。<br>不管了，以后遇到问题再补充。搭好环境明天了解 GAE JAVA 的部署。</p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://zh.opensuse.org/index.php?title=SDB:%E5%AE%89%E8%A3%85Oracle_Java&amp;variant=zh" target="_blank" rel="external">官方文档</a><br>[2] <a href="http://suselinks.us/install-oracle-jdk8-on-opensuse/" target="_blank" rel="external">牛牛博客的一篇文章</a></p>
 </span>
       
     </div>
@@ -263,7 +256,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Data-struct/" rel="tag">#Data_struct</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
         </div>
       
@@ -272,13 +265,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/05/UVA-314/" rel="prev">UVA-314-Robot</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/03/dscr-binary-search/" rel="next">数据结构考试复习（3）</a>
+              <a href="/2015/12/14/hardworking-is-not-enough/" rel="next">成功需要的不仅仅是努力</a>
             
           </div>
         </div>
@@ -303,8 +294,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/03/dscr-dfs/"
-                   data-title="数据结构考试复习（4）" data-url="http://blog.hycwall.com/2014/12/03/dscr-dfs/">
+              <div class="ds-thread" data-thread-key="2016/02/10/thorough-solution-of-jdk-for-opensuse/"
+                   data-title="彻底解决 openSUSE 下的 java 开发环境" data-url="http://blog.hycwall.com/2016/02/10/thorough-solution-of-jdk-for-opensuse/">
               </div>
             
           </div>
@@ -429,7 +420,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u80CC_u666F"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenJDK"><span class="nav-number">2.</span> <span class="nav-text">OpenJDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle_JDK"><span class="nav-number">3.</span> <span class="nav-text">Oracle JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6D4F_u89C8_u5668_Java_plugin"><span class="nav-number">4.</span> <span class="nav-text">浏览器 Java plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u540E_u8BB0"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

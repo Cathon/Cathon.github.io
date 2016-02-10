@@ -187,6 +187,98 @@
           
           
             
+              <a class="post-title-link" href="/2016/02/10/thorough-solution-of-jdk-for-opensuse/" itemprop="url">
+                彻底解决 openSUSE 下的 java 开发环境
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-02-10T16:28:29+01:00" content="2016-02-10">
+            2016-02-10
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/02/10/thorough-solution-of-jdk-for-opensuse/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/10/thorough-solution-of-jdk-for-opensuse/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>使用了 openSUSE 13.1, 13.2, 42.1 三个版本，每次都要折腾一遍 JAVA 环境。<br>这次把过程记录下来，以免下次再耗费时间。</p>
+<p>发行版信息：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; lsb_release -a</span><br><span class="line">LSB <span class="string">Version:</span>    n/a</span><br><span class="line">Distributor <span class="string">ID:</span> SUSE LINUX</span><br><span class="line"><span class="string">Description:</span>    openSUSE Leap <span class="number">42.1</span> (x86_64)</span><br><span class="line"><span class="string">Release:</span>        <span class="number">42.1</span></span><br><span class="line"><span class="string">Codename:</span>       n/a</span><br></pre></td></tr></table></figure></p>
+<h2 id="OpenJDK"><a href="#OpenJDK" class="headerlink" title="OpenJDK"></a>OpenJDK</h2><p>由于 Oracle 的授权许可，openSUSE 官方软件源不再提供 Oracle Java.<br>所以自从 openSUSE 12.1 开始，系统预装的是 OpenJDK.<br>而 openSUSE 42.1 中 openJDK 1.7 和 1.8 都有，其中 1.8 为默认版本。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; java -<span class="property">version</span></span><br><span class="line">openjdk <span class="property">version</span> <span class="string">"1.8.0_72"</span></span><br><span class="line">OpenJDK Runtime Environment (build <span class="number">1.8</span><span class="number">.0</span>_72-b15)</span><br><span class="line">OpenJDK <span class="number">64</span>-Bit Server VM (build <span class="number">25.72</span>-b15, mixed mode)</span><br><span class="line">&gt; javac</span><br><span class="line">If 'javac' <span class="keyword">is</span> <span class="keyword">not</span> a typo you can use command-<span class="keyword">not</span>-found <span class="keyword">to</span> lookup <span class="keyword">the</span> package <span class="keyword">that</span> <span class="keyword">contains</span> <span class="keyword">it</span>, like this:</span><br><span class="line">    cnf javac</span><br></pre></td></tr></table></figure>
+<p>如果基本不开发 JAVA 程序或者只需要编译运行几个小程序的话，凑合着用用也行。<br>然而 <code>javac</code> 找不到是什么情况，不急，安装两个包就好了。<br>在 software management 中安装 java-1_7_0-openjdk-devel 以及 java-1_8_0-openjdk-devel 两个包即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; javac -version</span><br><span class="line">javac <span class="number">1.8</span><span class="number">.0</span>_72</span><br></pre></td></tr></table></figure>
+<h2 id="Oracle_JDK"><a href="#Oracle_JDK" class="headerlink" title="Oracle JDK"></a>Oracle JDK</h2><p>当然，有的时候还不得不需要 Oracle JDK 来开发一些项目，步骤如下：</p>
+<p><strong>下载安装 Oracle JDK</strong></p>
+<p>点击 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">Oracle Java 下载页面</a>，根据自己操作系统的位数选择对应的RPM包。我下载的是 jdk-8u73-linux-x64.rpm<br>下载完成后安装该RPM软件包：<code>sudo rpm -ivh jdk-8u73-linux-x64.rpm</code><br>安装目录这里是：<code>/usr/java/jdk1.8.0_73</code></p>
+<p>如果你安装的jdk版本和我的不同(一般是小版本号不同)，请酌情替换上述以及之后的命令中的相应参数。</p>
+<p><strong>修改环境变量 JAVA_HOME</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; vim ~/.bashrc     <span class="comment">// 添加下面一行</span></span><br><span class="line"><span class="keyword">export</span> JAVA_HOME=/usr/java/jdk1<span class="number">.8</span><span class="number">.0</span>_73</span><br><span class="line">                    <span class="comment">// 保存退出</span></span><br><span class="line">&gt; source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><strong>安装 alternatives</strong></p>
+<p>安装了java alternative 和 javac alternative 后，可以很方便的在不同 Java 版本之间切换。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo /usr/sbin/update-alternatives --<span class="keyword">install</span> <span class="string">"/usr/bin/java"</span> <span class="string">"java"</span> <span class="string">"/usr/java/jdk1.8.0_73/bin/java"</span> <span class="number">40</span></span><br><span class="line">&gt; sudo /usr/sbin/update-alternatives --<span class="keyword">install</span> <span class="string">"/usr/bin/javac"</span> <span class="string">"javac"</span> <span class="string">"/usr/java/jdk1.8.0_73/bin/javac"</span> <span class="number">40</span></span><br></pre></td></tr></table></figure>
+<p><strong>配置 alternatives</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo <span class="regexp">/usr/</span>sbin<span class="regexp">/update-alternatives --config java      /</span>/ 选择相应版本</span><br><span class="line">&gt; sudo <span class="regexp">/usr/</span>sbin<span class="regexp">/update-alternatives --config javac     /</span>/ 选择相应版本</span><br></pre></td></tr></table></figure>
+<p><strong>验证</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">java</span> <span class="tag">-version</span></span><br><span class="line"><span class="tag">java</span> <span class="tag">version</span> "1<span class="class">.8</span><span class="class">.0_73</span>"</span><br><span class="line"><span class="tag">Java</span>(<span class="tag">TM</span>) <span class="tag">SE</span> <span class="tag">Runtime</span> <span class="tag">Environment</span> (<span class="tag">build</span> 1<span class="class">.8</span><span class="class">.0_73-b02</span>)</span><br><span class="line"><span class="tag">Java</span> <span class="tag">HotSpot</span>(<span class="tag">TM</span>) 64<span class="tag">-Bit</span> <span class="tag">Server</span> <span class="tag">VM</span> (<span class="tag">build</span> 25<span class="class">.73-b02</span>, <span class="tag">mixed</span> <span class="tag">mode</span>)</span><br><span class="line">&gt; <span class="tag">javac</span> <span class="tag">-version</span></span><br><span class="line"><span class="tag">javac</span> 1<span class="class">.8</span><span class="class">.0_73</span></span><br></pre></td></tr></table></figure>
+<h2 id="u6D4F_u89C8_u5668_Java_plugin"><a href="#u6D4F_u89C8_u5668_Java_plugin" class="headerlink" title="浏览器 Java plugin"></a>浏览器 Java plugin</h2><p>不推荐将浏览器的 Java 插件换成 Oracle 的，因为在 Java8u20 以及更新版本中，只允许有证书的Java程序运行。<br>这就意味着一些浏览器上的 Java 程序无法运行。</p>
+<p>当然如果坚持将浏览器的 Java 插件换成 Oracle 的，步骤如下：</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; sudo /usr/sbin/<span class="keyword">update</span>-alternatives --install <span class="string">"/usr/lib64/browser-plugins/javaplugin.so"</span> <span class="string">"javaplugin"</span> <span class="string">"/usr/java/jdk1.8.0_73/jre/lib/amd64/libnpjp2.so"</span> <span class="number">40</span></span><br><span class="line">&gt; sudo /usr/sbin/<span class="keyword">update</span>-alternatives --config javaplugin    <span class="comment">//选择相应版本</span></span><br></pre></td></tr></table></figure>
+<h2 id="u540E_u8BB0"><a href="#u540E_u8BB0" class="headerlink" title="后记"></a>后记</h2><p>虽然能用了，但还是觉得没有弄透彻，openSUSE 和其他的发行版还真不一样。<br>不管了，以后遇到问题再补充。搭好环境明天了解 GAE JAVA 的部署。</p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p>[1] <a href="https://zh.opensuse.org/index.php?title=SDB:%E5%AE%89%E8%A3%85Oracle_Java&amp;variant=zh" target="_blank" rel="external">官方文档</a><br>[2] <a href="http://suselinks.us/install-oracle-jdk8-on-opensuse/" target="_blank" rel="external">牛牛博客的一篇文章</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/14/hardworking-is-not-enough/" itemprop="url">
                 成功需要的不仅仅是努力
               </a>
@@ -881,82 +973,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/05/31/bandit-writeup/" itemprop="url">
-                bandit writeup
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-05-31T13:43:57+02:00" content="2015-05-31">
-            2015-05-31
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/05/31/bandit-writeup/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/31/bandit-writeup/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h2><p><a href="http://overthewire.org/wargames/">overthewire</a> 是一个 wargame 网站。<br>其中 <a href="http://overthewire.org/wargames/bandit/">Bandit</a> 是最简单的系列，主要是考察一些基本的 Linux 命令行操作。<br>目前共26关，月初的时候做了一周，还有最后两关没做出来。<br>不久前看到 Nikkko 在 wooyun 上发了攻略，现在把最后几个搞定，把思路和知识点记录一下，以供参考。</p>
-<h2 id="u8BE6_u89E3"><a href="#u8BE6_u89E3" class="headerlink" title="详解"></a>详解</h2><p>游戏规则：每一关都有一个 login name, IP address(domin), password<br>前两个已知，通过 ssh 登录到某一关卡，根据信息找到下一关的 password 即可。</p>
-<p>每一关的详解记录，参见 <a href="https://github.com/Cathon/mySolutions/tree/master/overthewire/Bandit">Github 笔记</a></p>
-<p>下面给出各关卡的知识点</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/31/bandit-writeup/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -995,7 +1011,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
