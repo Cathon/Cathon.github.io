@@ -187,6 +187,74 @@
           
           
             
+              <a class="post-title-link" href="/2014/12/12/dscr-bfs/" itemprop="url">
+                dscr-bfs
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-12-12T02:13:50+01:00" content="2014-12-12">
+            2014-12-12
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/12/12/dscr-bfs/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/12/dscr-bfs/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2014/12/10/UVA-10129/" itemprop="url">
                 UVA-10129
               </a>
@@ -1030,99 +1098,6 @@ ss &gt;&gt; sa &gt;&gt; sb;
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/11/06/Bellman-Ford Algorithm/" itemprop="url">
-                Bellman-Ford Algorithm
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2014-11-06T20:50:05+01:00" content="2014-11-06">
-            2014-11-06
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/11/06/Bellman-Ford Algorithm/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/06/Bellman-Ford Algorithm/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>Bellman-Ford 算法用来求一个顶点到其他顶点的最短路径，可以处理权值为负数的有向图，但图中不能含有负权回路。</p>
-<p>##算法<br>Bellman-Ford 算法基于一种松弛操作，在不断松弛的过程中，源点到其他每个点的路径值逐渐地得到优化，并最终达到最佳的答案。算法的实质就是反复地（重复|V|-1次）松弛所有的边，最后就可以计算出单源最短路。算法的时间复杂度是O（|V|*|E|），其中 |V| 和 |E| 分别是图的顶点数和边数。</p>
-<p><strong>伪代码：</strong><br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//参数：所有点的集合，所有边的集合，源点</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BellmanFord</span>(<span class="title">list</span> <span class="title">vertices</span>, <span class="title">list</span> <span class="title">edges</span>, <span class="title">vertex</span> <span class="title">source</span>)</span></span><br><span class="line">   <span class="comment"> //需要的变量：</span></span><br><span class="line">   <span class="comment"> //（u，v）的权值 w    </span></span><br><span class="line">   <span class="comment"> //数组weight[]，源点到每个顶点的最短路</span></span><br><span class="line">   <span class="comment"> //数组predecessor[]，在最短路中，每个顶点的前继</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"> // Step 1: 对图进行初始化</span></span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">each</span> vertex v <span class="operator">in</span> vertices:</span><br><span class="line">        <span class="keyword">if</span> v is source <span class="keyword">then</span> weight[v] := <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span> weight[v] := infinity</span><br><span class="line">        predecessor[v] := <span class="constant">null</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"> // Step 2: 不断松弛每条边，重复|V|-1次</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="built_in">from</span> <span class="number">1</span> <span class="built_in">to</span> size(vertices)-<span class="number">1</span>:</span><br><span class="line">       <span class="comment"> //下面松弛每一条边，可以使用二重循环处理</span></span><br><span class="line">        <span class="keyword">for</span> <span class="keyword">each</span> edge (u, v) <span class="operator">with</span> weight w <span class="operator">in</span> edges:</span><br><span class="line">            <span class="keyword">if</span> weight[u] + w &lt; weight[v]:</span><br><span class="line">                weight[v] := weight[u] + w</span><br><span class="line">                predecessor[v] := u</span><br><span class="line"></span><br><span class="line">   <span class="comment"> // Step 3: 检查是否有负权回路</span></span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">each</span> edge (u, v) <span class="operator">with</span> weight w <span class="operator">in</span> edges:</span><br><span class="line">        <span class="keyword">if</span> weight[u] + w &lt; weight[v]:</span><br><span class="line">            error <span class="string">"Graph contains a negative-weight cycle"</span></span><br><span class="line">    <span class="constant">return</span> weight[], predecessor[]</span><br></pre></td></tr></table></figure></p>
-<p>简单地说，算法初始化源点的值为0，其他所有节点为无穷大，表示源点到它不可达。</p>
-<p>然后对所有的边，如果源点到它的距离可以通过松弛操作缩短，那么距离就更新为新的较小的值。</p>
-<p>在每一次（第i次）对所有边松弛操作的过程中，可以找到源点经过i个顶点到达其他顶点的最短路。</p>
-<p>因为源点到任意顶点的路径最多经过（|V|-1）个顶点，所以，只要循环|V|-1次就可以计算出所有顶点的最短路。</p>
-<p>最后需要判断是否含有负权回路，如果有，则提示无法计算最短路。</p>
-<p>##证明<br>The correctness of the algorithm can be shown by induction. The precise statement shown by induction is:</p>
-<p>Lemma. After i repetitions of for cycle:</p>
-<p>If Distance(u) is not infinity, it is equal to the length of some path from s to u;<br>If there is a path from s to u with at most i edges, then Distance(u) is at most the length of the shortest path from s to u with at most i edges.<br>Proof. For the base case of induction, consider i=0 and the moment before for cycle is executed for the first time. Then, for the source vertex, source.distance = 0, which is correct. For other vertices u, u.distance = infinity, which is also correct because there is no path from source to u with 0 edges.</p>
-<p>For the inductive case, we first prove the first part. Consider a moment when a vertex’s distance is updated by v.distance := u.distance + uv.weight. By inductive assumption, u.distance is the length of some path from source to u. Then u.distance + uv.weight is the length of the path from source to v that follows the path from source to u and then goes to v.</p>
-<p>For the second part, consider the shortest path from source to u with at most i edges. Let v be the last vertex before u on this path. Then, the part of the path from source to v is the shortest path from source to v with at most i-1 edges. By inductive assumption, v.distance after i−1 cycles is at most the length of this path. Therefore, uv.weight + v.distance is at most the length of the path from s to u. In the ith cycle, u.distance gets compared with uv.weight + v.distance, and is set equal to it if uv.weight + v.distance was smaller. Therefore, after i cycles, u.distance is at most the length of the shortest path from source to u that uses at most i edges.</p>
-<p>If there are no negative-weight cycles, then every shortest path visits each vertex at most once, so at step 3 no further improvements can be made. Conversely, suppose no improvement can be made. Then for any cycle with vertices v[0], …, v[k−1],</p>
-<p><code>v[i].distance &lt;= v[(i-1) mod k].distance + v[(i-1) mod k]v[i].weight</code></p>
-<p>Summing around the cycle, the v[i].distance terms and the v[i−1 (mod k)] distance terms cancel, leaving</p>
-<p><code>0 &lt;= sum from 1 to k of v[i-1 (mod k)]v[i].weight</code></p>
-<p>I.e., every cycle has nonnegative weight.</p>
-<p>##检测负权回路</p>
-<p>When the algorithm is used to find shortest paths, the existence of negative cycles is a problem, preventing the algorithm from finding a correct answer. However, since it terminates upon finding a negative cycle, the Bellman–Ford algorithm can be used for applications in which this is the target to be sought - for example in cycle-cancelling techniques in network flow analysis.</p>
-<p>##在路由上的应用</p>
-<p>A distributed variant of the Bellman–Ford algorithm is used in distance-vector routing protocols, for example the Routing Information Protocol (RIP). The algorithm is distributed because it involves a number of nodes (routers) within an Autonomous system, a collection of IP networks typically owned by an ISP. It consists of the following steps:</p>
-<p>Each node calculates the distances between itself and all other nodes within the AS and stores this information as a table.<br>Each node sends its table to all neighboring nodes.<br>When a node receives distance tables from its neighbors, it calculates the shortest routes to all other nodes and updates its own table to reflect any changes.<br>The main disadvantages of the Bellman–Ford algorithm in this setting are as follows:</p>
-<p>It does not scale well.<br>Changes in network topology are not reflected quickly since updates are spread node-by-node.<br>Count to infinity (if link or node failures render a node unreachable from some set of other nodes, those nodes may spend forever gradually increasing their estimates of the distance to it, and in the meantime there may be routing loops).</p>
-<p>##参考<br><a href="http://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm" target="_blank" rel="external">WIKI</a></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1161,7 +1136,7 @@ ss &gt;&gt; sa &gt;&gt; sb;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -37,25 +37,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="#0x00 序
-最近参加一个比赛，做了一个Java的类聊天系统，有服务端和客户端。基本功能全部完成后，开始导出Jar包，项目引入了第三方Jar包。在Eclipse中，不支持项目包含三方Jar导出单一Jar包，尝试fat jar最终没能安装上，不知道是什么原因（在线安装插件，安装失败，下载好放入plugin，不成功，linux环境）
-最终放弃，跑到Netbeans中找解决方案
-#0x00 解决方案">
+<meta name="description" content="背景最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="export_jar_netbeans">
-<meta property="og:url" content="http://blog.hycwall.com/2015/03/30/export-jar-netbeans/index.html">
+<meta property="og:title" content="GAE 平台的 java 应用介绍">
+<meta property="og:url" content="http://blog.hycwall.com/2016/02/11/google-app-engine-java-get-started/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
-<meta property="og:description" content="#0x00 序
-最近参加一个比赛，做了一个Java的类聊天系统，有服务端和客户端。基本功能全部完成后，开始导出Jar包，项目引入了第三方Jar包。在Eclipse中，不支持项目包含三方Jar导出单一Jar包，尝试fat jar最终没能安装上，不知道是什么原因（在线安装插件，安装失败，下载好放入plugin，不成功，linux环境）
-最终放弃，跑到Netbeans中找解决方案
-#0x00 解决方案">
-<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta property="og:description" content="背景最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个">
+<meta property="og:updated_time" content="2016-02-11T17:18:11.123Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="export_jar_netbeans">
-<meta name="twitter:description" content="#0x00 序
-最近参加一个比赛，做了一个Java的类聊天系统，有服务端和客户端。基本功能全部完成后，开始导出Jar包，项目引入了第三方Jar包。在Eclipse中，不支持项目包含三方Jar导出单一Jar包，尝试fat jar最终没能安装上，不知道是什么原因（在线安装插件，安装失败，下载好放入plugin，不成功，linux环境）
-最终放弃，跑到Netbeans中找解决方案
-#0x00 解决方案">
+<meta name="twitter:title" content="GAE 平台的 java 应用介绍">
+<meta name="twitter:description" content="背景最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -65,7 +56,7 @@
   };
 </script>
 
-  <title> export_jar_netbeans | Hycwall's Note </title>
+  <title> GAE 平台的 java 应用介绍 | Hycwall's Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -195,7 +186,7 @@
           
           
             
-              export_jar_netbeans
+              GAE 平台的 java 应用介绍
             
           
         </h1>
@@ -204,8 +195,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-03-30T22:25:10+02:00" content="2015-03-30">
-            2015-03-30
+          <time itemprop="dateCreated" datetime="2016-02-11T10:20:08+01:00" content="2016-02-11">
+            2016-02-11
           </time>
         </span>
 
@@ -215,8 +206,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/03/30/export-jar-netbeans/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/30/export-jar-netbeans/" itemprop="commentsCount"></span>
+              <a href="/2016/02/11/google-app-engine-java-get-started/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/11/google-app-engine-java-get-started/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -230,14 +221,42 @@
       
 
       
-        <span itemprop="articleBody"><p>#0x00 序</p>
-<p>最近参加一个比赛，做了一个Java的类聊天系统，有服务端和客户端。<br>基本功能全部完成后，开始导出Jar包，项目引入了第三方Jar包。<br>在Eclipse中，不支持项目包含三方Jar导出单一Jar包，尝试<code>fat jar</code>最终没能安装上，<br>不知道是什么原因（在线安装插件，安装失败，下载好放入plugin，不成功，linux环境）</p>
-<p>最终放弃，跑到Netbeans中找解决方案</p>
-<p>#0x00 解决方案<br><a id="more"></a><br>项目在Netbeans中开发完成后,我们需要将项目导出为Jar包<br>如果项目没有引入第三方Jar包，运行项目后，在项目路径的dist文件夹下Netbeans会自动构建项目Jar包</p>
-<p>而项目如果是使用了第三方Jar包，又想将项目整体导出为一个Jar包，就要采用以下方法了<br>首先，在文件导航条下找到项目路径下的build.xml文件</p>
-<p>然后，在<code>&lt;/project&gt;</code>前加入以下代码，其中<br><code>&lt;property name=&quot;store.jar.name&quot; value=&quot;YouJarPacketName&quot;/&gt;</code><br>中的value可以随意更改，这个就是jar包名</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">target</span> <span class="attribute">name</span>=<span class="value">"package-for-store"</span> <span class="attribute">depends</span>=<span class="value">"jar"</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">&lt;!-- Change the value of this property to be the name of your JAR,  </span><br><span class="line">         minus the .jar extension. It should not have spaces.  </span><br><span class="line">         &lt;property name="store.jar.name" value="MyJarName"/&gt;  </span><br><span class="line">    --&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"store.jar.name"</span> <span class="attribute">value</span>=<span class="value">"YouJarPacketName"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">&lt;!-- don't edit below this line --&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"store.dir"</span> <span class="attribute">value</span>=<span class="value">"store"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">property</span> <span class="attribute">name</span>=<span class="value">"store.jar"</span> <span class="attribute">value</span>=<span class="value">"$&#123;store.dir&#125;/$&#123;store.jar.name&#125;.jar"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">echo</span> <span class="attribute">message</span>=<span class="value">"Packaging $&#123;application.title&#125; into a single JAR at $&#123;store.jar&#125;"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">delete</span> <span class="attribute">dir</span>=<span class="value">"$&#123;store.dir&#125;"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">mkdir</span> <span class="attribute">dir</span>=<span class="value">"$&#123;store.dir&#125;"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">jar</span> <span class="attribute">destfile</span>=<span class="value">"$&#123;store.dir&#125;/temp_final.jar"</span> <span class="attribute">filesetmanifest</span>=<span class="value">"skip"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="title">zipgroupfileset</span> <span class="attribute">dir</span>=<span class="value">"dist"</span> <span class="attribute">includes</span>=<span class="value">"*.jar"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="title">zipgroupfileset</span> <span class="attribute">dir</span>=<span class="value">"dist/lib"</span> <span class="attribute">includes</span>=<span class="value">"*.jar"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line">        <span class="tag">&lt;<span class="title">manifest</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="title">attribute</span> <span class="attribute">name</span>=<span class="value">"Main-Class"</span> <span class="attribute">value</span>=<span class="value">"$&#123;main.class&#125;"</span>/&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;/<span class="title">manifest</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="title">jar</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">zip</span> <span class="attribute">destfile</span>=<span class="value">"$&#123;store.jar&#125;"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="title">zipfileset</span> <span class="attribute">src</span>=<span class="value">"$&#123;store.dir&#125;/temp_final.jar"</span>  </span><br><span class="line">        <span class="attribute">excludes</span>=<span class="value">"META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"</span>/&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="title">zip</span>&gt;</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="title">delete</span> <span class="attribute">file</span>=<span class="value">"$&#123;store.dir&#125;/temp_final.jar"</span>/&gt;</span>  </span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="title">target</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>接着，右键点击build.xml在弹出框中选择　运行目标-&gt;其它目标-&gt;package-for-store<br>点击后会在项目路径下生成一个store文件夹，里面就包含了一个你想要的jar包。</p>
+        <span itemprop="articleBody"><h2 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h2><p>最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.<br>这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。<br>记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个月的免费试用。<br>言归正传，本机开发环境如下：</p>
+<ul>
+<li>Linux (openSUSE 42.1)</li>
+<li>Oracle JDK 1.8 (使用的 openJDK 请替换)</li>
+</ul>
+<a id="more"></a>
+<h2 id="u4F7F_u7528_u547D_u4EE4_u884C_u7684_u64CD_u4F5C_u6B65_u9AA4"><a href="#u4F7F_u7528_u547D_u4EE4_u884C_u7684_u64CD_u4F5C_u6B65_u9AA4" class="headerlink" title="使用命令行的操作步骤"></a>使用命令行的操作步骤</h2><p><strong>准备工作</strong></p>
+<p>注册 google 账号，然后注册 <a href="https://console.developers.google.com" target="_blank" rel="external">google clound platform</a>.  </p>
+<h2 id="u4E0B_u8F7D_u5E76_u5B89_u88C5_Google_App_Engine_SDK_for_Java"><a href="#u4E0B_u8F7D_u5E76_u5B89_u88C5_Google_App_Engine_SDK_for_Java" class="headerlink" title="下载并安装 Google App Engine SDK for Java"></a>下载并安装 <a href="https://cloud.google.com/appengine/downloads?hl=en_US#Google_App_Engine_SDK_for_Java" target="_blank" rel="external">Google App Engine SDK for Java</a>  </h2><p>（这个时候如果想要使用 IDE 特别是 Eclipse 部署应用的，直接跳转到<strong>下一节：使用 IDE</strong>）</p>
+<hr>
+<p>下载并安装（<a href="https://maven.apache.org/install.html" target="_blank" rel="external">解压，配置环境变量</a>）最新版 <a href="https://maven.apache.org/download.cgi" target="_blank" rel="external">Apache Maven</a>  </p>
+<p><strong>创建项目并部署</strong></p>
+<ol>
+<li>下载例程 <a href="https://github.com/GoogleCloudPlatform/appengine-try-java/archive/master.zip" target="_blank" rel="external">Java sample code</a>，并解压</li>
+<li><p>构建例程</p>
+<blockquote>
+<p>$ cd appengine-try-java-master    //之后一直在此目录下<br>$ mvn clean install</p>
+</blockquote>
+</li>
+<li><p>在 <a href="https://console.cloud.google.com/" target="_blank" rel="external"> Google Cloud Platform Console</a> 或者<a href="https://console.developers.google.com/start/appengine" target="_blank" rel="external">这里</a> 创建一个项目，每个项目有一个唯一的项目 ID （下文出现的 <strong>Project-ID</strong> 替换为你自己的项目 ID）.</p>
+</li>
+<li>部署到 App Engine:<ol>
+<li>编辑 <code>src/main/webapp/WEB-INF/appengine-web.xml</code>， 将元素 <code>application</code> 的值修改为 Project-ID，<code>version</code> 的值为 <code>1</code> .</li>
+<li><code>$ mvn appengine:update</code><br> (或 <code>$ appcfg.sh -A Project-ID update target/appengine-try-java-1.0</code>)</li>
+</ol>
+</li>
+<li>访问 <code>Project-ID.appspot.com</code>, 即可看到部署的项目。</li>
+</ol>
+<p><strong>本地运行</strong></p>
+<p><code>$ mvn appengine:devserver</code><br>服务器运行在 <code>http://localhost:8080/</code> 上。</p>
+<p><strong>本地调试</strong></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mvn <span class="string">appengine:</span>devserver_start <span class="comment">// 启动服务器</span></span><br><span class="line">（修改源程序）</span><br><span class="line">$ mvn install                   <span class="comment">// 重新构建程序，刷新页面即可看见修改。</span></span><br><span class="line">$ mvn <span class="string">appengine:</span>devserver_stop  <span class="comment">// 必须使用这条命令来停止服务</span></span><br></pre></td></tr></table></figure>
+<p><strong>提交到 App Engine</strong></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>appengine:update</span><br></pre></td></tr></table></figure>
+<h2 id="u4F7F_u7528_IDE"><a href="#u4F7F_u7528_IDE" class="headerlink" title="使用 IDE"></a>使用 IDE</h2><p>对于 IDE 的使用，Google 官方提供了 <a href="https://developers.google.com/eclipse/docs/download" target="_blank" rel="external">Google Plugin for Eclipse</a>.<br>今天使用 netbeans 测试，安装好<a href="https://kenai.com/projects/nbappengine/pages/Home" target="_blank" rel="external">插件</a>后，本地运行的时候总是失败，找不到原因，遂放弃。<br>对于使用 Eclipse 步骤，可以参考<a href="http://www.mkyong.com/google-app-engine/google-app-engine-hello-world-example-using-eclipse/" target="_blank" rel="external">这篇文章</a>，还是相对容易的，本文未做测试。</p>
+<h2 id="u540E_u8BB0"><a href="#u540E_u8BB0" class="headerlink" title="后记"></a>后记</h2><p>此次实验主要参考了这两个官方的文档：<a href="https://console.developers.google.com/start/appengine" target="_blank" rel="external">页面A</a>, <a href="https://cloud.google.com/appengine/docs/java/" target="_blank" rel="external">页面B</a>. 这两篇都是在命令行下部署的指导，但却还不太一样，虽然基本了解了如何部署，但还是有些许困惑。<br>另外考虑到国内的网络环境，要用 GAE 还是挺费力的。上文中基于命令行的部署过程，经测试没有问题，仅供参考。</p>
 </span>
       
     </div>
@@ -255,13 +274,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/04/01/maximum-sum/" rel="prev">最大子串和(Maximun-sum)</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/30/ctf-misc-practice/" rel="next">ctf-misc-practice</a>
+              <a href="/2016/02/10/thorough-solution-of-jdk-for-opensuse/" rel="next">彻底解决 openSUSE 下的 java 开发环境</a>
             
           </div>
         </div>
@@ -286,8 +303,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/03/30/export-jar-netbeans/"
-                   data-title="export_jar_netbeans" data-url="http://blog.hycwall.com/2015/03/30/export-jar-netbeans/">
+              <div class="ds-thread" data-thread-key="2016/02/11/google-app-engine-java-get-started/"
+                   data-title="GAE 平台的 java 应用介绍" data-url="http://blog.hycwall.com/2016/02/11/google-app-engine-java-get-started/">
               </div>
             
           </div>
@@ -412,7 +429,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u80CC_u666F"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F7F_u7528_u547D_u4EE4_u884C_u7684_u64CD_u4F5C_u6B65_u9AA4"><span class="nav-number">2.</span> <span class="nav-text">使用命令行的操作步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E0B_u8F7D_u5E76_u5B89_u88C5_Google_App_Engine_SDK_for_Java"><span class="nav-number">3.</span> <span class="nav-text">下载并安装 Google App Engine SDK for Java  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F7F_u7528_IDE"><span class="nav-number">4.</span> <span class="nav-text">使用 IDE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u540E_u8BB0"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
