@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Data_struct," />
+  <meta name="keywords" content="Cryptography," />
 
 
 
@@ -37,31 +37,29 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="介绍最短路径问题是图论研究中的一个经典算法问题， 旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。
-算法具体的形式包括：
-
-确定起点的最短路径问题 - 即已知起始结点，求最短路径的问题。
-确定终点的最短路径问题 - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。在无向图中该问题与确定起点的问题完全等同，在有向图中该问题等同于把所有路径方向反转的确定起点的问题。
-确定起点终点">
+<meta name="description" content="操作模式介绍现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。
+而在实际运用中，要加密的文本长度是可变的，通常大于 64 或 128 比特。于是就有了操作模式，有了它就可以将分组密码应用在消息和大单位文件或小单位文件的加密上。
+这里讨论的五种操作模式分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构复习考试（9）">
-<meta property="og:url" content="http://blog.hycwall.com/2014/12/12/dscr-shortest-path/index.html">
+<meta property="og:title" content="现代分组密码的操作模式">
+<meta property="og:url" content="http://blog.hycwall.com/2016/02/18/operate-modes-of-symmetric-encryption/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
-<meta property="og:description" content="介绍最短路径问题是图论研究中的一个经典算法问题， 旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。
-算法具体的形式包括：
-
-确定起点的最短路径问题 - 即已知起始结点，求最短路径的问题。
-确定终点的最短路径问题 - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。在无向图中该问题与确定起点的问题完全等同，在有向图中该问题等同于把所有路径方向反转的确定起点的问题。
-确定起点终点">
-<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta property="og:description" content="操作模式介绍现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。
+而在实际运用中，要加密的文本长度是可变的，通常大于 64 或 128 比特。于是就有了操作模式，有了它就可以将分组密码应用在消息和大单位文件或小单位文件的加密上。
+这里讨论的五种操作模式分">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/66/Ecb_decryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png">
+<meta property="og:image" content="http://www.umich.edu/~x509/ssleay/fip81/fig6-a.jpg">
+<meta property="og:image" content="http://cryptome.info/0001/bcm/bcm-f4.jpg">
+<meta property="og:image" content="http://cryptome.info/0001/bcm/bcm-f5.jpg">
+<meta property="og:updated_time" content="2016-02-18T10:09:16.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构复习考试（9）">
-<meta name="twitter:description" content="介绍最短路径问题是图论研究中的一个经典算法问题， 旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。
-算法具体的形式包括：
-
-确定起点的最短路径问题 - 即已知起始结点，求最短路径的问题。
-确定终点的最短路径问题 - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。在无向图中该问题与确定起点的问题完全等同，在有向图中该问题等同于把所有路径方向反转的确定起点的问题。
-确定起点终点">
+<meta name="twitter:title" content="现代分组密码的操作模式">
+<meta name="twitter:description" content="操作模式介绍现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。
+而在实际运用中，要加密的文本长度是可变的，通常大于 64 或 128 比特。于是就有了操作模式，有了它就可以将分组密码应用在消息和大单位文件或小单位文件的加密上。
+这里讨论的五种操作模式分">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -71,7 +69,7 @@
   };
 </script>
 
-  <title> 数据结构复习考试（9） | Hycwall's Note </title>
+  <title> 现代分组密码的操作模式 | Hycwall's Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -201,7 +199,7 @@
           
           
             
-              数据结构复习考试（9）
+              现代分组密码的操作模式
             
           
         </h1>
@@ -210,8 +208,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-12T02:17:51+01:00" content="2014-12-12">
-            2014-12-12
+          <time itemprop="dateCreated" datetime="2016-02-18T10:59:57+01:00" content="2016-02-18">
+            2016-02-18
           </time>
         </span>
 
@@ -221,8 +219,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/12/12/dscr-shortest-path/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/12/dscr-shortest-path/" itemprop="commentsCount"></span>
+              <a href="/2016/02/18/operate-modes-of-symmetric-encryption/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/operate-modes-of-symmetric-encryption/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -236,38 +234,59 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h2><p>最短路径问题是图论研究中的一个经典算法问题， 旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。</p>
-<p>算法具体的形式包括：</p>
+        <span itemprop="articleBody"><h2 id="u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD"><a href="#u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD" class="headerlink" title="操作模式介绍"></a>操作模式介绍</h2><p>现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。<br>如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。</p>
+<p>而在实际运用中，要加密的文本长度是可变的，通常大于 64 或 128 比特。于是就有了操作模式，有了它就可以将分组密码应用在消息和大单位文件或小单位文件的加密上。</p>
+<p>这里讨论的五种操作模式分别是：电子密码本模式（ECB），密码分组链接模式（CBC），密码反馈模式（CFB），输出反馈模式（OFB），以及计数器模式（CTR）。</p>
+<h3 id="u7535_u5B50_u5BC6_u7801_u672C_u6A21_u5F0F_uFF0CECB"><a href="#u7535_u5B50_u5BC6_u7801_u672C_u6A21_u5F0F_uFF0CECB" class="headerlink" title="电子密码本模式，ECB"></a>电子密码本模式，ECB</h3><p>电子密码本模式是最简单的操作模式。<br>明文按照分组密码的分组大小(n 比特)被分为 N 个分组，对于每个分组使用相同的密钥加密。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png" alt="ECB_encryption"><br><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Ecb_decryption.png" alt="ECB_decryption"></p>
+<p>$$ 加密： C_i = E_K (P_i) $$<br>$$ 解密： P_i = D_K (C_i) $$</p>
 <ul>
-<li>确定起点的最短路径问题 - 即已知起始结点，求最短路径的问题。</li>
-<li>确定终点的最短路径问题 - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。<br>在无向图中该问题与确定起点的问题完全等同，在有向图中该问题等同于把所有路径方向反转的确定起点的问题。</li>
-<li>确定起点终点的最短路径问题 - 即已知起点和终点，求两结点之间的最短路径。</li>
-<li>全局最短路径问题 - 求图中所有的最短路径。 </li>
+<li>缺点在于同样的明文块会被加密成相同的密文块。因此不能很好地隐藏数据模式。在某些场合，这种方法不能提供严格的数据保密性，因此并不推荐用于密码协议中。</li>
+<li>ECB模式也会导致使用它的协议不能提供数据完整性保护，易受到重放攻击的影响，因此每个块是以完全相同的方式解密的。</li>
+<li>优势在于由于密文分组的独立性，如果需要创建一个非常大的加密数据库的话，可以运用平行处理。</li>
+<li>错误传播：传播中一个单比特错误就可以在相应的分组中造成多个比特的错误，不过这种错误对其他分组没有影响。</li>
 </ul>
-<p>用于解决最短路径问题的算法被称做“最短路径算法”。</p>
-<h2 id="u5355_u6E90_u6700_u77ED_u8DEF_u5F84"><a href="#u5355_u6E90_u6700_u77ED_u8DEF_u5F84" class="headerlink" title="单源最短路径"></a>单源最短路径</h2><h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><p><strong>算法大致流程</strong> 是用一个队列来进行维护。<br>初始时将源点加入队列，每次从队列中取出一个元素，并对所有与他相邻的点进行松弛，若某个相邻的点松弛成功，则将其入队，直到队列为空时算法结束。</p>
-<p>SPFA算法（Shortest Path Faster Algorithm），也是求解单源最短路径问题的一种算法，用来解决的问题如下：<br><strong>给定一个加权有向图G和源点s，对于图G中的任意一点v，求从s到v的最短路径。</strong></p>
-<p>SPFA算法是 Bellman-Ford 算法的一种队列实现，减少了冗余计算，他的基本算法和 Bellman-Ford 一样，并用如下方法改进： </p>
-<ol>
-<li><p>第一步，不是枚举所有节点，而是通过队列来进行优化，设置一个先进先出的队列用来保存待优化的结点，优化时每次取出队首结点u，并且用u点当前的最短路径估计值 对 离开u点所指向的结点v 进行松弛操作，如果v点的最短路径估计值有所调整，且v点不在当前队列中，就将v点放入队尾。这样不断从队列中取出结点来进行松弛操作，直至队列空为止。 </p>
-</li>
-<li><p>同时，除了通过判断队列是否为空来结束循环，还可以通过下面的方法：即判断有无负环，如果某个点进入队列的次数超过V次，则存在负环（SPFA算法无法处理带负环的图）。</p>
-</li>
+<h3 id="u5BC6_u7801_u5206_u7EC4_u94FE_u63A5_u6A21_u5F0F_uFF0CCBC"><a href="#u5BC6_u7801_u5206_u7EC4_u94FE_u63A5_u6A21_u5F0F_uFF0CCBC" class="headerlink" title="密码分组链接模式，CBC"></a>密码分组链接模式，CBC</h3><p>在CBC模式中，每个明文分组在加密之前需要先与前一个密文分组进行异或。对一个分组加密后，就要把这个分组发送出去，但是它的副本要保存在存储器中，以便在下一个分组加密时使用。<br>在这种方法中，每个密文分组都依赖于它前面的所有明文分组。同时，为了保证每条消息的唯一性，在第一个分组中需要使用一个预先确定的<strong>初始化向量(IV)</strong>。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png" alt="CBC_encryption"><br><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png" alt="CBC_decryption"></p>
+<p>在发送方，异或要在加密前完成;<br>在接收方，异或是在解密后完成。</p>
+<p>$$ 加密： C_i = E_K (P<em>i \oplus C</em>{i-1}), C_0 = IV, i = 1,2,3… $$<br>$$ 解密： P_i = D_K (C<em>i) \oplus C</em>{i-1}, C_0 = IV, i = 1,2,3… $$</p>
+<ul>
+<li>CBC是最为常用的工作模式。其主要缺点在于加密过程是串行的，无法被并行化，而在解密时，从两个邻接的密文分组中即可得到一个明文分组。因此，解密过程可以被并行化。</li>
+<li>错误传播： 传送过程中密文分组 $C_i$ 的一个单比特错误，在解密时会造成明文分组 $P<em>i$ 的大部分比特错误，以及下一个明文分组 $P</em>{i+1}$ 的一个（相同位置上的）比特错误，不会影响到其它明文分组的内容。</li>
+<li>加密不同消息时使用的 IV 不应相同。</li>
+</ul>
+<h3 id="u5BC6_u7801_u53CD_u9988_u6A21_u5F0F_uFF0CCFB"><a href="#u5BC6_u7801_u53CD_u9988_u6A21_u5F0F_uFF0CCFB" class="headerlink" title="密码反馈模式，CFB"></a>密码反馈模式，CFB</h3><p>CFB模式适用于明文分组较小的情况，在DES或AES中使用的分组大小为 $n$，明文分组为 $r$，其中 $r \leq n$.<br>DES或AES并不直接对明文加密，而是对大小为 $n$ 的移位寄存器 $S$ 的内容加密。对于一个明文分组，加密时通过异或一个 将移位寄存器加密得到的密文的 $r$ 比特，从而得到密文分组。这个密文分组将填充 移位寄存器左移 $r$ 比特后 最右边的 $r$ 比特，得到新的移位寄存器进行之后的加密。</p>
+<p><img src="http://www.umich.edu/~x509/ssleay/fip81/fig6-a.jpg" alt="CFB"></p>
+<p>$$ 加密： C_i = P_i \oplus SelectLeft_r {E_K [ShiftLeft<em>r (S</em>{i-1}) | C_{i-1}]} $$<br>$$ 解密： P_i = C_i \oplus SelectLeft_r {E_K [ShiftLeft<em>r (S</em>{i-1}) | C_{i-1}]} $$</p>
+<ul>
+<li>CFB模式虽然使用块加密的方法，但它是异步流密码。</li>
+<li>IV 的使用：每次发送消息时要使用不同的 IV</li>
+<li>与CBC相似，明文的改变会影响接下来所有的密文，因此加密过程不能并行化，但解密过程是可以并行化的。</li>
+<li>在解密时，密文中一位数据的改变仅会影响两个明文分组：对应明文分组中的一位数据与下一分组中全部的数据，而之后的数据将恢复正常。<br>-适用于每次加密一个小的分组，如一个字符或一个比特，且消息无需进行填充。 </li>
+</ul>
+<h3 id="u8F93_u51FA_u53CD_u9988_u6A21_u5F0F_uFF0COFB"><a href="#u8F93_u51FA_u53CD_u9988_u6A21_u5F0F_uFF0COFB" class="headerlink" title="输出反馈模式，OFB"></a>输出反馈模式，OFB</h3><p>输出反馈模式与CFB模式非常类似，但密文中的每个比特独立于先前的比特，避免了错误传播。<br>输出反馈模式将将基本分组密码变成了同步流密码。它产生密钥流的分组，然后将其与明文分组进行异或，得到密文。</p>
+<p><img src="http://cryptome.info/0001/bcm/bcm-f4.jpg" alt="OFB"></p>
+<p>$$ 加密： C_i = P_i \oplus O_i $$<br>$$ 解密： P_i = C_i \oplus O_i $$<br>$$ O_i = ShiftLeft_r { E_K [ShiftLeft<em>r (S</em>{i-1}) | O_{i-1}]}, O_0 = IV $$</p>
+<ul>
+<li>每个使用OFB的输出块与其前面所有的输出块相关，因此不能并行化处理。然而，由于明文和密文只在最终的异或过程中使用，因此可以事先对IV进行加密，最后并行的将明文或密文进行并行的异或处理。</li>
+<li>密文中的单个比特错误只影响明文中的相应（相同位置）的比特。这种特性使得许多错误校正码，例如奇偶校验位，即使在加密前计算而在加密后进行校验也可以得出正确结果。</li>
+<li>可以利用输入全0的CBC模式产生OFB模式的密钥流。这种方法十分实用，因为可以利用快速的CBC硬件实现来加速OFB模式的加密过程。</li>
+</ul>
+<h3 id="u8BA1_u6570_u5668_u6A21_u5F0F_uFF0CCTR"><a href="#u8BA1_u6570_u5668_u6A21_u5F0F_uFF0CCTR" class="headerlink" title="计数器模式，CTR"></a>计数器模式，CTR</h3><p>CTR将分组密码变为流密码。它通过递增一个加密计数器以产生连续的密钥流，其中，计数器可以是任意保证长时间不产生重复输出的函数。<br>计数器初值为一个预设的 IV, 并按照预先确定的规则 (mod 2^n) 增加。</p>
+<p><img src="http://cryptome.info/0001/bcm/bcm-f5.jpg" alt="CTR"></p>
+<p>$$ 加密： C_i = P<em>i \oplus E</em>{K_i} (counter_i) $$<br>$$ 解密： P_i = C<em>i \oplus E</em>{K_i} (counter_i) $$</p>
+<ul>
+<li>错误传播：密文中的单个比特错误之影响明文中对应的比特。</li>
+<li>通过预处理，加密和解密过程均可以并行处理。</li>
+<li>可以用来对随机存取件进行加密和解密。</li>
+<li>广泛应用，如 <strong>ATM</strong> 网络和 <strong>IPSec</strong>.</li>
+</ul>
+<h3 id="u6BD4_u8F83"><a href="#u6BD4_u8F83" class="headerlink" title="比较"></a>比较</h3><ol>
+<li>ECB 和 CBC 的结果类型是分组密码。而 CFB，OFB 和 CTR 的结果类型是流密码。</li>
+<li>CFB 和 OFB 使用时明文分组小小 $r \leq n$。ECB，CBC 和 CTR 使用时明文分组大小 $r = n $，所以可能需要对消息进行填充。</li>
+<li>ECB，OFB 和 CTR 不会发生错误传播。CBC 和 CFB 可能发生错误传播。</li>
 </ol>
-<p>SPFA 在形式上和 BFS（广度优先搜索）非常类似，不同的是：在广度优先搜索中，一个点出了队列就不可能重新进入队列，但是SPFA中一个点可能在出队列之后再次被放入队列，也就是一个点改进过其它的点之后，过了一段时间可能本身被改进，于是再次用来改进其它的点，这样反复迭代下去。设一个点用来作为迭代点对其它点进行改进的平均次数为k，有办法证明对于通常的情况，k在2左右。</p>
-<p>然而在实际的应用中SPFA算法的时间效率不是很稳定，为了避免最坏情况的出现，通常使用时间效率更加稳定的Dijkstra算法。 </p>
-<h3 id="SPFA_u6A21_u677F"><a href="#SPFA_u6A21_u677F" class="headerlink" title="SPFA模板"></a>SPFA模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gh[][]为有向图（gh[i][j]为结点i到结点j的权值，如果gh[i][j]不存在，则为-1）</span></span><br><span class="line"><span class="comment">//dis[] 中所有元素应初始化为INFINITY(0xfffffff最大值)</span></span><br><span class="line"><span class="comment">//vis[] 中所有元素应初始化为false。</span></span><br><span class="line"><span class="comment">//num[] 记录各结点入队列次数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">    <span class="comment">//若 s 为终点，直接返回</span></span><br><span class="line">    <span class="comment">//path[] 用于记录路径</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; Q;</span><br><span class="line">    </span><br><span class="line">    Q.push(s);</span><br><span class="line">    dis[s] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!Q.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> u = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        vis[u] = <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= n; v++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dis[v] &gt; dis[u] + gh[u][v])&#123;</span><br><span class="line">                dis[v] = dis[u] + gh[u][v];</span><br><span class="line">                <span class="comment">//path[v] = u;</span></span><br><span class="line">                <span class="comment">//num[v]++;</span></span><br><span class="line">                <span class="comment">//if (num[v] &gt; n) return false;    //判断负环</span></span><br><span class="line">                <span class="keyword">if</span> (!vis[v]) &#123;</span><br><span class="line">                    vis[v] = <span class="literal">true</span>;</span><br><span class="line">                    Q.push(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[u] = <span class="literal">false</span>; <span class="comment">//将出队列的的点置为false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="u4EFB_u610F_u4E24_u70B9_u6700_u77ED_u8DEF_u5F84"><a href="#u4EFB_u610F_u4E24_u70B9_u6700_u77ED_u8DEF_u5F84" class="headerlink" title="任意两点最短路径"></a>任意两点最短路径</h2><p><strong>使用条件&amp;范围</strong>：通常可以在任何图中使用，包括有向图、带负权边的图。 </p>
-<p>Floyd-Warshall 算法用来找出每对点之间的最短距离。它需要用邻接矩阵来储存边，这个算法通过考虑最佳子路径来得到最佳路径。</p>
-<p>注意单独一条边的路径也不一定是最佳路径。</p>
-<ul>
-<li>从任意一条单边路径开始。所有两点之间的距离是边的权，或者无穷大，如果两点之间没有边相连。</li>
-<li>对于每一对顶点 u 和 v，看看是否存在一个顶点 w 使得从 u 到 w 再到 v 比己知的路径更短。如果是更新它。</li>
-<li>不可思议的是，只要按排适当，就能得到结果。 </li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// dist(i,j) 为从节点i到节点j的最短距离</span><br><span class="line">for i←1 to n <span class="operator"><span class="keyword">do</span></span><br><span class="line">   <span class="keyword">for</span> j←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">      dist(<span class="keyword">i</span>,j) = weight(<span class="keyword">i</span>,j) </span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> <span class="keyword">k</span>←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span> // <span class="keyword">k</span>为“媒介节点”</span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">i</span>←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">i</span>&lt;&gt;<span class="keyword">k</span>) <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">for</span> j←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">i</span>&lt;&gt;j) &amp;&amp; (<span class="keyword">k</span>&lt;&gt;j) <span class="keyword">then</span></span><br><span class="line">          <span class="keyword">if</span> (dist(<span class="keyword">i</span>,<span class="keyword">k</span>) + dist(<span class="keyword">k</span>,j) &lt; dist(<span class="keyword">i</span>,j)) <span class="keyword">then</span></span><br><span class="line">              dist(<span class="keyword">i</span>,j) = dist(<span class="keyword">i</span>,<span class="keyword">k</span>) + dist(<span class="keyword">k</span>,j)</span></span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.nocow.cn/index.php/SPFA%E7%AE%97%E6%B3%95s" target="_blank" rel="external">http://www.nocow.cn/index.php/SPFA%E7%AE%97%E6%B3%95s</a></p>
-<p><a href="http://www.nocow.cn/index.php/Floyd-Warshall%E7%AE%97%E6%B3%95" target="_blank" rel="external">http://www.nocow.cn/index.php/Floyd-Warshall%E7%AE%97%E6%B3%95</a></p>
+<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p>1. </p>
 </span>
       
     </div>
@@ -276,7 +295,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Data-struct/" rel="tag">#Data_struct</a>
+            <a href="/tags/Cryptography/" rel="tag">#Cryptography</a>
           
         </div>
       
@@ -285,13 +304,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/12/dscr-prime/" rel="prev">数据结构复习考试-分解质因数</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/12/dscr-bipartite-matching/" rel="next">数据结构复习考试（8）</a>
+              <a href="/2016/02/11/google-app-engine-java-get-started/" rel="next">GAE 平台的 java 应用介绍</a>
             
           </div>
         </div>
@@ -316,8 +333,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2014/12/12/dscr-shortest-path/"
-                   data-title="数据结构复习考试（9）" data-url="http://blog.hycwall.com/2014/12/12/dscr-shortest-path/">
+              <div class="ds-thread" data-thread-key="2016/02/18/operate-modes-of-symmetric-encryption/"
+                   data-title="现代分组密码的操作模式" data-url="http://blog.hycwall.com/2016/02/18/operate-modes-of-symmetric-encryption/">
               </div>
             
           </div>
@@ -442,7 +459,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u5355_u6E90_u6700_u77ED_u8DEF_u5F84"><span class="nav-number">2.</span> <span class="nav-text">单源最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA"><span class="nav-number">2.1.</span> <span class="nav-text">SPFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA_u6A21_u677F"><span class="nav-number">2.2.</span> <span class="nav-text">SPFA模板</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4EFB_u610F_u4E24_u70B9_u6700_u77ED_u8DEF_u5F84"><span class="nav-number">3.</span> <span class="nav-text">任意两点最短路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">操作模式介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u7535_u5B50_u5BC6_u7801_u672C_u6A21_u5F0F_uFF0CECB"><span class="nav-number">1.1.</span> <span class="nav-text">电子密码本模式，ECB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BC6_u7801_u5206_u7EC4_u94FE_u63A5_u6A21_u5F0F_uFF0CCBC"><span class="nav-number">1.2.</span> <span class="nav-text">密码分组链接模式，CBC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BC6_u7801_u53CD_u9988_u6A21_u5F0F_uFF0CCFB"><span class="nav-number">1.3.</span> <span class="nav-text">密码反馈模式，CFB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8F93_u51FA_u53CD_u9988_u6A21_u5F0F_uFF0COFB"><span class="nav-number">1.4.</span> <span class="nav-text">输出反馈模式，OFB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BA1_u6570_u5668_u6A21_u5F0F_uFF0CCTR"><span class="nav-number">1.5.</span> <span class="nav-text">计数器模式，CTR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6BD4_u8F83"><span class="nav-number">1.6.</span> <span class="nav-text">比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

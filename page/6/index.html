@@ -187,6 +187,109 @@
           
           
             
+              <a class="post-title-link" href="/2014/11/09/hack-begin/" itemprop="url">
+                Hackdig——初接触
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-11-09T11:49:21+01:00" content="2014-11-09">
+            2014-11-09
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/11/09/hack-begin/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/09/hack-begin/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>##0x00<br>刚开始接触CTF，于是先通过看别人写的writeup来学习。<br>第一篇先来个最简单的。</p>
+<p>题目的地址在：<a href="http://ctf.sobug.com/hack_game/e82b2db876111afd/index.php" target="_blank" rel="external">这儿～～</a></p>
+<p>一般出现图片的话，flag有很大几率藏在图片里面。</p>
+<p>首先下载图片，载入十六进制编辑器，找到如下hex<br><strong><code>23696E636C7564652066696C653D22386630306232303465393830303939382E70687022</code></strong></p>
+<p>将以上从十六进制解码到字符串为：include file=”8f00b204e9800998.php”</p>
+<p>访问页面8f00b204e9800998.php，查看cookie，得到base64加密的key，如下<br><strong><code>U0VjTDB2ZXJAMjAxNA</code></strong></p>
+<p>解密后得到key：<strong><code>SEcL0ver@2014</code></strong></p>
+<p>##0x01<br>每一道题都可以总结出很多东西。</p>
+<ul>
+<li><p>十六进制编辑器</p>
+<ul>
+<li><a href="http://www.hexedit.com/index.html" target="_blank" rel="external">HexEdit</a></li>
+<li><a href="http://www.ultraedit.com/" target="_blank" rel="external">UltraEdit</a> 三个平台都有，重量级</li>
+<li><a href="http://www.winhex.com/index-c.html" target="_blank" rel="external">WinHex</a> 仅windows平台</li>
+<li><a href="http://www.hexworkshop.com/" target="_blank" rel="external">Hex Workshop</a> 仅windows平台</li>
+<li><a href="http://xvi32.en.softonic.com/" target="_blank" rel="external">XVI32</a> windows平台</li>
+<li>vim <strong>%!xxd</strong> 进入16进制编辑模式，<strong>%!xxd -r</strong> 退出</li>
+<li>hexdump命令</li>
+</ul>
+</li>
+<li><p>关于常见文件的文件头</p>
+<ul>
+<li>JPEG (jpg)，文件头：FFD8FF</li>
+<li>PNG (png)，文件头：89504E47</li>
+<li>GIF (gif), 头文件：47494638</li>
+<li>ZIP Archive (zip)，文件头：504B0304</li>
+<li>RAR Archive (rar)，文件头：52617221</li>
+</ul>
+</li>
+<li><p>在线16进制转字符串：<a href="http://www.bejson.com/tools/0x/" target="_blank" rel="external">http://www1.tc711.com/tool/BASE64.htm</a></p>
+</li>
+<li><p>base64编码:<a href="http://baike.baidu.com/view/469071.htm?fr=aladdin" target="_blank" rel="external">介绍</a>, <a href="http://www1.tc711.com/tool/BASE64.htm" target="_blank" rel="external">加密解密</a></p>
+</li>
+</ul>
+<p>参考： <a href="http://drops.wooyun.org/tips/3603" target="_blank" rel="external">乌云知识库</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2014/11/06/Bellman-Ford Algorithm/" itemprop="url">
                 Bellman-Ford Algorithm
               </a>
@@ -1021,7 +1124,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1035,7 +1138,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

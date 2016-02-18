@@ -187,6 +187,74 @@
           
           
             
+              <a class="post-title-link" href="/2015/02/15/summary-of-stego/" itemprop="url">
+                隐写术小结
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-02-15T11:45:28+01:00" content="2015-02-15">
+            2015-02-15
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/02/15/summary-of-stego/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/02/15/summary-of-stego/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/02/12/tools-for-stego/" itemprop="url">
                 隐写术的相关工具
               </a>
@@ -930,89 +998,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/12/12/dscr-union-find/" itemprop="url">
-                数据结构复习考试（7）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2014-12-12T02:14:51+01:00" content="2014-12-12">
-            2014-12-12
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/12/12/dscr-union-find/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/12/dscr-union-find/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>##介绍</p>
-<p>并查集：(union-find sets)是一种简单的用途广泛的集合。并查集是若干个不相交集合，能够实现较快的合并和判断元素所在集合的操作，应用很多。</p>
-<p>一般采取树形结构来存储并查集，并利用一个rank数组来存储集合的深度下界，在查找操作时进行路径压缩使后续的查找操作加速。这样优化实现的并查集，空间复杂度为O(N)，建立一个集合的时间复杂度为O(1)。并查集的操作可以看作是线性的。</p>
-<p>它支持以下几种操作:</p>
-<ul>
-<li>void Init(int n)</li>
-<li>void Union(int p, int q)</li>
-<li>bool Connected(int p, int q)</li>
-<li>int GetFather(int n)</li>
-<li>int count()</li>
-</ul>
-<p>##解决问题<br>并查集主要应用于涉及到几个不相交子集的查找和合并运算。</p>
-<p>模板题：POJ1611  POJ2524  POJ1182  POJ2492  POJ1988</p>
-<p>##模板<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> UnionFind&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; father;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum;<span class="comment">//the number of child as root</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        father.clear();</span><br><span class="line">        father.resize(n+<span class="number">2</span>);<span class="comment">//start from 1</span></span><br><span class="line">        sum.clear();</span><br><span class="line">        sum.resize(n+<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= n; i++)&#123;</span><br><span class="line">            father[i] = i;</span><br><span class="line">            sum[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Is_same</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> GetFather(x) == GetFather(y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        father[GetFather(x)] = GetFather(y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">GetFather</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (father[x] == x) <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> father[x] = GetFather(father[x]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">FindGroups</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=father.size()-<span class="number">2</span>; i++)&#123;</span><br><span class="line">            sum[GetFather(i)]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=father.size()-<span class="number">2</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (sum[i]) ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>参考：<br><a href="http://blog.csdn.net/dm_vincent/article/details/7769159" target="_blank" rel="external">http://blog.csdn.net/dm_vincent/article/details/7769159</a><br><a href="http://blog.csdn.net/dm_vincent/article/details/7655764" target="_blank" rel="external">http://blog.csdn.net/dm_vincent/article/details/7655764</a></p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1051,7 +1036,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1065,7 +1050,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
