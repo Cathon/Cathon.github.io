@@ -43,7 +43,7 @@
 <meta property="og:url" content="http://blog.hycwall.com/2016/02/11/google-app-engine-java-get-started/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
 <meta property="og:description" content="背景最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个">
-<meta property="og:updated_time" content="2016-02-11T17:18:11.123Z">
+<meta property="og:updated_time" content="2016-02-11T18:15:33.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAE 平台的 java 应用介绍">
 <meta name="twitter:description" content="背景最近有门 Web services 的课程，需要做 Peer Lecture，我分到的题目是 “Web service in app engine”.这个题目就是大概介绍一下 google app engine 的使用了。本文选择以 Java 作为开发语言，对平台的使用作简单介绍。记得第一次接触 GAE 还是还几年前大家都用 goagent 翻墙的时候。不过现在 Google 好像也只提供两个">
@@ -255,7 +255,7 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mvn <span class="string">appengine:</span>devserver_start <span class="comment">// 启动服务器</span></span><br><span class="line">（修改源程序）</span><br><span class="line">$ mvn install                   <span class="comment">// 重新构建程序，刷新页面即可看见修改。</span></span><br><span class="line">$ mvn <span class="string">appengine:</span>devserver_stop  <span class="comment">// 必须使用这条命令来停止服务</span></span><br></pre></td></tr></table></figure>
 <p><strong>提交到 App Engine</strong></p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">mvn </span>appengine:update</span><br></pre></td></tr></table></figure>
-<h2 id="u4F7F_u7528_IDE"><a href="#u4F7F_u7528_IDE" class="headerlink" title="使用 IDE"></a>使用 IDE</h2><p>对于 IDE 的使用，Google 官方提供了 <a href="https://developers.google.com/eclipse/docs/download" target="_blank" rel="external">Google Plugin for Eclipse</a>.<br>今天使用 netbeans 测试，安装好<a href="https://kenai.com/projects/nbappengine/pages/Home" target="_blank" rel="external">插件</a>后，本地运行的时候总是失败，找不到原因，遂放弃。<br>对于使用 Eclipse 步骤，可以参考<a href="http://www.mkyong.com/google-app-engine/google-app-engine-hello-world-example-using-eclipse/" target="_blank" rel="external">这篇文章</a>，还是相对容易的，本文未做测试。</p>
+<h2 id="u4F7F_u7528_IDE"><a href="#u4F7F_u7528_IDE" class="headerlink" title="使用 IDE"></a>使用 IDE</h2><p>对于 IDE 的使用，Google 官方提供了 <a href="https://developers.google.com/eclipse/docs/download" target="_blank" rel="external">Google Plugin for Eclipse</a>.<br>今天使用 netbeans 测试，安装好<a href="https://kenai.com/projects/nbappengine/pages/Home" target="_blank" rel="external">插件</a>后，本地运行的时候总是失败，找不到原因，遂放弃。想要尝试的话可以参考<a href="https://blog.idrsolutions.com/2015/09/how-to-use-the-google-app-engine-with-the-netbeans-ide/" target="_blank" rel="external">这篇文章</a>。<br>对于使用 Eclipse 步骤，可以参考<a href="http://www.mkyong.com/google-app-engine/google-app-engine-hello-world-example-using-eclipse/" target="_blank" rel="external">这篇文章</a>，还是相对容易的，本文未做测试。</p>
 <h2 id="u540E_u8BB0"><a href="#u540E_u8BB0" class="headerlink" title="后记"></a>后记</h2><p>此次实验主要参考了这两个官方的文档：<a href="https://console.developers.google.com/start/appengine" target="_blank" rel="external">页面A</a>, <a href="https://cloud.google.com/appengine/docs/java/" target="_blank" rel="external">页面B</a>. 这两篇都是在命令行下部署的指导，但却还不太一样，虽然基本了解了如何部署，但还是有些许困惑。<br>另外考虑到国内的网络环境，要用 GAE 还是挺费力的。上文中基于命令行的部署过程，经测试没有问题，仅供参考。</p>
 </span>
       
@@ -693,6 +693,27 @@
   </script>
 
   
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
   
