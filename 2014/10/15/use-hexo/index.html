@@ -43,7 +43,7 @@
 <meta property="og:url" content="http://blog.hycwall.com/2014/10/15/use-hexo/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
 <meta property="og:description" content="使用Hexo用了一段时间的wp，租的虚拟主机，感觉不是特别舒服，后来不知道怎么数据库就损坏了，遂放弃。想用 Github Pages 记点笔记，整合个博客，用了jekyll 本地配置了一次，第二天 jekyll 本地的配置各种 error，不知所措。最后发现了 Hexo，于是尝试了下，不是特别顺利，错误不断，但是相对建议易用，后面简单记录一下过程。后续增添一些 Hexo 的配置和使用技巧。">
-<meta property="og:updated_time" content="2016-02-18T10:09:16.231Z">
+<meta property="og:updated_time" content="2016-02-18T14:30:11.883Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Use hexo">
 <meta name="twitter:description" content="使用Hexo用了一段时间的wp，租的虚拟主机，感觉不是特别舒服，后来不知道怎么数据库就损坏了，遂放弃。想用 Github Pages 记点笔记，整合个博客，用了jekyll 本地配置了一次，第二天 jekyll 本地的配置各种 error，不知所措。最后发现了 Hexo，于是尝试了下，不是特别顺利，错误不断，但是相对建议易用，后面简单记录一下过程。后续增添一些 Hexo 的配置和使用技巧。">
@@ -274,6 +274,9 @@
 <li>使用本地路径： 在<code>hexo/source</code>目录下新建一个<code>img</code>文件夹，将图片放入该文件夹下，插入图片时链接即为<code>/img/图片名称</code>。</li>
 <li>直接使用外链，或存到图床如七牛云等平台。</li>
 </ul>
+<p><strong>文章中使用公式</strong></p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>npm install hexo-math --save</span><br><span class="line"><span class="variable">$ </span>vim _config.yml       <span class="comment"># 添加以下内容</span></span><br><span class="line"><span class="symbol">plugins:</span></span><br><span class="line">- hexo-math</span><br></pre></td></tr></table></figure>
+<p>嵌入 Latex 公式时，行内使用一对<code>$</code>，整行使用一对<code>$$</code>。<br>注意，因为 markdown 与 Latex 的符号有冲突，所以当公式源代码中含有下划线时，需要在下划线前添加斜杠来转义。</p>
 <p><strong>参考文章</strong><br><a href="http://zhaofei.tk/2014/11/30/jekyll_to_hexo/" target="_blank" rel="external">更换博客系统——从jekyll到hexo</a></p>
 </span>
       
@@ -364,7 +367,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -713,27 +716,6 @@
   </script>
 
   
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 
   
   
@@ -748,5 +730,35 @@
       });
     });
   </script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </body>
 </html>

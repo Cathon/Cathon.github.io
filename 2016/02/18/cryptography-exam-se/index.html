@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm," />
+  <meta name="keywords" content="Cryptography," />
 
 
 
@@ -37,16 +37,28 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="定义设给定边容量为CV,W的有向图G=(V,E)。这些容量可以代表一个管道的水的流量或者两个交叉路口之间马路上的交通流量。有两个定点，一个是s，成为源点，一个是t，成为汇点。对于任意条边(v,w)，最多有CV,W个单位的“流”可以通过。最大流问题就是确定从s到t可以通过的最大流量。">
+<meta name="description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+
+网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
+现代分组密码的几种操作模式，画框图解释，并比较。
+数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最大流算法">
-<meta property="og:url" content="http://blog.hycwall.com/2015/06/06/max-flow/index.html">
+<meta property="og:title" content="密码学与网络安全课程">
+<meta property="og:url" content="http://blog.hycwall.com/2016/02/18/cryptography-exam-se/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
-<meta property="og:description" content="定义设给定边容量为CV,W的有向图G=(V,E)。这些容量可以代表一个管道的水的流量或者两个交叉路口之间马路上的交通流量。有两个定点，一个是s，成为源点，一个是t，成为汇点。对于任意条边(v,w)，最多有CV,W个单位的“流”可以通过。最大流问题就是确定从s到t可以通过的最大流量。">
-<meta property="og:updated_time" content="2015-08-13T15:00:12.000Z">
+<meta property="og:description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+
+网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
+现代分组密码的几种操作模式，画框图解释，并比较。
+数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给">
+<meta property="og:updated_time" content="2016-02-18T15:05:10.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最大流算法">
-<meta name="twitter:description" content="定义设给定边容量为CV,W的有向图G=(V,E)。这些容量可以代表一个管道的水的流量或者两个交叉路口之间马路上的交通流量。有两个定点，一个是s，成为源点，一个是t，成为汇点。对于任意条边(v,w)，最多有CV,W个单位的“流”可以通过。最大流问题就是确定从s到t可以通过的最大流量。">
+<meta name="twitter:title" content="密码学与网络安全课程">
+<meta name="twitter:description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+
+网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
+现代分组密码的几种操作模式，画框图解释，并比较。
+数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -56,7 +68,7 @@
   };
 </script>
 
-  <title> 最大流算法 | Hycwall's Note </title>
+  <title> 密码学与网络安全课程 | Hycwall's Note </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -186,7 +198,7 @@
           
           
             
-              最大流算法
+              密码学与网络安全课程
             
           
         </h1>
@@ -195,8 +207,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-06T22:47:26+02:00" content="2015-06-06">
-            2015-06-06
+          <time itemprop="dateCreated" datetime="2016-02-18T15:32:19+01:00" content="2016-02-18">
+            2016-02-18
           </time>
         </span>
 
@@ -206,8 +218,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/06/06/max-flow/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/06/max-flow/" itemprop="commentsCount"></span>
+              <a href="/2016/02/18/cryptography-exam-se/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/cryptography-exam-se/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -221,20 +233,19 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="u5B9A_u4E49"><a href="#u5B9A_u4E49" class="headerlink" title="定义"></a>定义</h2><p>设给定边容量为<code>C<sub>V,W</sub></code>的有向图<code>G=(V,E)</code>。这些容量可以代表一个管道的水的流量或者两个交叉路口之间马路上的交通流量。<br>有两个定点，一个是s，成为源点，一个是t，成为汇点。对于任意条边<code>(v,w)</code>，最多有<code>C<sub>V,W</sub></code>个单位的“流”可以通过。<br>最大流问题就是确定从s到t可以通过的最大流量。</p>
-<a id="more"></a>
-<h2 id="u6027_u8D28_u548C_u91CD_u8981_u6982_u5FF5"><a href="#u6027_u8D28_u548C_u91CD_u8981_u6982_u5FF5" class="headerlink" title="性质和重要概念"></a>性质和重要概念</h2><p>一个合法的网络流有以下<strong>三大性质</strong>，其中f[u,v]表示结点u到v的当前流量，c[u,v]表示结点u到v的最大流量</p>
+        <span itemprop="articleBody"><h2 id="u4E00"><a href="#u4E00" class="headerlink" title="一"></a>一</h2><p>瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。<br>今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：</p>
 <ol>
-<li>容量限制：f[u,v] &lt;= c[u,v]</li>
-<li>反对称性：f[u,v] = -f[v,u]</li>
-<li>流量守恒：对于不是源点也不是汇点的任意结点，流入该结点的流量和等于流出该结点的流量和</li>
+<li>网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。</li>
+<li>现代分组密码的几种操作模式，画框图解释，并比较。</li>
+<li>数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给别人，设计如何实现。</li>
+<li>如何建立一个安全信道。主要考察 Needham-Schroeder 协议以及其变形。</li>
+<li>DAC, MAC, RBAC 等</li>
 </ol>
-<p><strong>重要概念</strong></p>
-<p>我们从图<code>G</code>开始构造一个流图<code>G<sub>f</sub></code>，表示在算法的任意阶段已经达到的流。<br>再构造一个图<code>G<sub>r</sub></code>，称为<strong>残余网络</strong>（残余图），表示对于每条边还能添加上多少流。<br>在每个阶段，在图<code>G<sub>r</sub></code>中寻找一条从s到t的路径，称为<strong>增广路径</strong>。<br>显然，<code>G = G<sub>r</sub> + G<sub>f</sub></code>  </p>
-<p><strong>反向边：</strong>假设从a到b的最大流量为10,现在添加一条从a到b负载为10的流量，与此同时，产生一条从b到a流量为10的反向边。<br>然后发现，这不是最优解，可以把其中的4份流量从a流向其他结点，以达到更优解，于是可以添加一条从b到a负载为4的流量。<br>所以，反向边的作用就是给算法一个可以反悔修正的机会。</p>
-<p><strong>最大流定理：</strong>如果残留网络上找不到增广路径，则当前流为最大流；反之，如果当前流不为最大流，则一定有增广路径。</p>
-<h2 id="u7B97_u6CD5"><a href="#u7B97_u6CD5" class="headerlink" title="算法"></a>算法</h2><p>tle Ford–Fulkerson algorithm DFS</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * nodes：网络的结点数</span><br><span class="line"> * edges：网络的边数</span><br><span class="line"> * s, t：分别为所求最大流的起点和终点</span><br><span class="line"> * network：邻接矩阵表示网络中当前的剩余流量</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">int</span> nodes, edges;</span><br><span class="line"><span class="keyword">int</span> s, t;			<span class="comment">// from 0 on</span></span><br><span class="line"><span class="keyword">int</span> [][] network;	<span class="comment">// from 0 on</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * flow：网络中的最大流量</span><br><span class="line"> * path：用数组表示每次寻找到的增广路径，初值为-1，长度为结点数(nodes)</span><br><span class="line"> * 若能够在残余网络中(即network)通过DFS找到一条增广路径，则流量增加，然后更新残余网络</span><br><span class="line"> * 直到不能找到一条增广路径，根据最大流最小割原理，当前flow即为最大流量</span><br><span class="line"> * @return flow</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxflow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> flow = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> [] path;	<span class="comment">//寻找一条增广路径</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">		path = <span class="keyword">new</span> <span class="keyword">int</span> [nodes];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (dfs(path) == <span class="literal">false</span>) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">int</span> min = Integer.MAX_VALUE / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes-<span class="number">1</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (path[i+<span class="number">1</span>] == -<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">			min = Math.min(min, network[path[i]][path[i+<span class="number">1</span>]]);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		flow += min;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes-<span class="number">1</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (path[i+<span class="number">1</span>] == -<span class="number">1</span>) <span class="keyword">break</span>;</span><br><span class="line">			network[path[i]][path[i+<span class="number">1</span>]] -= min;</span><br><span class="line">			network[path[i+<span class="number">1</span>]][path[i]] += min;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 以非递归的方式进行DFS，使用数组模拟栈</span><br><span class="line"> * vis：用于标记访问过的结点</span><br><span class="line"> * flag：用于回溯</span><br><span class="line"> * 每次取path中最新的结点，若它为终点t，即找到了一条增广路径</span><br><span class="line"> * @param path：用于存储一条增广路径，每次dfs操作都赋初值-1</span><br><span class="line"> * @return 若能找到一条增广路径，返回true，否则返回false</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> boolean <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> [] path)</span> </span>&#123;	<span class="comment">// assume s != t</span></span><br><span class="line">	boolean [] vis = <span class="keyword">new</span> boolean [nodes];</span><br><span class="line">	boolean flag;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="number">0</span>, u;</span><br><span class="line">	</span><br><span class="line">	path[n++] = s;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nodes; i++) &#123;</span><br><span class="line">		path[i] = -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		u = path[n-<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span> (u == t) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		vis[u] = <span class="literal">true</span>;</span><br><span class="line">		flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nodes; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (network[u][i] &gt; <span class="number">0</span> &amp;&amp; !vis[i]) &#123;</span><br><span class="line">				path[n++] = i;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (flag) path[--n] = -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>用的书是 Behrouz A.Forouzan 写的 Crypography and Network Security.<br>这里老师的侧重点是不是具体加密算法的细节，比如 AES 等一些复杂算法的内部实现是不要求掌握的。<br>反而是如何使用这些加密算法来创建各种协议，是着重要求的，考试的考点也大多在这里。</p>
+<p>对比国内，大多是深入各个密码算法的细节，抠偏数学的内容，大概这也是不同地方的侧重不同吧。个人感觉能够理解算法里的细节当然好，但算法往上一层的协议，更值得细细品读。这本书除去讲解数学内容的章节(其实这些章节还是很重要的，如果要对加密算法进行研究，少不了它们)外，基本上学习了一多半内容，虽不敢保证全部弄懂了，但有了一个比较清晰的概念和框架，以后遇到具体问题再回过头查阅即可。</p>
+<h2 id="u4E8C"><a href="#u4E8C" class="headerlink" title="二"></a>二</h2><p>考试是一部分，另一部分就是论文的阅读和半小时 presentation 了，各占一半。<br>分到的两篇论文的主题是 DNS 安全。等我看完后再慢慢总结。</p>
+<p>未完待续…</p>
 </span>
       
     </div>
@@ -243,7 +254,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag">#Algorithm</a>
+            <a href="/tags/Cryptography/" rel="tag">#Cryptography</a>
           
         </div>
       
@@ -252,13 +263,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/09/computational-geometry-summary/" rel="prev">计算几何简述</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/06/Hash-java/" rel="next">HashMap 的使用</a>
+              <a href="/2016/02/18/block-cihper-mode-of-operation/" rel="next">现代分组密码的操作模式</a>
             
           </div>
         </div>
@@ -283,8 +292,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/06/06/max-flow/"
-                   data-title="最大流算法" data-url="http://blog.hycwall.com/2015/06/06/max-flow/">
+              <div class="ds-thread" data-thread-key="2016/02/18/cryptography-exam-se/"
+                   data-title="密码学与网络安全课程" data-url="http://blog.hycwall.com/2016/02/18/cryptography-exam-se/">
               </div>
             
           </div>
@@ -409,7 +418,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B9A_u4E49"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6027_u8D28_u548C_u91CD_u8981_u6982_u5FF5"><span class="nav-number">2.</span> <span class="nav-text">性质和重要概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u7B97_u6CD5"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E00"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E8C"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -187,7 +187,87 @@
           
           
             
-              <a class="post-title-link" href="/2016/02/18/operate-modes-of-symmetric-encryption/" itemprop="url">
+              <a class="post-title-link" href="/2016/02/18/cryptography-exam-se/" itemprop="url">
+                密码学与网络安全课程
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-02-18T15:32:19+01:00" content="2016-02-18">
+            2016-02-18
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/02/18/cryptography-exam-se/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/cryptography-exam-se/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h2 id="u4E00"><a href="#u4E00" class="headerlink" title="一"></a>一</h2><p>瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。<br>今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：</p>
+<ol>
+<li>网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。</li>
+<li>现代分组密码的几种操作模式，画框图解释，并比较。</li>
+<li>数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给别人，设计如何实现。</li>
+<li>如何建立一个安全信道。主要考察 Needham-Schroeder 协议以及其变形。</li>
+<li>DAC, MAC, RBAC 等</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/18/cryptography-exam-se/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/02/18/block-cihper-mode-of-operation/" itemprop="url">
                 现代分组密码的操作模式
               </a>
             
@@ -209,8 +289,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/02/18/operate-modes-of-symmetric-encryption/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/operate-modes-of-symmetric-encryption/" itemprop="commentsCount"></span>
+              <a href="/2016/02/18/block-cihper-mode-of-operation/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/18/block-cihper-mode-of-operation/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -225,60 +305,14 @@
 
       
         
-          <span itemprop="articleBody"><h2 id="u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD"><a href="#u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD" class="headerlink" title="操作模式介绍"></a>操作模式介绍</h2><p>现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。<br>如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。</p>
+          <h2 id="u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD"><a href="#u64CD_u4F5C_u6A21_u5F0F_u4ECB_u7ECD" class="headerlink" title="操作模式介绍"></a>操作模式介绍</h2><p>现代分组密码（即 DES 和 AES），是设计用来对固定长度的文本分组进行加密和解密的。<br>如 DES 可以对一个 64 比特的分组进行加密和解密。AES 可以对一个 128 比特的分组进行加密和解密。</p>
 <p>而在实际运用中，要加密的文本长度是可变的，通常大于 64 或 128 比特。于是就有了操作模式，有了它就可以将分组密码应用在消息和大单位文件或小单位文件的加密上。</p>
 <p>这里讨论的五种操作模式分别是：电子密码本模式（ECB），密码分组链接模式（CBC），密码反馈模式（CFB），输出反馈模式（OFB），以及计数器模式（CTR）。</p>
-<h3 id="u7535_u5B50_u5BC6_u7801_u672C_u6A21_u5F0F_uFF0CECB"><a href="#u7535_u5B50_u5BC6_u7801_u672C_u6A21_u5F0F_uFF0CECB" class="headerlink" title="电子密码本模式，ECB"></a>电子密码本模式，ECB</h3><p>电子密码本模式是最简单的操作模式。<br>明文按照分组密码的分组大小(n 比特)被分为 N 个分组，对于每个分组使用相同的密钥加密。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Ecb_encryption.png" alt="ECB_encryption"><br><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Ecb_decryption.png" alt="ECB_decryption"></p>
-<p>$$ 加密： C_i = E_K (P_i) $$<br>$$ 解密： P_i = D_K (C_i) $$</p>
-<ul>
-<li>缺点在于同样的明文块会被加密成相同的密文块。因此不能很好地隐藏数据模式。在某些场合，这种方法不能提供严格的数据保密性，因此并不推荐用于密码协议中。</li>
-<li>ECB模式也会导致使用它的协议不能提供数据完整性保护，易受到重放攻击的影响，因此每个块是以完全相同的方式解密的。</li>
-<li>优势在于由于密文分组的独立性，如果需要创建一个非常大的加密数据库的话，可以运用平行处理。</li>
-<li>错误传播：传播中一个单比特错误就可以在相应的分组中造成多个比特的错误，不过这种错误对其他分组没有影响。</li>
-</ul>
-<h3 id="u5BC6_u7801_u5206_u7EC4_u94FE_u63A5_u6A21_u5F0F_uFF0CCBC"><a href="#u5BC6_u7801_u5206_u7EC4_u94FE_u63A5_u6A21_u5F0F_uFF0CCBC" class="headerlink" title="密码分组链接模式，CBC"></a>密码分组链接模式，CBC</h3><p>在CBC模式中，每个明文分组在加密之前需要先与前一个密文分组进行异或。对一个分组加密后，就要把这个分组发送出去，但是它的副本要保存在存储器中，以便在下一个分组加密时使用。<br>在这种方法中，每个密文分组都依赖于它前面的所有明文分组。同时，为了保证每条消息的唯一性，在第一个分组中需要使用一个预先确定的<strong>初始化向量(IV)</strong>。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Cbc_encryption.png" alt="CBC_encryption"><br><img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Cbc_decryption.png" alt="CBC_decryption"></p>
-<p>在发送方，异或要在加密前完成;<br>在接收方，异或是在解密后完成。</p>
-<p>$$ 加密： C_i = E_K (P<em>i \oplus C</em>{i-1}), C_0 = IV, i = 1,2,3… $$<br>$$ 解密： P_i = D_K (C<em>i) \oplus C</em>{i-1}, C_0 = IV, i = 1,2,3… $$</p>
-<ul>
-<li>CBC是最为常用的工作模式。其主要缺点在于加密过程是串行的，无法被并行化，而在解密时，从两个邻接的密文分组中即可得到一个明文分组。因此，解密过程可以被并行化。</li>
-<li>错误传播： 传送过程中密文分组 $C_i$ 的一个单比特错误，在解密时会造成明文分组 $P<em>i$ 的大部分比特错误，以及下一个明文分组 $P</em>{i+1}$ 的一个（相同位置上的）比特错误，不会影响到其它明文分组的内容。</li>
-<li>加密不同消息时使用的 IV 不应相同。</li>
-</ul>
-<h3 id="u5BC6_u7801_u53CD_u9988_u6A21_u5F0F_uFF0CCFB"><a href="#u5BC6_u7801_u53CD_u9988_u6A21_u5F0F_uFF0CCFB" class="headerlink" title="密码反馈模式，CFB"></a>密码反馈模式，CFB</h3><p>CFB模式适用于明文分组较小的情况，在DES或AES中使用的分组大小为 $n$，明文分组为 $r$，其中 $r \leq n$.<br>DES或AES并不直接对明文加密，而是对大小为 $n$ 的移位寄存器 $S$ 的内容加密。对于一个明文分组，加密时通过异或一个 将移位寄存器加密得到的密文的 $r$ 比特，从而得到密文分组。这个密文分组将填充 移位寄存器左移 $r$ 比特后 最右边的 $r$ 比特，得到新的移位寄存器进行之后的加密。</p>
-<p><img src="http://www.umich.edu/~x509/ssleay/fip81/fig6-a.jpg" alt="CFB"></p>
-<p>$$ 加密： C_i = P_i \oplus SelectLeft_r {E_K [ShiftLeft<em>r (S</em>{i-1}) | C_{i-1}]} $$<br>$$ 解密： P_i = C_i \oplus SelectLeft_r {E_K [ShiftLeft<em>r (S</em>{i-1}) | C_{i-1}]} $$</p>
-<ul>
-<li>CFB模式虽然使用块加密的方法，但它是异步流密码。</li>
-<li>IV 的使用：每次发送消息时要使用不同的 IV</li>
-<li>与CBC相似，明文的改变会影响接下来所有的密文，因此加密过程不能并行化，但解密过程是可以并行化的。</li>
-<li>在解密时，密文中一位数据的改变仅会影响两个明文分组：对应明文分组中的一位数据与下一分组中全部的数据，而之后的数据将恢复正常。<br>-适用于每次加密一个小的分组，如一个字符或一个比特，且消息无需进行填充。 </li>
-</ul>
-<h3 id="u8F93_u51FA_u53CD_u9988_u6A21_u5F0F_uFF0COFB"><a href="#u8F93_u51FA_u53CD_u9988_u6A21_u5F0F_uFF0COFB" class="headerlink" title="输出反馈模式，OFB"></a>输出反馈模式，OFB</h3><p>输出反馈模式与CFB模式非常类似，但密文中的每个比特独立于先前的比特，避免了错误传播。<br>输出反馈模式将将基本分组密码变成了同步流密码。它产生密钥流的分组，然后将其与明文分组进行异或，得到密文。</p>
-<p><img src="http://cryptome.info/0001/bcm/bcm-f4.jpg" alt="OFB"></p>
-<p>$$ 加密： C_i = P_i \oplus O_i $$<br>$$ 解密： P_i = C_i \oplus O_i $$<br>$$ O_i = ShiftLeft_r { E_K [ShiftLeft<em>r (S</em>{i-1}) | O_{i-1}]}, O_0 = IV $$</p>
-<ul>
-<li>每个使用OFB的输出块与其前面所有的输出块相关，因此不能并行化处理。然而，由于明文和密文只在最终的异或过程中使用，因此可以事先对IV进行加密，最后并行的将明文或密文进行并行的异或处理。</li>
-<li>密文中的单个比特错误只影响明文中的相应（相同位置）的比特。这种特性使得许多错误校正码，例如奇偶校验位，即使在加密前计算而在加密后进行校验也可以得出正确结果。</li>
-<li>可以利用输入全0的CBC模式产生OFB模式的密钥流。这种方法十分实用，因为可以利用快速的CBC硬件实现来加速OFB模式的加密过程。</li>
-</ul>
-<h3 id="u8BA1_u6570_u5668_u6A21_u5F0F_uFF0CCTR"><a href="#u8BA1_u6570_u5668_u6A21_u5F0F_uFF0CCTR" class="headerlink" title="计数器模式，CTR"></a>计数器模式，CTR</h3><p>CTR将分组密码变为流密码。它通过递增一个加密计数器以产生连续的密钥流，其中，计数器可以是任意保证长时间不产生重复输出的函数。<br>计数器初值为一个预设的 IV, 并按照预先确定的规则 (mod 2^n) 增加。</p>
-<p><img src="http://cryptome.info/0001/bcm/bcm-f5.jpg" alt="CTR"></p>
-<p>$$ 加密： C_i = P<em>i \oplus E</em>{K_i} (counter_i) $$<br>$$ 解密： P_i = C<em>i \oplus E</em>{K_i} (counter_i) $$</p>
-<ul>
-<li>错误传播：密文中的单个比特错误之影响明文中对应的比特。</li>
-<li>通过预处理，加密和解密过程均可以并行处理。</li>
-<li>可以用来对随机存取件进行加密和解密。</li>
-<li>广泛应用，如 <strong>ATM</strong> 网络和 <strong>IPSec</strong>.</li>
-</ul>
-<h3 id="u6BD4_u8F83"><a href="#u6BD4_u8F83" class="headerlink" title="比较"></a>比较</h3><ol>
-<li>ECB 和 CBC 的结果类型是分组密码。而 CFB，OFB 和 CTR 的结果类型是流密码。</li>
-<li>CFB 和 OFB 使用时明文分组小小 $r \leq n$。ECB，CBC 和 CTR 使用时明文分组大小 $r = n $，所以可能需要对消息进行填充。</li>
-<li>ECB，OFB 和 CTR 不会发生错误传播。CBC 和 CFB 可能发生错误传播。</li>
-</ol>
-<h2 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h2><p>1. </p>
-</span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/18/block-cihper-mode-of-operation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -927,91 +961,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/09/computational-geometry-summary/" itemprop="url">
-                计算几何简述
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-06-09T00:27:45+02:00" content="2015-06-09">
-            2015-06-09
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/06/09/computational-geometry-summary/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/09/computational-geometry-summary/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>简单记录本学期学习的计算几何知识，归类如下：</p>
-<ul>
-<li>点，线段</li>
-<li>点与直线，线段，矩形，多边形的位置关系</li>
-<li>线段/直线相交</li>
-<li>向量，向量叉积</li>
-<li>凸包</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/09/computational-geometry-summary/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
  </div>
@@ -1045,7 +999,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1224,27 +1178,6 @@
   </script>
 
   
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 
   
   
@@ -1259,5 +1192,35 @@
       });
     });
   </script>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </body>
 </html>
