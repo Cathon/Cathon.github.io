@@ -28,7 +28,7 @@
 
 
 
-  <meta name="keywords" content="Cryptography," />
+  <meta name="keywords" content="Cryptography,DNS," />
 
 
 
@@ -37,7 +37,7 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+<meta name="description" content="1瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
 
 网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
 现代分组密码的几种操作模式，画框图解释，并比较。
@@ -46,15 +46,15 @@
 <meta property="og:title" content="密码学与网络安全课程">
 <meta property="og:url" content="http://blog.hycwall.com/2016/02/18/cryptography-exam-se/index.html">
 <meta property="og:site_name" content="Hycwall's Note">
-<meta property="og:description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+<meta property="og:description" content="1瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
 
 网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
 现代分组密码的几种操作模式，画框图解释，并比较。
 数字签名。如给一个场景 Alice, Bob, Code, 让一个人给一条消息签名发给">
-<meta property="og:updated_time" content="2016-02-18T15:05:10.275Z">
+<meta property="og:updated_time" content="2016-03-08T10:29:45.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="密码学与网络安全课程">
-<meta name="twitter:description" content="一瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
+<meta name="twitter:description" content="1瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：
 
 网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。
 现代分组密码的几种操作模式，画框图解释，并比较。
@@ -233,7 +233,7 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="u4E00"><a href="#u4E00" class="headerlink" title="一"></a>一</h2><p>瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。<br>今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：</p>
+        <span itemprop="articleBody"><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>瑞典。2016 年春，第一个小学期。上了区区六次的 Lectures, 短短一个月，密码学与网络安全这门课就告一段落了。<br>今天上午考完试，只有五道题，答的还行。基本对应了以下几个方面：</p>
 <ol>
 <li>网络安全，攻击的一些概念，如主动攻击，被动攻击，列举几种具体的攻击手法等。</li>
 <li>现代分组密码的几种操作模式，画框图解释，并比较。</li>
@@ -242,10 +242,54 @@
 <li>DAC, MAC, RBAC 等</li>
 </ol>
 <a id="more"></a>
-<p>用的书是 Behrouz A.Forouzan 写的 Crypography and Network Security.<br>这里老师的侧重点是不是具体加密算法的细节，比如 AES 等一些复杂算法的内部实现是不要求掌握的。<br>反而是如何使用这些加密算法来创建各种协议，是着重要求的，考试的考点也大多在这里。</p>
-<p>对比国内，大多是深入各个密码算法的细节，抠偏数学的内容，大概这也是不同地方的侧重不同吧。个人感觉能够理解算法里的细节当然好，但算法往上一层的协议，更值得细细品读。这本书除去讲解数学内容的章节(其实这些章节还是很重要的，如果要对加密算法进行研究，少不了它们)外，基本上学习了一多半内容，虽不敢保证全部弄懂了，但有了一个比较清晰的概念和框架，以后遇到具体问题再回过头查阅即可。</p>
-<h2 id="u4E8C"><a href="#u4E8C" class="headerlink" title="二"></a>二</h2><p>考试是一部分，另一部分就是论文的阅读和半小时 presentation 了，各占一半。<br>分到的两篇论文的主题是 DNS 安全。等我看完后再慢慢总结。</p>
-<p>未完待续…</p>
+<p>用的书是 Behrouz A.Forouzan 写的 Crypography and Network Security.<br>这里老师的侧重点不是具体加密算法的细节，比如 AES 等一些复杂算法的内部实现是不要求掌握的。<br>反而是如何使用这些加密算法，以及对各种协议的理解，是着重要求的，考试的考点也大多在这里。</p>
+<p>对比国内，大多是深入各个密码算法的细节，偏数学的内容，大概这也是不同地方的侧重不同吧。个人感觉能够理解算法里的细节当然好，但算法往上一层的协议，更值得细细品读。这本书除去讲解数学内容的章节(其实这些章节还是很重要的，如果要对加密算法深入研究，少不了它们)外，基本上学习了一多半内容，虽不敢保证全部弄懂了，但有了一个比较清晰的概念和框架，以后遇到具体问题再回过头查阅即可。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>考试是一部分，另一部分就是论文的阅读和半小时 presentation 了，各占一半。<br>分到的两篇论文的主题是 DNS 安全。等我看完后再慢慢总结。</p>
+<!--2016.3.7-->
+<p>花了一周左右的时间读了读论文，加深了我对域名解析的认识。花了一天一夜准备了演示文稿，但觉得用自己的话把论文的观点说一遍讲清楚真的好难好难。演示的时候由于导格式时模板的原因，背景很差字看不清，我也只是磕磕绊绊地讲完，勉勉强强过关。直到现在我还没弄清论文的每一处细节，只是明白了大致的思想。</p>
+<p>两篇论文均于 2008 年发表于 ACM 期刊，讨论了如何抵御DNS攻击，并且提出了两种改进方法。<br>下一节我将介绍一下这两篇论文的大致思想。</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p>第一篇论文关于如何减轻DNS受到拒绝服务攻击时受到的影响，提出了“stale cache”的改进方法。<br>第二篇论文关于提高DNS缓存中毒的抵抗性，使用了“0X20-bit encoding”的方法。</p>
+<p>一个简化的 DNS 框架有如下五部分：</p>
+<ol>
+<li>stub resolver: 即客户端，作为 DNS 请求的发起者</li>
+<li>recursive DNS: 一般是一台 ISP 的解析服务器，或者是一个公共 DNS 服务器(eg:8.8.8.8)</li>
+<li>root server: 根域服务器</li>
+<li>TLD server: 一级域名服务器</li>
+<li>authority server: 二级域名权威服务器</li>
+</ol>
+<p>假设各个部分的缓存为空，stub resolver 想要解析 www.example.com 这个域名：</p>
+<ol>
+<li>客户端将 DNS 请求发给 recursive DNS.</li>
+<li>它收到请求后，由于缓存为空，给 root server 发送 DNS 请求，获取(.com.)域的 DNS 服务器地址。</li>
+<li>然后 recursive DNS 接着给这个(.com.)域的 DNS 发送请求，获取(.example.com.)域的 DNS 服务器地址。</li>
+<li>然后 recursive DNS 接着给这个(example.com.)域的 DNS 发送请求，获取目标域名的地址。</li>
+<li>最后 recursive DNS 将结果返回给客户端，并将其存入缓存。（2,3 步得到的答案也存入缓存）</li>
+</ol>
+<h3 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h3><p>DNS 拒绝服务攻击，是攻击者通过向 DNS 服务器发送大量数据包，消耗其资源，使其无法响应，这会对正常的解析服务造成很大的影响。  </p>
+<p>“stale cache” 是在 recursive DNS 中添加一个“陈旧的缓存”，这也将改变 recursive DNS 的缓存操作方式，目的是当 DNS 遭到洪水攻击不能响应时，整个解析过程仍可以顺利完成。</p>
+<p>基于上述 “www.example.com” 的解析，当缓存中这条记录的 TTL 过期时，记录将被移除，但同时添加到“stale cache”中。我们假设现在 (.com.)域名服务器遭到攻击，无法响应。<br>当有客户端再次向 recursive DNS 发送请求要解析 “www.example.com” 时，它就不能从 (.com.)域名服务器中得到响应。如果没有“stale cache”，这次的解析就失败了，客户端将得到一个失败的消息。<br>当有了“stale cache”时，recursive DNS 发现 (.com.)域名服务器无法响应，便会去 “stale cache” 中查看有没有（.example.com.）的记录。如果存在，那么它就可以接着完成解析过程，将结果返回给客户端。</p>
+<p>“stale cache” 不能抵御拒绝服务攻击，只能减轻洪水攻击对 DNS 解析造成的影响。同时，由于它对 DNS 结构的改变很小，只需修改 recursive DNS 的缓存行为，是一个轻量级的解决方案。根据评估，它也确实能够提高 DNS 的鲁棒性。更多的细节可以参考论文(Mitigating DNS DoS Attacks)。</p>
+<h3 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h3><p>DNS 缓存中毒是一种 DNS 核心攻击手法。一般的，攻击者先向 recursive DNS 发送一个解析请求，然后冒充权威服务器将伪造的响应返回给它。如果伪造的消息在真正的消息之前被接受，那么解析器就会接受攻击者的消息并缓存，攻击成功。</p>
+<p>然而实际攻击还要考虑以下两个问题：<br>第一，攻击是有一个时间窗口的。recursive DNS 向（二级域名）权威服务器发送请求，并等待响应。这段时间，攻击者必须成功伪造好响应消息，并且能够在真实响应之前送达，才可成功。否则，只能等待缓存过期才可以进行下一次攻击。<br>第二，如何伪造响应消息。对于 DNS 的消息认证，请求中含有一个 16 比特的 ID，同时 DNS 可以指定一个接受的端口号。权威服务器的响应消息必须使用同一个 ID，并发送到这个特定的端口。所以，攻击者必须猜测这两个参数，并且不断尝试，直到成功。另外，权威服务器通常会有多个公网地址，所以攻击者也需要猜测，并伪造响应中正确的来源地址。我们假设权威服务器有三个公网地址，16 比特的 ID 有 65535 中组合，端口号最多有 (65535-1024) 种可能。那么攻击者发送一个伪造响应就能成功的概率，大约是127亿分之一。</p>
+<p>尽管如此，攻击者还是可能成功的。下面的这个方法可以降低攻击者的成功概率。</p>
+<p>通常，DNS 请求中要解析的域名是大小写不敏感的。比如我们查询 www.google.com 和 WWW.GOOGLE.COM 返回的结果是一样的。基于此，解析器发送的请求中，域名可以使用不同的大小写模式(e.g.WwW.GoGGle.coM)，通过这种特定的编码，来判断返回给解析器的响应是真的还是伪造的。<br>我们知道, 同一个字母大小写的二进制 ASCII 码的区别在于，0X20 这位比特是 0 还是 1，若是 0 则是大写字母，是 1 则是小写字母。这也是 “0X20-bit encoding” 的名字来源。<br>这个方法的主要思想是，recursive DNS 收到一个请求后，在发给权威服务器之前，把请求中的域名的大小写进行编码。这样，当收到响应时，使用相同的方法对域名编码进行验证，若结果与收到的不同，就是伪造的。</p>
+<p>使用 www.example.com 为例，编码的算法如下：</p>
+<ol>
+<li>输入为: wwW.ExamplE.Com</li>
+<li>首先将域名转化为一种规定的格式，如全部小写, www.example.com</li>
+<li>使用一种加密方法(eg.AES)，对其进行加密，得到密钥流(e.g. 010101010100101…)</li>
+<li>密钥流肯定比域名长，我们用密钥流的每一位给域名的每一个字节编码<br> domain:         www.example.com<br> cipher block:   010 1010101 010101…<br> encoded domain: WwW.eXaMple.com</li>
+<li>这样，我们就得到了经过编码的域名。</li>
+</ol>
+<p>这样的 recursive server 有一个密钥用于生成一个密钥流，这个密钥可以根据使用时间更换。<br>攻击者很难猜到域名的大小写编码，所以这种方法能给攻击者的伪造增加门槛。<br>具体的评估可以参考论文(Increased DNS Forgery Resistance Through 0x20-Bit Encoding)。</p>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p>个人理解难免有偏差，欢迎指正。</p>
+<p>Referecnce:</p>
+<ol>
+<li>Book: Crypography and Network Security (Behrouz A.Forouzan)</li>
+<li>Paper: Mitigating DNS DoS Attacks (Hitesh Ballani, Paul Francis)</li>
+<li>Paper: Increased DNS Forgery Resistance<br>Through 0x20-Bit Encoding</li>
+</ol>
+<p>David Dagon<br> Manos Antonakakis<br> Paul Vixie<br>Tatuya Jinmei<br>Wenke Lee</p>
 </span>
       
     </div>
@@ -255,6 +299,8 @@
         <div class="post-tags">
           
             <a href="/tags/Cryptography/" rel="tag">#Cryptography</a>
+          
+            <a href="/tags/DNS/" rel="tag">#DNS</a>
           
         </div>
       
@@ -347,7 +393,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -418,7 +464,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E00"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E8C"><span class="nav-number">2.</span> <span class="nav-text">二</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">3.</span> <span class="nav-text">3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1"><span class="nav-number">3.1.</span> <span class="nav-text">3.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2"><span class="nav-number">3.2.</span> <span class="nav-text">3.2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">4.</span> <span class="nav-text">4</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
