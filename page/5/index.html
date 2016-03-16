@@ -187,6 +187,106 @@
           
           
             
+              <a class="post-title-link" href="/2014/12/12/dscr-shortest-path/" itemprop="url">
+                数据结构复习考试（9）
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-12-12T02:17:51+01:00" content="2014-12-12">
+            2014-12-12
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/12/12/dscr-shortest-path/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/12/dscr-shortest-path/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h2 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h2><p>最短路径问题是图论研究中的一个经典算法问题， 旨在寻找图（由结点和路径组成的）中两结点之间的最短路径。</p>
+<p>算法具体的形式包括：</p>
+<ul>
+<li>确定起点的最短路径问题 - 即已知起始结点，求最短路径的问题。</li>
+<li>确定终点的最短路径问题 - 与确定起点的问题相反，该问题是已知终结结点，求最短路径的问题。<br>在无向图中该问题与确定起点的问题完全等同，在有向图中该问题等同于把所有路径方向反转的确定起点的问题。</li>
+<li>确定起点终点的最短路径问题 - 即已知起点和终点，求两结点之间的最短路径。</li>
+<li>全局最短路径问题 - 求图中所有的最短路径。 </li>
+</ul>
+<p>用于解决最短路径问题的算法被称做“最短路径算法”。</p>
+<h2 id="u5355_u6E90_u6700_u77ED_u8DEF_u5F84"><a href="#u5355_u6E90_u6700_u77ED_u8DEF_u5F84" class="headerlink" title="单源最短路径"></a>单源最短路径</h2><h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><p><strong>算法大致流程</strong> 是用一个队列来进行维护。<br>初始时将源点加入队列，每次从队列中取出一个元素，并对所有与他相邻的点进行松弛，若某个相邻的点松弛成功，则将其入队，直到队列为空时算法结束。</p>
+<p>SPFA算法（Shortest Path Faster Algorithm），也是求解单源最短路径问题的一种算法，用来解决的问题如下：<br><strong>给定一个加权有向图G和源点s，对于图G中的任意一点v，求从s到v的最短路径。</strong></p>
+<p>SPFA算法是 Bellman-Ford 算法的一种队列实现，减少了冗余计算，他的基本算法和 Bellman-Ford 一样，并用如下方法改进： </p>
+<ol>
+<li><p>第一步，不是枚举所有节点，而是通过队列来进行优化，设置一个先进先出的队列用来保存待优化的结点，优化时每次取出队首结点u，并且用u点当前的最短路径估计值 对 离开u点所指向的结点v 进行松弛操作，如果v点的最短路径估计值有所调整，且v点不在当前队列中，就将v点放入队尾。这样不断从队列中取出结点来进行松弛操作，直至队列空为止。 </p>
+</li>
+<li><p>同时，除了通过判断队列是否为空来结束循环，还可以通过下面的方法：即判断有无负环，如果某个点进入队列的次数超过V次，则存在负环（SPFA算法无法处理带负环的图）。</p>
+</li>
+</ol>
+<p>SPFA 在形式上和 BFS（广度优先搜索）非常类似，不同的是：在广度优先搜索中，一个点出了队列就不可能重新进入队列，但是SPFA中一个点可能在出队列之后再次被放入队列，也就是一个点改进过其它的点之后，过了一段时间可能本身被改进，于是再次用来改进其它的点，这样反复迭代下去。设一个点用来作为迭代点对其它点进行改进的平均次数为k，有办法证明对于通常的情况，k在2左右。</p>
+<p>然而在实际的应用中SPFA算法的时间效率不是很稳定，为了避免最坏情况的出现，通常使用时间效率更加稳定的Dijkstra算法。 </p>
+<h3 id="SPFA_u6A21_u677F"><a href="#SPFA_u6A21_u677F" class="headerlink" title="SPFA模板"></a>SPFA模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//gh[][]为有向图（gh[i][j]为结点i到结点j的权值，如果gh[i][j]不存在，则为-1）</span></span><br><span class="line"><span class="comment">//dis[] 中所有元素应初始化为INFINITY(0xfffffff最大值)</span></span><br><span class="line"><span class="comment">//vis[] 中所有元素应初始化为false。</span></span><br><span class="line"><span class="comment">//num[] 记录各结点入队列次数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">(<span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">    <span class="comment">//若 s 为终点，直接返回</span></span><br><span class="line">    <span class="comment">//path[] 用于记录路径</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; Q;</span><br><span class="line">    </span><br><span class="line">    Q.push(s);</span><br><span class="line">    dis[s] = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!Q.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> u = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        vis[u] = <span class="literal">true</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt;= n; v++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dis[v] &gt; dis[u] + gh[u][v])&#123;</span><br><span class="line">                dis[v] = dis[u] + gh[u][v];</span><br><span class="line">                <span class="comment">//path[v] = u;</span></span><br><span class="line">                <span class="comment">//num[v]++;</span></span><br><span class="line">                <span class="comment">//if (num[v] &gt; n) return false;    //判断负环</span></span><br><span class="line">                <span class="keyword">if</span> (!vis[v]) &#123;</span><br><span class="line">                    vis[v] = <span class="literal">true</span>;</span><br><span class="line">                    Q.push(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[u] = <span class="literal">false</span>; <span class="comment">//将出队列的的点置为false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u4EFB_u610F_u4E24_u70B9_u6700_u77ED_u8DEF_u5F84"><a href="#u4EFB_u610F_u4E24_u70B9_u6700_u77ED_u8DEF_u5F84" class="headerlink" title="任意两点最短路径"></a>任意两点最短路径</h2><p><strong>使用条件&amp;范围</strong>：通常可以在任何图中使用，包括有向图、带负权边的图。 </p>
+<p>Floyd-Warshall 算法用来找出每对点之间的最短距离。它需要用邻接矩阵来储存边，这个算法通过考虑最佳子路径来得到最佳路径。</p>
+<p>注意单独一条边的路径也不一定是最佳路径。</p>
+<ul>
+<li>从任意一条单边路径开始。所有两点之间的距离是边的权，或者无穷大，如果两点之间没有边相连。</li>
+<li>对于每一对顶点 u 和 v，看看是否存在一个顶点 w 使得从 u 到 w 再到 v 比己知的路径更短。如果是更新它。</li>
+<li>不可思议的是，只要按排适当，就能得到结果。 </li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// dist(i,j) 为从节点i到节点j的最短距离</span><br><span class="line">for i←1 to n <span class="operator"><span class="keyword">do</span></span><br><span class="line">   <span class="keyword">for</span> j←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">      dist(<span class="keyword">i</span>,j) = weight(<span class="keyword">i</span>,j) </span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> <span class="keyword">k</span>←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span> // <span class="keyword">k</span>为“媒介节点”</span><br><span class="line">  <span class="keyword">for</span> <span class="keyword">i</span>←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">i</span>&lt;&gt;<span class="keyword">k</span>) <span class="keyword">then</span></span><br><span class="line">      <span class="keyword">for</span> j←<span class="number">1</span> <span class="keyword">to</span> <span class="keyword">n</span> <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">i</span>&lt;&gt;j) &amp;&amp; (<span class="keyword">k</span>&lt;&gt;j) <span class="keyword">then</span></span><br><span class="line">          <span class="keyword">if</span> (dist(<span class="keyword">i</span>,<span class="keyword">k</span>) + dist(<span class="keyword">k</span>,j) &lt; dist(<span class="keyword">i</span>,j)) <span class="keyword">then</span></span><br><span class="line">              dist(<span class="keyword">i</span>,j) = dist(<span class="keyword">i</span>,<span class="keyword">k</span>) + dist(<span class="keyword">k</span>,j)</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.nocow.cn/index.php/SPFA%E7%AE%97%E6%B3%95s" target="_blank" rel="external">http://www.nocow.cn/index.php/SPFA%E7%AE%97%E6%B3%95s</a></p>
+<p><a href="http://www.nocow.cn/index.php/Floyd-Warshall%E7%AE%97%E6%B3%95" target="_blank" rel="external">http://www.nocow.cn/index.php/Floyd-Warshall%E7%AE%97%E6%B3%95</a></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2014/12/12/dscr-bipartite-matching/" itemprop="url">
                 数据结构复习考试（8）
               </a>
@@ -914,148 +1014,6 @@ The elements are compared using operator&lt; for the first version, and comp for
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/11/27/dscr-how-to-input-output-data/" itemprop="url">
-                数据结构考试复习（1）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2014-11-27T21:35:35+01:00" content="2014-11-27">
-            2014-11-27
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/11/27/dscr-how-to-input-output-data/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/27/dscr-how-to-input-output-data/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody"><p>数据结构要考试了，这学期老师主要通过让我们stl的使用以及自学典型算法刷ACM水题来提高。</p>
-<p>系列一记录ACM题中数据的读写问题。</p>
-<p>##0X00<br><strong>对于输入：</strong></p>
-<ul>
-<li>如果输入数据全部有普通的数组成，可以直接用cin &gt;&gt; Intnum;</li>
-<li>或者 scanf(“%d”, &amp;Intnum);</li>
-<li>注意 scanf(“lld”, &amp;Doublenum);</li>
-</ul>
-<p><strong>输出问题：</strong></p>
-<pre><code>设置域宽：
-1. &lt;iomanip&gt;
-cout &lt;&lt; right &lt;&lt; setw(4) &lt;&lt; Intnum; //设置域宽为4,默认右对齐
-cout &lt;&lt; left &lt;&lt; setw(4) &lt;&lt; Intnum;  //左对齐
-
-2. &lt;cstdio&gt;
-printf(&quot;%4d&quot;, Intnum);  //默认右对齐
-printf(&quot;%04d&quot;, Intnum); //用0填充
-
-设置小数位数：
-1. &lt;iomanip&gt;
-cout &lt;&lt; setprecision(4) &lt;&lt; Doublenum;               //保留4位有效数字
-cout &lt;&lt; fixed &lt;&lt; setprecision(4) &lt;&lt; Doublenum;      //小数点后保留4位小数
-cout &lt;&lt; scientific &lt;&lt; setprecision(4) &lt;&lt; Doublenum; //科学计数法保留4位小数
-
-2. &lt;cstdio&gt;
-printf(&quot;%.4f&quot;,Doublenum);   //小数点后保留4位小数
-</code></pre><p>##0X01<br>有时候需要把输入的一部分作为字符串处理</p>
-<pre><code>1. &lt;string&gt;
-cin &gt;&gt; str;
-</code></pre><p>解释：cin 对 string 的处理是，从第一个输入开始，看到空白符（空格，回车）都不管，等待有效输入，<br>有效输入完了，看到接下来的空白符，就把前面的有效输入当做一个字符串。<br>也就是说，str不会读空行，不会是空串。<a href="http://blog.csdn.net/hanrui90/article/details/6633136" target="_blank" rel="external">参考链接</a></p>
-<pre><code>2. string类中常用的几个函数
-string::string
-string::clear
-string::compare
-string::empty
-string::erase
-string::find
-string::length
-string::substr
-</code></pre><p>##0X02<br>有时需要将数据以行为单位读入,并将字符串截取</p>
-<pre><code>&lt;sstream&gt;
-&lt;string&gt;
-string str, sa, sb;
-getline(cin, str);
-istringstream ss(str);
-ss &gt;&gt; sa &gt;&gt; sb;
-
-//注意：getline()会读取一整行，所以str可能是空串
-//str=&quot;aaa bb&quot;
-//sa=&quot;aaa&quot;, sb=&quot;bb&quot;
-</code></pre><p>##0X03<br>输入中如果出现普通数的下一行是字符串的情况， 要考虑换行符</p>
-<p>###Test 1###<br>    cin &gt;&gt; Intnum;<br>    getline(cin, str);</p>
-<pre><code>//Input:
-//1
-//abc
-
-//str = &quot;&quot;
-</code></pre><p>###Test 2###<br>    cin &gt;&gt; Intnum;<br>    cin &gt;&gt; str;</p>
-<pre><code>//Input:
-//1
-//abc
-
-//str = &quot;abc&quot;
-</code></pre><p>如果需要吸取一个回车符，可以使用cin.ignore();</p>
-<p>##0X04<br>对于需要读到文件末尾的情况，可以这样：</p>
-<pre><code>while(!cin.eof()){
-    read...
-}
-</code></pre><p>同样，对于<code>istreamstring ss(str)</code>同样有：</p>
-<pre><code>while(!ss.eof()){
-    ss&gt;&gt;sth...
-}
-</code></pre><p>##0X05<br>复杂的输入输出</p>
-<p>待补充</p>
-</span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1094,7 +1052,7 @@ ss &gt;&gt; sa &gt;&gt; sb;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-count">62</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1108,7 +1066,7 @@ ss &gt;&gt; sa &gt;&gt; sb;
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

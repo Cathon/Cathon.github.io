@@ -187,6 +187,148 @@
           
           
             
+              <a class="post-title-link" href="/2014/11/27/dscr-how-to-input-output-data/" itemprop="url">
+                数据结构考试复习（1）
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-11-27T21:35:35+01:00" content="2014-11-27">
+            2014-11-27
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/11/27/dscr-how-to-input-output-data/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/27/dscr-how-to-input-output-data/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>数据结构要考试了，这学期老师主要通过让我们stl的使用以及自学典型算法刷ACM水题来提高。</p>
+<p>系列一记录ACM题中数据的读写问题。</p>
+<p>##0X00<br><strong>对于输入：</strong></p>
+<ul>
+<li>如果输入数据全部有普通的数组成，可以直接用cin &gt;&gt; Intnum;</li>
+<li>或者 scanf(“%d”, &amp;Intnum);</li>
+<li>注意 scanf(“lld”, &amp;Doublenum);</li>
+</ul>
+<p><strong>输出问题：</strong></p>
+<pre><code>设置域宽：
+1. &lt;iomanip&gt;
+cout &lt;&lt; right &lt;&lt; setw(4) &lt;&lt; Intnum; //设置域宽为4,默认右对齐
+cout &lt;&lt; left &lt;&lt; setw(4) &lt;&lt; Intnum;  //左对齐
+
+2. &lt;cstdio&gt;
+printf(&quot;%4d&quot;, Intnum);  //默认右对齐
+printf(&quot;%04d&quot;, Intnum); //用0填充
+
+设置小数位数：
+1. &lt;iomanip&gt;
+cout &lt;&lt; setprecision(4) &lt;&lt; Doublenum;               //保留4位有效数字
+cout &lt;&lt; fixed &lt;&lt; setprecision(4) &lt;&lt; Doublenum;      //小数点后保留4位小数
+cout &lt;&lt; scientific &lt;&lt; setprecision(4) &lt;&lt; Doublenum; //科学计数法保留4位小数
+
+2. &lt;cstdio&gt;
+printf(&quot;%.4f&quot;,Doublenum);   //小数点后保留4位小数
+</code></pre><p>##0X01<br>有时候需要把输入的一部分作为字符串处理</p>
+<pre><code>1. &lt;string&gt;
+cin &gt;&gt; str;
+</code></pre><p>解释：cin 对 string 的处理是，从第一个输入开始，看到空白符（空格，回车）都不管，等待有效输入，<br>有效输入完了，看到接下来的空白符，就把前面的有效输入当做一个字符串。<br>也就是说，str不会读空行，不会是空串。<a href="http://blog.csdn.net/hanrui90/article/details/6633136" target="_blank" rel="external">参考链接</a></p>
+<pre><code>2. string类中常用的几个函数
+string::string
+string::clear
+string::compare
+string::empty
+string::erase
+string::find
+string::length
+string::substr
+</code></pre><p>##0X02<br>有时需要将数据以行为单位读入,并将字符串截取</p>
+<pre><code>&lt;sstream&gt;
+&lt;string&gt;
+string str, sa, sb;
+getline(cin, str);
+istringstream ss(str);
+ss &gt;&gt; sa &gt;&gt; sb;
+
+//注意：getline()会读取一整行，所以str可能是空串
+//str=&quot;aaa bb&quot;
+//sa=&quot;aaa&quot;, sb=&quot;bb&quot;
+</code></pre><p>##0X03<br>输入中如果出现普通数的下一行是字符串的情况， 要考虑换行符</p>
+<p>###Test 1###<br>    cin &gt;&gt; Intnum;<br>    getline(cin, str);</p>
+<pre><code>//Input:
+//1
+//abc
+
+//str = &quot;&quot;
+</code></pre><p>###Test 2###<br>    cin &gt;&gt; Intnum;<br>    cin &gt;&gt; str;</p>
+<pre><code>//Input:
+//1
+//abc
+
+//str = &quot;abc&quot;
+</code></pre><p>如果需要吸取一个回车符，可以使用cin.ignore();</p>
+<p>##0X04<br>对于需要读到文件末尾的情况，可以这样：</p>
+<pre><code>while(!cin.eof()){
+    read...
+}
+</code></pre><p>同样，对于<code>istreamstring ss(str)</code>同样有：</p>
+<pre><code>while(!ss.eof()){
+    ss&gt;&gt;sth...
+}
+</code></pre><p>##0X05<br>复杂的输入输出</p>
+<p>待补充</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2014/11/22/201411222000/" itemprop="url">
                 攀岩绳结（1）
               </a>
@@ -1035,79 +1177,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/10/15/use-hexo/" itemprop="url">
-                Use hexo
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2014-10-15T14:38:08+02:00" content="2014-10-15">
-            2014-10-15
-          </time>
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/10/15/use-hexo/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/15/use-hexo/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h2 id="u4F7F_u7528Hexo"><a href="#u4F7F_u7528Hexo" class="headerlink" title="使用Hexo"></a>使用Hexo</h2><p>用了一段时间的wp，租的虚拟主机，感觉不是特别舒服，后来不知道怎么数据库就损坏了，遂放弃。想用 Github Pages 记点笔记，整合个博客，用了jekyll 本地配置了一次，第二天 jekyll 本地的配置各种 error，不知所措。最后发现了 Hexo，于是尝试了下，不是特别顺利，错误不断，但是相对建议易用，后面简单记录一下过程。<br>后续增添一些 Hexo 的配置和<a href="#skills">使用技巧</a>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/15/use-hexo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1146,7 +1215,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-count">62</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1160,7 +1229,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
